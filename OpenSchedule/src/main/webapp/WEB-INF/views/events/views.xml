@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="events/list">
+        <put-attribute name="body" value="/WEB-INF/views/events/list.jsp"/>
+    </definition>
+<definition extends="default" name="events/show">
+        <put-attribute name="body" value="/WEB-INF/views/events/show.jsp"/>
+    </definition>
+<definition extends="default" name="events/create">
+        <put-attribute name="body" value="/WEB-INF/views/events/create.jsp"/>
+    </definition>
+<definition extends="default" name="events/update">
+        <put-attribute name="body" value="/WEB-INF/views/events/update.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateSponsor">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateSponsor.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateVenue">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateVenue.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateVenueRoom">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateVenueRoom.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateTrack">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateTrack.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateLabel">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateLabel.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateSpeaker">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateSpeaker.jsp"/>
+    </definition>
+<definition extends="default" name="events/updateSession">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateSession.jsp"/>
+    </definition>
+<definition extends="default" name="events/findEventsByUsername">
+        <put-attribute name="body" value="/WEB-INF/views/events/findEventsByUsername.jspx"/>
+    </definition>
+<definition extends="default" name="events/findEventsByShortName">
+        <put-attribute name="body" value="/WEB-INF/views/events/findEventsByShortName.jspx"/>
+    </definition>
+</tiles-definitions>

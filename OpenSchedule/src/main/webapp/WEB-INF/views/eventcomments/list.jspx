@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+<page:list id="pl_org_openschedule_domain_EventComment" items="${eventcomments}" z="oyKGKKxjiXt9XBr+SqLcQOC1m1Q=">
+        <table:table data="${eventcomments}" id="l_org_openschedule_domain_EventComment" path="/eventcomments" z="ExIW04sSavcsO6gcSBThBLkQT5Q=">
+            <table:column id="c_org_openschedule_domain_EventComment_name" property="name" z="PT3i5oD7tB1dc0dlNjvTp8llVec="/>
+            <table:column id="c_org_openschedule_domain_EventComment_email" property="email" z="i0W9i+meZRSKaY3uuptxzgi5k18="/>
+            <table:column id="c_org_openschedule_domain_EventComment_comment" property="comment" z="bZrVkDw0ZMuYQxgB0ujHyiPWCu4="/>
+        </table:table>
+    </page:list>
+</div>

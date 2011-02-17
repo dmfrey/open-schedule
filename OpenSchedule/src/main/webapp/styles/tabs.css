@@ -1,0 +1,50 @@
+#tabs {
+	font-size: 90%;
+	margin: 20px 0;
+}
+
+#tabs ul.tab-bar {
+	width: 600px;
+	padding-top: 4px;
+}
+
+#tabs ul.tab-bar li {
+	list-style: none;
+	border: 1px solid black;
+	border-bottom: 1px solid white;
+	height: 36px;
+	margin-left: 2px;
+}
+
+* html #tabs ul.tab-bar li {
+	display: inline; /* ie6 double float margin bug */
+}
+
+#tabs ul.tab-bar li, #tabs ul.tab-bar li a {
+	float: left;
+}
+
+#tabs ul.tab-bar li a {
+	text-decoration: none;
+	padding: 8px;
+	color: #0073BF;
+	font-weight: bold;
+}
+
+#tabs ul.tab-bar li.active {
+	background: #CEE1EF;
+	border-bottom: 1px solid #CEE1EF;
+}
+
+#tabs ul.tab-bar li.active a {
+	color: #333333;
+}
+
+#tabs article {
+	float: left;
+	clear: both;
+	padding: 20px;
+	min-width: 580px;
+	min-height: 200px;
+	border: 1px solid black;
+}

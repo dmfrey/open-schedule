@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <definition extends="public" name="public/published">
+        <put-attribute name="body" value="/WEB-INF/views/public/list.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/show">
+        <put-attribute name="body" value="/WEB-INF/views/public/show.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/comments">
+        <put-attribute name="body" value="/WEB-INF/views/public/listEventComments.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/createEventComment">
+        <put-attribute name="body" value="/WEB-INF/views/public/createEventComment.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/updateEventComment">
+        <put-attribute name="body" value="/WEB-INF/views/public/updateEventComment.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/showEventComment">
+        <put-attribute name="body" value="/WEB-INF/views/public/showEventComment.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/days/schedules/blocks/comments/list">
+        <put-attribute name="body" value="/WEB-INF/views/public/listBlockComments.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/days/schedules/blocks/comments/create">
+        <put-attribute name="body" value="/WEB-INF/views/public/createBlockComment.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/days/schedules/blocks/comments/show">
+        <put-attribute name="body" value="/WEB-INF/views/public/showBlockComment.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/days/schedules/blocks/comments/update">
+        <put-attribute name="body" value="/WEB-INF/views/public/updateBlockComment.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/">
+        <put-attribute name="body" value="/WEB-INF/views/public/.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/">
+        <put-attribute name="body" value="/WEB-INF/views/public/.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/">
+        <put-attribute name="body" value="/WEB-INF/views/public/.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/">
+        <put-attribute name="body" value="/WEB-INF/views/public/.jsp" />
+    </definition>
+
+</tiles-definitions>

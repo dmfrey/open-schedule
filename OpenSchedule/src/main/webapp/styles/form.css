@@ -1,0 +1,27 @@
+fieldset {
+}
+
+fieldset ol, fieldset ul, fieldset table {
+	list-style: none;
+	padding: 0;
+	margin-left: 25px;
+}
+
+fieldset ol li, fieldset ul li {
+	margin: 0 0 9px 0;
+	padding: 0;
+}
+
+fieldset legend {
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	background-color: black;
+	width: 99%;
+	padding: 2px;
+}
+
+/* Make inputs go to their own line */
+fieldset input {
+	display: block;
+}
