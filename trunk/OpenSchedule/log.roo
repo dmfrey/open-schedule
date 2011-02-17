@@ -1,0 +1,141 @@
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-13 10:12:14
+project --topLevelPackage org.dmfrey.schedule --projectName schedule --java 6
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-13 10:12:19
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-13 10:13:12
+hint
+persistence setup --database HYPERSONIC_IN_MEMORY --provider HIBERNATE
+hint
+entity --class ~.domain.Event --testAutomatically 
+entity --class ~.domain.UserAccount --testAutomatically 
+help
+hint web mvc
+hint web
+hint web mvc install language
+hint
+help
+hint controller
+hint controllers
+controller scaffold --class ~.web.ScheduleController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-13 12:05:11
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-13 13:36:13
+logging setup --level INFO 
+logging setup --level DEBUG 
+logging setup --level TRACE
+logging setup --level INFO 
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-13 14:26:27
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-13 14:28:31
+help
+hint security
+security setup
+entity --class ~.domain.Authority --testAutomatically 
+persistence setup --provider HIBERNATE --database MYSQL --databaseName schedule --hostName localhost --userName root
+hint finder
+finder list --class ~.domain.UserAccount
+// [failed] finder add --finderName findUserAccountByUsername
+finder list --class ~.domain.UserAccount --filter Username --depth 2
+test integration --entity ~.domain.Event
+logging setup --level TRACE --package org.dmfrey.schedule.security
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-16 09:03:12
+logging setup --level DEBUG 
+logging setup --level INFO
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-16 11:27:39
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-19 10:55:39
+hint controller
+hint controllers
+controller class --class ~.web.AccountController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-19 16:10:59
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-20 08:33:59
+controller scaffold --class ~.web.UserController --entity ~.domain.UserAccount
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-21 16:30:55
+logging setup --level DEBUG 
+logging setup --level INFO
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-21 21:12:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-22 09:49:33
+controller scaffold --class ~.web.EventController --entity ~.domain.Event
+quit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-22 10:26:18
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-22 10:26:31
+logging setup --level DEBUG --package org.springframework.web
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-23 23:05:12
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-17 20:55:28
+perform tests
+help
+test integration --entity ~.domain.Track --permitReservedWords 
+// [failed] entity --class ~.domain.Day --testAutomatically 
+entity --class ~.domain.Day --testAutomatically --permitReservedWords 
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-17 22:02:40
+entity --class ~.domain.Venue --testAutomatically --permitReservedWords 
+entity --class ~.domain.Room --testAutomatically --permitReservedWords 
+entity --class ~.domain.Schedule --testAutomatically --permitReservedWords 
+entity --class ~.domain.Block --testAutomatically --permitReservedWords 
+entity --class ~.domain.Session --testAutomatically --permitReservedWords 
+entity --class ~.domain.Speaker --testAutomatically --permitReservedWords 
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-17 23:42:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-18 20:56:08
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-18 23:27:14
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-19 10:01:17
+entity --class ~.domain.Label --testAutomatically --permitReservedWords 
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-19 22:30:01
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-20 09:19:40
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-22 09:44:52
+entity --class ~.domain.Sponsor --permitReservedWords --testAutomatically 
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-22 17:10:02
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-31 23:45:03
+perform clean
+help
+database introspect --schema schedule
+help
+development mode
+poll now
+quit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-01 00:20:05
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-01 00:20:15
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-02 09:27:33
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-02 09:56:09
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-03 22:32:46
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-04 08:30:12
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-04 10:42:00
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-05 11:21:36
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-05 16:24:44
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-06 21:14:06
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-06 23:05:28
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-08 14:14:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-08 19:20:34
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-12 11:14:28
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-12 14:04:25
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-01-14 23:14:50
+perform tests
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-01-15 00:15:06
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-01-15 15:08:00
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-01-17 00:53:59
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-01 20:52:19
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-01 22:10:31
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-09 20:13:08
+entity --class ~.domain.SessionComment --testAutomatically 
+entity --class ~.domain.EventComment --testAutomatically 
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-09 21:48:57
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-13 20:58:59
+hint controller
+help
+controller scaffold --class ~.web.EventCommentController --entity ~.domain.EventComment
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-13 21:31:52
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-14 08:57:17
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-14 09:02:02
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-14 09:05:37
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-14 09:18:39
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-14 10:18:51
+// [failed] test integration --entity ~.domain.BlockComments
+test integration --entity ~.domain.BlockComment
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-14 11:17:13
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-14 11:31:16
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-14 16:27:22
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-15 19:44:12
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-15 19:46:43
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-15 19:47:55
+controller scaffold --class ~.web.BlockCommentController --entity ~.domain.BlockComment
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-15 22:48:22
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-16 13:00:39
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-16 15:39:23
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-17 08:29:36
+quit
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-17 09:43:54

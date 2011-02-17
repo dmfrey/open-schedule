@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+<form:update id="fu_org_openschedule_domain_Event" modelAttribute="event" path="/events" z="VhTIA9jZ6anLcnqLLntRyDuqQrI=">
+        <field:input field="name" id="c_org_openschedule_domain_Event_name" required="true" z="Zvly4w0O1HAqglaZqdWw+tjGqg8="/>
+        <field:input field="shortName" id="c_org_openschedule_domain_Event_shortName" required="true" validationRegex="([A-Za-z0-9-_]+)" z="tcBGrMlrDVMQFWYuRbCP9Lu4GYw="/>
+        <field:datetime dateTimePattern="${event_publishdate_date_format}" field="publishDate" id="c_org_openschedule_domain_Event_publishDate" z="qTRKqVvdzKtCuYgkxkUMwJQfLMg="/>
+        <field:datetime dateTimePattern="${event_startdate_date_format}" field="startDate" id="c_org_openschedule_domain_Event_startDate" required="true" z="6XmsBtudGqUrb4a3ZUBGvbVvt+U="/>
+        <field:datetime dateTimePattern="${event_enddate_date_format}" field="endDate" id="c_org_openschedule_domain_Event_endDate" z="HhwK2E1FNg6Ddh8p2OtmGN9FPIA="/>
+        <field:input field="numberOfDays" id="c_org_openschedule_domain_Event_numberOfDays" required="true" validationMessageCode="field_invalid_integer" z="n71N/bVPP/i3FNMWx5fS2cnFJNw="/>
+        <field:input field="username" id="c_org_openschedule_domain_Event_username" required="true" z="upiV9j0IE6mGBh4zFZNtKHbJrWs="/>
+        <field:simple field="tracks" id="c_org_openschedule_domain_Event_tracks" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="UApUyMVy1l9jnKWzMLp80hxrM7E="/>
+        <field:simple field="days" id="c_org_openschedule_domain_Event_days" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="2AasTleESsiHb/mOGK50hzNU04Q="/>
+        <field:simple field="venues" id="c_org_openschedule_domain_Event_venues" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="MkRMJ1V9GnXaAsxdRRTyr6fLOIc="/>
+        <field:simple field="sponsors" id="c_org_openschedule_domain_Event_sponsors" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="M7WCp9Ja5sZP33sZTXGYQjSv99M="/>
+        <field:simple field="labels" id="c_org_openschedule_domain_Event_labels" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="EmcONwPDjUe2kZIX5GeviLh1tqs="/>
+        <field:simple field="sessions" id="c_org_openschedule_domain_Event_sessions" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="2nrrCScqf+tv2Jqo4VN+daSZ4/k="/>
+        <field:simple field="speakers" id="c_org_openschedule_domain_Event_speakers" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="WIOFZAZ9KNDLIB2MkUmHoS4wJ5Y="/>
+        <field:simple field="comments" id="c_org_openschedule_domain_Event_comments" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="NqEGZxHcePixqKK8UoqY6ryFo9s="/>
+    </form:update>
+</div>

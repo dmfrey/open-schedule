@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+<page:show id="ps_org_openschedule_domain_Event" object="${event}" path="/events" z="G7p68CHvYSjebkqO7yaBkqesweI=">
+        <field:display field="name" id="s_org_openschedule_domain_Event_name" object="${event}" z="R2va0nNi7ZG2ILWW5P2Po4DU7Qk="/>
+        <field:display field="shortName" id="s_org_openschedule_domain_Event_shortName" object="${event}" z="jvdOeRepjtsVLMkjv70IykS59CY="/>
+        <field:display date="true" dateTimePattern="${event_publishdate_date_format}" field="publishDate" id="s_org_openschedule_domain_Event_publishDate" object="${event}" z="vV9IAJaIsRgbteB8sTDCme4hs8s="/>
+        <field:display date="true" dateTimePattern="${event_startdate_date_format}" field="startDate" id="s_org_openschedule_domain_Event_startDate" object="${event}" z="22mIycv56aLMFFOmd9ZhPpSMY9I="/>
+        <field:display date="true" dateTimePattern="${event_enddate_date_format}" field="endDate" id="s_org_openschedule_domain_Event_endDate" object="${event}" z="n/QJkhkEZahKS0EILV46WewbBR4="/>
+        <field:display field="numberOfDays" id="s_org_openschedule_domain_Event_numberOfDays" object="${event}" z="rJ0jgtQmTEXk5ol8RuZbCOv1JsM="/>
+        <field:display field="username" id="s_org_openschedule_domain_Event_username" object="${event}" z="+AQiLu+ERLNYvXjzJEVfUZj3WAA="/>
+        <field:display field="tracks" id="s_org_openschedule_domain_Event_tracks" object="${event}" z="U4VDAZ4adELIH8nNMsp8mGy1qB8="/>
+        <field:display field="days" id="s_org_openschedule_domain_Event_days" object="${event}" z="bnxI0zUvGY9drnXcwmmJtP6OY/o="/>
+        <field:display field="venues" id="s_org_openschedule_domain_Event_venues" object="${event}" z="hLwfiK+qwm6eHe33a8nsN2r3fxc="/>
+        <field:display field="sponsors" id="s_org_openschedule_domain_Event_sponsors" object="${event}" z="pwBnZfW3KxmXXE0owC8okWVazZ8="/>
+        <field:display field="labels" id="s_org_openschedule_domain_Event_labels" object="${event}" z="MRWpCZe0wAIJ1FK+zCHrktyvrrg="/>
+        <field:display field="sessions" id="s_org_openschedule_domain_Event_sessions" object="${event}" z="wfw9IM7jSsLfdqqS/dhlrZQ7ppE="/>
+        <field:display field="speakers" id="s_org_openschedule_domain_Event_speakers" object="${event}" z="a6CBFASK5letLCXUb0K7JSEfCSM="/>
+        <field:display field="comments" id="s_org_openschedule_domain_Event_comments" object="${event}" z="KhHO3FqLPk5wcFdsi2M2N5xUP00="/>
+    </page:show>
+</div>

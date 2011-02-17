@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+<form:find finderName="ByShortName" id="ff_org_openschedule_domain_Event" path="/events" z="7zZQWmqC/i6yKaEOHOg4HbyR0hE=">
+        <field:input disableFormBinding="true" field="shortName" id="f_org_openschedule_domain_Event_shortName" required="true" validationRegex="([A-Za-z0-9-_]+)" z="W9dckgfGASYTba1kAt0QuYuAGj8="/>
+    </form:find>
+</div>

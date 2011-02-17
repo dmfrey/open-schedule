@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+	<jsp:output omit-xml-declaration="yes"/>
+
+<menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_useraccount" z="Yb8cyPB5AwOfYXCcrEpGXNT9C+k=">
+            <menu:item id="i_useraccount_new" messageCode="global_menu_new" url="/useraccounts?form" z="dm6iErpLQmgISoPCTS3yLiH8XFA="/>
+        <menu:item id="i_useraccount_list" messageCode="global_menu_list" url="/useraccounts?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="/9BHEKVbyknY2TjSOpkCIQabyrE="/>
+        </menu:category>
+    <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+            <menu:item id="i_controller__accountindex_id" messageCode="global_generic" url="/account/index" z="1QUYm/LGdC9Uai10R0JxPwLbdXI="/>
+        </menu:category>
+    <menu:category id="c_event" z="AURyeKTmOObIARXqfI9DXukJNIE=">
+            <menu:item id="i_event_new" messageCode="global_menu_new" url="/events?form" z="BObcRn250Q23VbXG8kWIXR49efE="/>
+        <menu:item id="i_event_list" messageCode="global_menu_list" url="/events?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="HhukY239I3S1Kj1me3pbW4MxNAk="/>
+        <menu:item id="fi_event_username" messageCode="global_menu_find" url="/events?find=ByUsername&amp;form" z="2nCKyrJmMFRSr7hxoNLDZ4CsKEs="/>
+        <menu:item id="fi_event_shortname" messageCode="global_menu_find" url="/events?find=ByShortName&amp;form" z="78aA8WN5jF6A1m9J+tqYW+T3Fx4="/>
+        </menu:category>
+    <menu:category id="c_eventcomment" z="14zRaLLczpY2tZX1Q9q2u66ULtQ=">
+            <menu:item id="i_eventcomment_new" messageCode="global_menu_new" url="/eventcomments?form" z="t9AI4BfJ6TQqtobB781dTPb9R7g="/>
+        <menu:item id="i_eventcomment_list" messageCode="global_menu_list" url="/eventcomments?page=1&amp;size=${empty param.size ? 10 : param.size}" z="rs3NCEXpCZhKhHm/kybrR+1Wzgw="/>
+        </menu:category>
+    <menu:category id="c_blockcomment" z="obn8nlfN/bIzdCk+cSVYjsXPdMY=">
+            <menu:item id="i_blockcomment_new" messageCode="global_menu_new" url="/blockcomments?form" z="E+gb+fjzHBwRGSkNkMFkggFdElc="/>
+        <menu:item id="i_blockcomment_list" messageCode="global_menu_list" url="/blockcomments?page=1&amp;size=${empty param.size ? 10 : param.size}" z="8nBQJ+6Qag9xLso6i84KIoWBksc="/>
+        </menu:category>
+    </menu:menu>
+</div>

@@ -1,0 +1,65 @@
+<aspectj>
+<aspects>
+<aspect name="org.openschedule.domain.SponsorDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.SpeakerDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.LabelDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.ScheduleDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.DayIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.AuthorityDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.BlockDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.SessionDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.ScheduleIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.SessionDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.BlockIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.AuthorityIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.BlockCommentIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.LabelIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.EventIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.VenueIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.DayDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.SpeakerDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.VenueDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.BlockCommentDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.SponsorIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.EventCommentIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.UserAccountDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.BlockCommentDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.ScheduleDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.EventCommentDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.TrackDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.DayIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.SessionIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.EventIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.SpeakerIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.RoomDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.TrackDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.EventCommentIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.RoomIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.AuthorityIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.SponsorDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.DayDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.VenueIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.UserAccountIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.UserAccountDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.SessionIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.VenueDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.ScheduleIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.EventDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.UserAccountIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.TrackIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.BlockCommentIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.RoomIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.BlockIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.AuthorityDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.SponsorIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.EventDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.RoomDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="org.openschedule.domain.TrackIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.EventCommentDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.LabelIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="org.openschedule.domain.SpeakerIntegrationTest_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.BlockDataOnDemand_Roo_Configurable"/>
+<aspect name="org.openschedule.domain.LabelDataOnDemand_Roo_DataOnDemand"/>
+</aspects>
+</aspectj>
+

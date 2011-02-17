@@ -1,0 +1,419 @@
+body {
+    width: 960px;
+    margin: 2% auto;
+    font-family: Arial, "MS Trebuchet", sans-serif;
+}
+
+p {
+    margin: 0 0 20px 0;
+}
+
+p, li {
+    line-height: 20px;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+header#page_header {
+    width: 100%;
+}
+
+header#page_header nav ul, #page_footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#page_header nav ul li, footer#page_footer nav ul li {
+    padding:0;
+    margin: 0 20px 0 0;
+    display: inline;
+}
+
+section#sidebar {
+    float: left;
+    width: 25%;
+}
+
+section#content {
+    float: left;
+    width: 74%;
+    margin-top: 2%;
+}
+
+article.published table {
+	width: 100%;
+}
+
+article.published table td, article.published table th {
+	width: 150px;
+}
+
+section#content .details {
+	font-size: 10px;
+	margin: 10px;
+	padding: 5px;
+	border: solid black 1px;
+}
+
+section#content .toggle {
+	font-size: 8px;
+}
+
+section#content .details ul {
+	list-style: none;
+}
+
+section#content .articleDetails {
+	display: none;
+}
+
+section#content .articleDetails > ul {
+    padding:0;
+    margin: 0;
+    display: inline;
+    width: 100%;
+    float: left;
+}
+
+section#content .articleDetails > ul li {
+    padding:0;
+    margin: 0 20px 0 0;
+    display: inline;
+    width: 100px;
+    float: left;
+}
+
+section#content .articleDetails > ul li > a.expand {
+	float: right;
+	padding: 3px;
+}
+
+section#content .articleDetails > ul li div {
+	display: none;
+}
+
+section#content .popupForm {
+	display: none;
+	width: 510px;
+	position: absolute;
+	padding: 5px;
+	margin: 5px;
+	background-color: #DFDFDF;
+	border: solid gray 2px;
+	-moz-box-shadow: 5px 5px 5px gray;
+	-webkit-box-shadow: 5px 5px 5px gray;
+	-o-box-shadow: 5px 5px 5px gray;
+	box-shadow: 5px 5px 5px gray;
+}
+
+section#content .popupForm .popupFormClose {
+	float: right;
+	clear: right;
+	padding: 2px;
+	display: block;
+	width: 50px;	
+}
+
+section#content .popupForm ul {
+	display: block;
+}
+
+section#content .popupForm ul li {
+	display: block;
+	width: 100%;
+}
+
+section#content .venueAddress {
+	width: 220px;
+	float: left;
+	margin-left: 25px;
+}
+
+section#content .venueInformation {
+	width: 200px;
+	float: left;
+}
+
+section#content .scheduleView {
+	list-style: none;
+	padding: 1px;
+	float: left;
+}
+
+section#content .scheduleList .trackView {
+	width: 310px;
+	border: solid black 1px;
+	float: left;
+	padding: 5px;
+	margin: 5px;
+}
+
+section#content .scheduleList .trackView h4 {
+	padding: 4px;
+	background: black;
+	color: white;
+}
+
+section#content .scheduleList .trackView span.removeTrack {
+	padding: 0 5px;
+	float: right;
+	background: white;
+}
+
+section#content .scheduleList .trackView ul {
+	list-style: none;
+	border: solid black 1px;
+	margin: 2px 0;
+}
+
+section#content .scheduleList .trackView ul li {
+	display: inline;
+	margin: 2px;
+	padding: 2px;
+}
+
+section#content .scheduleList .trackView ul li input[type=number] {
+	width: 40px;
+}
+
+section#content .scheduleList .trackView ul li span.removeBlock {
+	float: right;
+	padding-top: 1px;
+	padding-right: 2px;
+}
+
+section#content .scheduleTab span.removeDay {
+	float: right;
+	width: 120px;
+}
+
+section#content .updateFormLinks {
+	display: block;
+	font-weight: bold;
+	float: left;
+	width: 100%;
+	margin: 2px;
+	padding: 2px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+section#content .updateFormLinks a {
+	color: red;
+	text-decoration: none;
+	margin: 2px;
+}
+
+#schedule {
+	float: left;
+	clear: both;
+	border: solid black 1px;
+	margin: 5px;
+	padding: 5px;
+	width: 100%;
+}
+
+#schedule h3 {
+	color: white;
+	background-color: black;
+	padding: 2px;
+}
+
+section#content .addDay {
+	float: right;
+	clear: right;
+	padding: 2px;
+	display: block;
+	width: 110px;	
+}
+
+section#content .scheduleList {
+	float: left;
+	clear: both;
+	width: 100%;	
+}
+
+section#content .addDay {
+	clear: both;
+	padding: 2px;
+	display: block;
+	width: 100%;	
+}
+
+div.viewEmpty {
+	font-size: 16px;
+	font-style: italic;
+	color: red;
+}
+
+div.view {
+	margin-bottom: 20px;
+}
+
+div.viewInfo header {
+	border-bottom: solid black 1px;
+	margin-bottom: 10px;
+}
+
+div.viewInfo header h1 {
+	font-size: 18px;
+}
+
+div.viewInfo aside {
+	font-size: 10px;
+	float: right;
+	width: 150px;
+}
+
+div.viewInfo article {
+	font-size: 13px;
+}
+
+div.viewInfo article ul {
+	width: 300px;
+}
+
+div.viewInfo article ul li span {
+	display: inline-block;
+	width: 150px;
+	font-weight: bold;
+}
+
+div.viewAgenda > header {
+	border-bottom: solid black 1px;
+	margin-bottom: 10px;
+}
+
+div.viewAgenda header h1 {
+	font-size: 18px;
+	font-style: italic;
+}
+
+div.viewAgenda article {
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+div.viewAgenda article > header {
+	margin-bottom: 10px;
+}
+
+div.viewAgenda article header h2 {
+	font-weight: bold;
+}
+
+div.viewAgenda article div {
+	border: solid black 1px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+div.viewAgenda article div header {
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+div.viewAgenda article div header h3 {
+	font-style: italic;
+}
+
+div.viewAgenda article div table {
+	margin: 10px;
+}
+
+div.viewAgenda article div table tr:nth-child(odd) {
+ 	background: gray;
+}
+
+div.viewAgenda article div table tr:nth-child(even) {
+ 	background: white;
+}
+
+div.viewAgenda article div table tr:first-child {
+ 	background: white;
+	border-bottom: solid black 1px;
+}
+
+div.viewAgenda article div tr td, div.viewAgenda article div tr th {
+	padding: 5px;
+	margin: 0 2px;
+	font-size: 11px;
+}
+
+div.viewAgenda article div tr td:first-child, div.viewAgenda article div tr th:first-child {
+	width: 150px;
+}
+
+div.viewAgenda article div tr td.session {
+	background: blue;
+}
+
+div.viewAgenda article div tr td:nth-child(n+1), tr th:nth-child(n+1) {
+	width: 10px;
+}
+
+div.viewAgenda article div tr td:nth-child(2n+2), div.viewAgenda article div tr th:nth-child(2n+2) {
+	border-left: solid black 1px;
+}
+
+div.viewVenue > header {
+	border-bottom: solid black 1px;
+	margin-bottom: 10px;
+}
+
+div.viewVenue article {
+	float: left;
+	width: 475px;
+	margin-bottom: 20px;
+}
+
+div.viewVenue article > ul {
+	display: inline-block;
+	width: 150px;
+}
+
+div.viewVenue article > aside {
+	top: 0;
+	padding: 5px;
+	border: solid black 1px;
+	width: 200px;
+	float: right;
+}
+
+div.viewVenue article.viewVenueRooms {
+	float: right;
+	width: 200px;
+}
+
+.comment-dialog {
+	font-size: 10px;
+}
+
+span.ui-button-text {
+	font-size: 8px;
+}
+
+.comment-dialog input, .comment-dialog label {
+	display: block;
+}
+
+footer#page_footer {
+    clear: both;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.errors {
+	color: red;
+	font-weight: bold;
+	display: block;
+	margin-left: 10px;
+}
+
+.sessionSelect {
+	width: 110px;
+}

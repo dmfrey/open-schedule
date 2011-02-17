@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+<page:list id="pl_org_openschedule_domain_Event" items="${events}" z="+Y2bnVeUvqIJOYR8sSH3PxBE8wc=">
+        <table:table data="${events}" id="l_org_openschedule_domain_Event" path="/events" z="DEt7hHdw9X6K7zNBME1Rdil1hq4=">
+            <table:column id="c_org_openschedule_domain_Event_name" property="name" z="RDbjBOTdaU5wt8f4999qlN9I4S4="/>
+            <table:column id="c_org_openschedule_domain_Event_shortName" property="shortName" z="oFvqhXNOsS0LWUxfPrmzoCIQwIc="/>
+            <table:column id="c_org_openschedule_domain_Event_publishDate" property="publishDate" z="YJVSZ46N+gfbBX4HmwYHsNtPGbY="/>
+            <table:column id="c_org_openschedule_domain_Event_startDate" property="startDate" z="0ycAjMca15S6W/GgSfNuTlA5agA="/>
+            <table:column id="c_org_openschedule_domain_Event_endDate" property="endDate" z="e0UX5nEeWD+9TyGtduMteD5nGcc="/>
+            <table:column id="c_org_openschedule_domain_Event_numberOfDays" property="numberOfDays" z="An2PZlSRHNm1GUgnsohHUZfSDrs="/>
+        </table:table>
+    </page:list>
+</div>
