@@ -1,6 +1,6 @@
 package org.openschedule.domain;
 
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -22,8 +22,8 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
 
 @RooJavaBean
 @RooToString
@@ -32,7 +32,7 @@ import flexjson.JSONSerializer;
 @RooJson
 public class Block {
 
-	private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
+	//private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
 
 	@Column( name = "date", nullable = true )
 	@Temporal( TemporalType.DATE )
@@ -53,11 +53,20 @@ public class Block {
 	private List<BlockComment> comments = new ArrayList<BlockComment>();
 
     public String toJson() {
-        return new JSONSerializer().exclude( "*.class" ).deepSerialize( this );
+        return new JSONSerializer()
+					.exclude( "*.class" )
+					.transform(
+						new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
+					).deepSerialize( this );
+
     }
     
     public static String toJsonArray( Collection<Block> collection ) {
-        return new JSONSerializer().exclude( "*.class" ).deepSerialize( collection );
+        return new JSONSerializer()
+        			.exclude( "*.class" )
+        			.transform(
+        				new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
+        			).deepSerialize( collection );
     }
 
     //	public String toJson() {

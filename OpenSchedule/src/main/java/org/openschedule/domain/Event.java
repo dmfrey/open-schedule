@@ -1,6 +1,6 @@
 package org.openschedule.domain;
 
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -27,6 +27,9 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
+
 @RooJavaBean
 @RooToString
 @RooEntity( table="EVENT", finders = { "findEventsByUsername", "findEventsByShortName" } )
@@ -34,7 +37,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJson
 public class Event {
 
-	private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
+	//private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
 	
 	@Column( name = "name", length = 255, nullable = false )
 	@NotNull
@@ -114,24 +117,42 @@ public class Event {
     }
 
     public String toJson() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append( "{" );
-		sb.append( "\"id\":" ).append( getId() ).append( "," );
-		sb.append( "\"name\":\"" ).append( name.replaceAll( "'", "\'") ).append( "\"," );
-		sb.append( "\"shortName\":\"" ).append( shortName ).append( "\"," );
-		if( null != publishDate ) {
-			sb.append( "\"publishDate\":\"" ).append( sdf.format( publishDate ) ).append( "\"," );
-		}
-		sb.append( "\"startDate\":\"" ).append( null != getStartDate() ? sdf.format( startDate ) : null ).append( "\"," );
-		sb.append( "\"endDate\":\"" ).append( null != getEndDate() ? sdf.format( endDate ) : null ).append( "\"," );
-		sb.append( "\"numberOfDays\":\"" ).append( numberOfDays ).append( "\"," );
-		sb.append( "\"days\":" ).append( Day.toJsonArray( days ) ).append( "," );
-		sb.append( "\"venues\":" ).append( Venue.toJsonArray( venues ) );
-		sb.append( "}" );
-		
-		return sb.toString();
-	}
+        return new JSONSerializer()
+					.exclude( "username", "comments", "speakers", "sessions", "sponsors", "tracks", "labels", "*.class" )
+					.transform(
+						new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
+					).deepSerialize( this );
+
+    }
+
+    public static String toJsonArray( Collection<Event> collection ) {
+        return new JSONSerializer()
+					.exclude( "username", "comments", "speakers", "sessions", "sponsors", "tracks", "labels", "*.class" )
+					.transform(
+						new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
+					).deepSerialize( collection );
+
+    }
+
+//    public String toJson() {
+//		StringBuilder sb = new StringBuilder();
+//		
+//		sb.append( "{" );
+//		sb.append( "\"id\":" ).append( getId() ).append( "," );
+//		sb.append( "\"name\":\"" ).append( name.replaceAll( "'", "\'") ).append( "\"," );
+//		sb.append( "\"shortName\":\"" ).append( shortName ).append( "\"," );
+//		if( null != publishDate ) {
+//			sb.append( "\"publishDate\":\"" ).append( sdf.format( publishDate ) ).append( "\"," );
+//		}
+//		sb.append( "\"startDate\":\"" ).append( null != getStartDate() ? sdf.format( startDate ) : null ).append( "\"," );
+//		sb.append( "\"endDate\":\"" ).append( null != getEndDate() ? sdf.format( endDate ) : null ).append( "\"," );
+//		sb.append( "\"numberOfDays\":\"" ).append( numberOfDays ).append( "\"," );
+//		sb.append( "\"days\":" ).append( Day.toJsonArray( days ) ).append( "," );
+//		sb.append( "\"venues\":" ).append( Venue.toJsonArray( venues ) );
+//		sb.append( "}" );
+//		
+//		return sb.toString();
+//	}
 	
     public String toJsonSummary() {
 		StringBuilder sb = new StringBuilder();
@@ -145,26 +166,26 @@ public class Event {
 		return sb.toString();
 	}
 
-    public static String toJsonArray( Collection<Event> collection ) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append( "[" );
-		if( null != collection ) {
-			int i = 0;
-			for( Event event : collection ) {
-				sb.append( event.toJson() );
-
-				if( i < ( collection.size() - 1 ) ) {
-					sb.append( "," );
-				}
-
-				i++;
-			}
-		}
-		sb.append( "]" );
-		
-		return sb.toString();
-    }
+//    public static String toJsonArray( Collection<Event> collection ) {
+//		StringBuilder sb = new StringBuilder();
+//
+//		sb.append( "[" );
+//		if( null != collection ) {
+//			int i = 0;
+//			for( Event event : collection ) {
+//				sb.append( event.toJson() );
+//
+//				if( i < ( collection.size() - 1 ) ) {
+//					sb.append( "," );
+//				}
+//
+//				i++;
+//			}
+//		}
+//		sb.append( "]" );
+//		
+//		return sb.toString();
+//    }
 
     public static String toJsonSummaryArray( Collection<Event> collection ) {
 		StringBuilder sb = new StringBuilder();
