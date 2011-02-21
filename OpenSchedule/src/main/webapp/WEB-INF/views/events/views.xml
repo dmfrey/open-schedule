@@ -1,43 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
+
     <definition extends="default" name="events/list">
         <put-attribute name="body" value="/WEB-INF/views/events/list.jsp"/>
     </definition>
-<definition extends="default" name="events/show">
+
+	<definition extends="default" name="events/show">
         <put-attribute name="body" value="/WEB-INF/views/events/show.jsp"/>
     </definition>
-<definition extends="default" name="events/create">
+
+	<definition extends="default" name="events/create">
         <put-attribute name="body" value="/WEB-INF/views/events/create.jsp"/>
     </definition>
-<definition extends="default" name="events/update">
+
+	<definition extends="default" name="events/update">
         <put-attribute name="body" value="/WEB-INF/views/events/update.jsp"/>
     </definition>
-<definition extends="default" name="events/updateSponsor">
+
+	<definition extends="default" name="events/createSponsor">
+        <put-attribute name="body" value="/WEB-INF/views/events/createSponsor.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateSponsor">
         <put-attribute name="body" value="/WEB-INF/views/events/updateSponsor.jsp"/>
     </definition>
-<definition extends="default" name="events/updateVenue">
+
+	<definition extends="default" name="events/createVenue">
+        <put-attribute name="body" value="/WEB-INF/views/events/createVenue.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateVenue">
         <put-attribute name="body" value="/WEB-INF/views/events/updateVenue.jsp"/>
     </definition>
-<definition extends="default" name="events/updateVenueRoom">
+
+	<definition extends="default" name="events/createVenueRoom">
+        <put-attribute name="body" value="/WEB-INF/views/events/createVenueRoom.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateVenueRoom">
         <put-attribute name="body" value="/WEB-INF/views/events/updateVenueRoom.jsp"/>
     </definition>
-<definition extends="default" name="events/updateTrack">
+
+	<definition extends="default" name="events/createTrack">
+        <put-attribute name="body" value="/WEB-INF/views/events/createTrack.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateTrack">
         <put-attribute name="body" value="/WEB-INF/views/events/updateTrack.jsp"/>
     </definition>
-<definition extends="default" name="events/updateLabel">
+
+	<definition extends="default" name="events/createLabel">
+        <put-attribute name="body" value="/WEB-INF/views/events/createLabel.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateLabel">
         <put-attribute name="body" value="/WEB-INF/views/events/updateLabel.jsp"/>
     </definition>
-<definition extends="default" name="events/updateSpeaker">
+
+	<definition extends="default" name="events/createSpeaker">
+        <put-attribute name="body" value="/WEB-INF/views/events/createSpeaker.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateSpeaker">
         <put-attribute name="body" value="/WEB-INF/views/events/updateSpeaker.jsp"/>
     </definition>
-<definition extends="default" name="events/updateSession">
+
+	<definition extends="default" name="events/createSession">
+        <put-attribute name="body" value="/WEB-INF/views/events/createSession.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateSession">
         <put-attribute name="body" value="/WEB-INF/views/events/updateSession.jsp"/>
     </definition>
-<definition extends="default" name="events/findEventsByUsername">
+
+	<definition extends="default" name="events/findEventsByUsername">
         <put-attribute name="body" value="/WEB-INF/views/events/findEventsByUsername.jspx"/>
     </definition>
-<definition extends="default" name="events/findEventsByShortName">
+
+	<definition extends="default" name="events/findEventsByShortName">
         <put-attribute name="body" value="/WEB-INF/views/events/findEventsByShortName.jspx"/>
     </definition>
+
 </tiles-definitions>
