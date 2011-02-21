@@ -74,7 +74,7 @@
 			
 			<table>
 		    <tr>
-		    	<th>Session Name</th>
+		    	<th>Session&nbsp;Name</th>
 		    	<th>8</th><th></th>
 		    	<th>9</th><th></th>
 		    	<th>10</th><th></th>
@@ -100,10 +100,14 @@
 				<c:forEach items="${ block.session.speakers }" var="speaker">
 					<c:set var="title" value="${ title } ${ speaker.name }<br />" />
 				</c:forEach>
+				
+				<spring:url value="/public/${ event.shortName }/sessions/${ block.session.id }" var="session_url" />
 		    <tr>
 				<td title="${ title }">
 					<spring:url value="/public/${ event.shortName }/days/${ day.id }/schedules/${ schedule.id }/blocks/${ block.id }/comments" var="block_comments_url" />
-					${ block.session.name }<br />
+					<a href="${ session_url }">
+						${ block.session.name }<br />
+					</a>
 					(Comment: ${fn:length( block.comments )} <a href="${ block_comments_url }">view</a>)
 				</td>
 				<td <c:if test="${ ( showSpan && spanColumn > 0 ) || block.label.name == '08:00' }"> <c:set var="showSpan" value="true" /> <c:set var="spanColumn" value="${ spanColumn - 1 }" /> class="session" title="${ title }" </c:if> ><!-- 08:00 --></td>
