@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.openschedule.domain.Block;
 import org.openschedule.domain.BlockComment;
+import org.openschedule.domain.Day;
 import org.openschedule.domain.Event;
 import org.openschedule.domain.EventComment;
 import org.openschedule.domain.Session;
@@ -158,7 +159,28 @@ public class PublicController {
         return Session.toJsonArray( event.getSessions() );
     }
 
-    @RequestMapping( value = "/{shortName}/comments", method = RequestMethod.GET )
+	@RequestMapping( value = "/{shortName}/sessions/{sessionId}", method = RequestMethod.GET )
+	public String showEventSession( @PathVariable( "shortName" ) String shortName, @PathVariable( "sessionId" ) Long sessionId, Model model ) {
+		log.info( "showEventSession : enter" );
+		
+		if( log.isDebugEnabled() ) {
+			log.debug( "showEventSession : shortName=" + shortName );
+		}
+		
+		Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+		if( null != event ) {
+			log.debug( "showEventSession : event found, adding to model" );
+			model.addAttribute( "event", event );
+			
+			Session session = Session.findSession( sessionId );
+			model.addAttribute( "session", session );
+		}
+		
+		log.info( "showEventSessions : exit" );
+		return "public/showSession";
+	}
+
+	@RequestMapping( value = "/{shortName}/comments", method = RequestMethod.GET )
 	public String listEventComments( @PathVariable( "shortName" ) String shortName, Model model ) {
 		log.info( "listEventComments : enter" );
 		
@@ -301,13 +323,14 @@ public class PublicController {
     public String listBlockComments( @PathVariable( "shortName" ) String shortName, @PathVariable( "dayId" ) Long dayId, @PathVariable( "scheduleId" ) Long scheduleId, @PathVariable( "blockId" ) Long blockId, Model model ) {
         log.info( "listBlockComments : enter" );
 
+        Day day = Day.findDay( dayId );
     	Block block = Block.findBlock( blockId );
         model.addAttribute( "block", block );
 
         if( null != block ) {
     		Calendar now = new GregorianCalendar();
     		Calendar startDate = new GregorianCalendar();
-    		startDate.setTime( block.getDate() );
+    		startDate.setTime( day.getDate() );
     		model.addAttribute( "canAddComments", now.after( startDate ) );
         } else {
         	model.addAttribute( "canAddComments", Boolean.FALSE );
