@@ -156,6 +156,18 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "?form=true";
     }
 
+    @RequestMapping( value = "/{id}/sponsors", params = { "form" }, method = RequestMethod.GET )
+    public String createSponsorForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createSponsorForm : enter" );
+    	
+    	Event event = Event.findEvent( id );
+        model.addAttribute( "event", event );
+        model.addAttribute( "sponsor", new Sponsor() );
+
+    	log.info( "createSponsorForm : exit" );
+    	return "events/createSponsor";
+    }
+    
     @RequestMapping( value = "/{id}/sponsors", method = RequestMethod.POST )
     public String createSponsor( @PathVariable( "id" ) Long id, @Valid Sponsor sponsor, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createSponsor : enter" );
@@ -165,19 +177,9 @@ public class EventController {
     	if( result.hasErrors() ) {
             model.addAttribute( "event", event );
             model.addAttribute( "sponsor", sponsor );
-
-            model.addAttribute( "track", new Track() );
-            model.addAttribute( "venue", new Venue() );
-            model.addAttribute( "room", new Room() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "label", new Label() );
-            model.addAttribute( "session", new Session() );
-            model.addAttribute( "speaker", new Speaker() );
-
-            model.addAttribute( "containsErrors", true );
             
             log.info( "createSponsor : exit, errors exist" );
-            return "events/update";
+            return "events/createSponsor";
         }
 
     	sponsor.setWebSite( cleanWebSite( sponsor.getWebSite() ) );
@@ -227,6 +229,18 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
     
+    @RequestMapping( value = "/{id}/venues", params = { "form" }, method = RequestMethod.GET )
+    public String createVenueForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createVenueForm : enter" );
+    	
+    	Event event = Event.findEvent( id );
+        model.addAttribute( "event", event );
+        model.addAttribute( "venue", new Venue() );
+
+    	log.info( "createVenueForm : exit" );
+    	return "events/createVenue";
+    }
+
     @RequestMapping( value = "/{id}/venues", method = RequestMethod.POST )
     public String createVenue( @PathVariable( "id" ) Long id, @Valid Venue venue, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createVenue : enter" );
@@ -237,18 +251,8 @@ public class EventController {
             model.addAttribute( "event", event );
             model.addAttribute( "venue", venue );
 
-            model.addAttribute( "track", new Track() );
-            model.addAttribute( "room", new Room() );
-            model.addAttribute( "sponsor", new Sponsor() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "label", new Label() );
-            model.addAttribute( "session", new Session() );
-            model.addAttribute( "speaker", new Speaker() );
-
-            model.addAttribute( "containsErrors", true );
-
             log.info( "createVenue : exit, errors exist" );
-            return "events/update";
+            return "events/createVenue";
         }
         
     	venue.setWebSite( cleanWebSite( venue.getWebSite() ) );
@@ -298,6 +302,18 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
+    @RequestMapping( value = "/{id}/venues/{venueId}/rooms", params = { "form" }, method = RequestMethod.GET )
+    public String createVenueRoomForm( @PathVariable( "id" ) Long id, @PathVariable( "venueId" ) Long venueId, Model model ) {
+    	log.info( "createVenueRoomForm : enter" );
+    	
+        model.addAttribute( "event", Event.findEvent( id ) );
+        model.addAttribute( "venue", Venue.findVenue( venueId ) );
+        model.addAttribute( "room", new Room() );
+
+    	log.info( "createVenueRoomForm : exit" );
+    	return "events/createVenueRoom";
+    }
+
     @RequestMapping( value = "/{eventId}/venues/{venueId}/rooms", method = RequestMethod.POST )
     public String createVenueRoom( @PathVariable( "eventId" ) Long eventId, @PathVariable( "venueId" ) Long venueId, @Valid Room room, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createVenueRoom : enter" );
@@ -308,18 +324,8 @@ public class EventController {
             model.addAttribute( "event", event );
             model.addAttribute( "room", room );
 
-            model.addAttribute( "track", new Track() );
-            model.addAttribute( "venue", new Venue() );
-            model.addAttribute( "sponsor", new Sponsor() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "label", new Label() );
-            model.addAttribute( "session", new Session() );
-            model.addAttribute( "speaker", new Speaker() );
-
-            model.addAttribute( "containsErrors", true );
-
             log.info( "createVenueRoom : exit, errors exist" );
-            return "events/update";
+            return "events/createVenueRoom";
         }
         
     	Venue venue = Venue.findVenue( venueId );
@@ -370,6 +376,17 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
+    @RequestMapping( value = "/{id}/tracks", params = { "form" }, method = RequestMethod.GET )
+    public String createTrackForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createTrackForm : enter" );
+    	
+        model.addAttribute( "event", Event.findEvent( id ) );
+        model.addAttribute( "track", new Track() );
+
+    	log.info( "createTrackForm : exit" );
+    	return "events/createTrack";
+    }
+
     @RequestMapping( value = "/{id}/tracks", method = RequestMethod.POST )
     public String createTrack( @PathVariable( "id" ) Long id, @Valid Track track, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createTrack : enter" );
@@ -380,18 +397,8 @@ public class EventController {
             model.addAttribute( "event", event );
             model.addAttribute( "track", track );
 
-            model.addAttribute( "venue", new Venue() );
-            model.addAttribute( "room", new Room() );
-            model.addAttribute( "sponsor", new Sponsor() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "label", new Label() );
-            model.addAttribute( "session", new Session() );
-            model.addAttribute( "speaker", new Speaker() );
-
-            model.addAttribute( "containsErrors", true );
-
             log.info( "createTrack : exit, errors exist" );
-            return "events/update";
+            return "events/createTrack";
         }
         
     	log.debug( "createTrack : adding track to event" );
@@ -606,6 +613,17 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
+    @RequestMapping( value = "/{id}/labels", params = { "form" }, method = RequestMethod.GET )
+    public String createLabelForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createLabelForm : enter" );
+    	
+        model.addAttribute( "event", Event.findEvent( id ) );
+        model.addAttribute( "label", new Label() );
+
+    	log.info( "createLabelForm : exit" );
+    	return "events/createLabel";
+    }
+
     @RequestMapping( value = "/{id}/labels", method = RequestMethod.POST )
     public String createLabel( @PathVariable( "id" ) Long id, @Valid Label label, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createLabel : enter" );
@@ -616,18 +634,8 @@ public class EventController {
             model.addAttribute( "event", event );
             model.addAttribute( "label", label );
 
-            model.addAttribute( "venue", new Venue() );
-            model.addAttribute( "room", new Room() );
-            model.addAttribute( "track", new Track() );
-            model.addAttribute( "sponsor", new Sponsor() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "session", new Session() );
-            model.addAttribute( "speaker", new Speaker() );
-
-            model.addAttribute( "containsErrors", true );
-
             log.info( "createLabel : exit, errors exist" );
-            return "events/update";
+            return "events/createLabel";
         }
         
     	log.debug( "createLabel : adding label to event" );
@@ -729,6 +737,17 @@ public class EventController {
     	return "success";
     }
 
+    @RequestMapping( value = "/{id}/sessions", params = { "form" }, method = RequestMethod.GET )
+    public String createSessionForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createSessionForm : enter" );
+    	
+        model.addAttribute( "event", Event.findEvent( id ) );
+        model.addAttribute( "session", new Session() );
+
+    	log.info( "createSessionForm : exit" );
+    	return "events/createSession";
+    }
+
     @RequestMapping( value = "/{eventId}/sessions", method = RequestMethod.POST )
     public String createSession( @PathVariable( "eventId" ) Long eventId, @Valid Session session, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createSession : enter" );
@@ -739,18 +758,8 @@ public class EventController {
             model.addAttribute( "event", event );
             model.addAttribute( "session", session );
 
-            model.addAttribute( "venue", new Venue() );
-            model.addAttribute( "room", new Room() );
-            model.addAttribute( "track", new Track() );
-            model.addAttribute( "sponsor", new Sponsor() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "label", new Label() );
-            model.addAttribute( "speaker", new Speaker() );
-
-            model.addAttribute( "containsErrors", true );
-
             log.info( "createSession : exit, errors exist" );
-            return "events/update";
+            return "events/createSession";
         }
 
     	log.debug( "createSession : add session to event" );
@@ -799,6 +808,17 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
+    @RequestMapping( value = "/{id}/speakers", params = { "form" }, method = RequestMethod.GET )
+    public String createSpeakerForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createSpeakerForm : enter" );
+    	
+        model.addAttribute( "event", Event.findEvent( id ) );
+        model.addAttribute( "speaker", new Speaker() );
+
+    	log.info( "createSpeakerForm : exit" );
+    	return "events/createSpeaker";
+    }
+
     @RequestMapping( value = "/{eventId}/speakers", method = RequestMethod.POST )
     public String createSpeaker( @PathVariable( "eventId" ) Long eventId, @Valid Speaker speaker, BindingResult result, Model model, HttpServletRequest request ) {
         log.info( "createSpeaker : enter" );
@@ -809,18 +829,8 @@ public class EventController {
             model.addAttribute( "event", event );
             model.addAttribute( "speaker", speaker );
 
-            model.addAttribute( "venue", new Venue() );
-            model.addAttribute( "room", new Room() );
-            model.addAttribute( "track", new Track() );
-            model.addAttribute( "sponsor", new Sponsor() );
-            model.addAttribute( "schedule", new Schedule() );
-            model.addAttribute( "label", new Label() );
-            model.addAttribute( "session", new Session() );
-
-            model.addAttribute( "containsErrors", true );
-
             log.info( "createSpeaker : exit, errors exist" );
-            return "events/update";
+            return "events/createSpeaker";
         }
     	
     	log.debug( "createSpeaker : add speaker to event" );
@@ -867,23 +877,6 @@ public class EventController {
         log.info( "updateSpeaker : exit" );
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
-
-//    @RequestMapping( value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json" )
-//    @ResponseBody
-//    public String showJson( @PathVariable( "id" ) Long id ) {
-//        log.info( "showJson : enter" );
-//        
-//        try {
-//        	String json = "{\"event\":" + Event.findEvent( id ).toJson() + "}";
-//        	log.info( "showJson : json=" + json );
-//
-//        	log.info( "showJson : exit" );
-//        	return json;
-//        } catch( Exception e ) {
-//        	log.error( "showJson : error", e );
-//        	return null;
-//        }
-//    }
 
     private String encodeUrlPathSegment( String pathSegment, HttpServletRequest request ) {
         String enc = request.getCharacterEncoding();
