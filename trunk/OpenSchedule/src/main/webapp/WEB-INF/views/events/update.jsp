@@ -68,78 +68,8 @@
 			</c:forEach>
 		</ul>
 	
-		<a id="newSponsorFormLink" href="#" class="popupLink" data-form="newSponsorForm">+ Add New Sponsor</a>
-		<div id="newSponsorForm" class="popupForm">
-			<div class="popupFormClose">
-				<a id="newSponsorFormCloseLink" href="#" data-form="newSponsorForm">X Close</a>
-			</div>
-			<spring:url value="/events/${ event.id }/sponsors?form" var="create_sponsor_url" />
-			<form:form commandName="sponsor" action="${ create_sponsor_url }" method="post">
-			<fieldset>
-			<legend>Create a new Sponsor</legend>
-			<ul>
-				<li>
-					<label for="sponsorCompanyName">Company Name:</label>
-					<spring:bind path="companyName">
-						<input id="sponsorCompanyName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Company Name" />
-						<span class="errors">
-							<c:forEach items="${ status.errorMessages }" var="message">
-								${ message }<br />
-							</c:forEach>
-						</span>
-					</spring:bind>
-				</li>
-				<li>
-					<label for="sponsorContactName">Contact Name:</label>
-					<spring:bind path="contactName">
-						<input id="sponsorContactName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Contact Name" />
-						<span class="errors">
-							<c:forEach items="${ status.errorMessages }" var="message">
-								${ message }<br />
-							</c:forEach>
-						</span>
-					</spring:bind>
-				</li>
-				<li>
-					<label for="sponsorContactEmail">Contact Email:</label>
-					<spring:bind path="contactEmail">
-						<input id="sponsorContactEmail" type="email" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Email" />
-						<span class="errors">
-							<c:forEach items="${ status.errorMessages }" var="message">
-								${ message }<br />
-							</c:forEach>
-						</span>
-					</spring:bind>
-				</li>
-				<li>
-					<label for="sponsorContactPhone">Contact Phone:</label>
-					<spring:bind path="contactPhone">
-						<input id="sponsorContactPhone" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Phone" />
-						<span class="errors">
-							<c:forEach items="${ status.errorMessages }" var="message">
-								${ message }<br />
-							</c:forEach>
-						</span>
-					</spring:bind>
-				</li>
-				<li>
-					<label for="sponsorWebSite">Web Site:</label>
-					<spring:bind path="webSite">
-						<input id="sponsorWebSite" type="url" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Web Site" />
-						<span class="errors">
-							<c:forEach items="${ status.errorMessages }" var="message">
-								${ message }<br />
-							</c:forEach>
-						</span>
-					</spring:bind>
-				</li>
-				<li>
-					<input type="submit" value="Create" data-article="sponsors" data-form="newSponsorForm" />
-				</li>
-			</ul>
-			</fieldset>
-			</form:form>
-		</div>
+		<spring:url value="/events/${ event.id }/sponsors?form=true" var="create_sponsor_url" />
+		<a id="newSponsorFormLink" href="${ create_sponsor_url }" data-form="newSponsorForm">+ Add New Sponsor</a>
 	</div>
 </article>
 
@@ -197,162 +127,15 @@
 				</c:forEach>
 				</ul>
 				<br />
-				<a id="newRoomFormLink" href="#" class="popupLink" data-form="newRoomForm">+ Add New Room</a>
-				<div id="newRoomForm" class="popupForm">
-					<div class="popupFormClose">
-						<a id="newRoomFormCloseLink" href="#" data-form="newRoomForm">X Close</a>
-					</div>
-					
-					<spring:url value="/events/${ event.id }/venues/${ venue.id }/rooms?form" var="create_room_url" />
-					<form:form commandName="room" action="${ create_room_url }" method="post">
-						<fieldset>
-							<legend>Create a new Room</legend>
-							<ul>
-								<li>
-									<label for="roomName">Name:</label>
-									<spring:bind path="name">
-										<input id="roomName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Name" />
-										<span class="errors">
-											<c:forEach items="${ status.errorMessages }" var="message">
-												${ message }<br />
-											</c:forEach>
-										</span>
-									</spring:bind>
-								</li>
-								<li>
-									<input type="submit" value="Create" data-article="venues" data-form="newRoomForm" />
-								</li>
-							</ul>
-						</fieldset>
-					</form:form>
-				</div>
+				<spring:url value="/events/${ event.id }/venues/${ venue.id }/rooms?form=true" var="create_venue_room_url" />
+				<a id="newRoomFormLink" href="${ create_venue_room_url }" data-form="newRoomForm">+ Add New Room</a>
 			</td>
 		</tr>
 		</c:forEach>
 		<tr>
 			<td>
-				<a id="newVenueFormLink" href="#" class="popupLink" data-form="newVenueForm">+ Add New Venue</a>
-				<div id="newVenueForm" class="popupForm">
-					<div class="popupFormClose">
-						<a id="newVenueFormCloseLink" href="#" data-form="newVenueForm">X Close</a>
-					</div>
-					<spring:url value="/events/${ event.id }/venues?form" var="create_venue_url" />
-					<form:form commandName="venue" action="${ create_venue_url }" method="post">
-						<fieldset>
-							<legend>Create a New Venue</legend>
-							<div class="venueAddress">
-								<ul>
-									<li>
-										<label for="venueName">Name:</label>
-										<spring:bind path="name">
-											<input id="venueName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Name" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venueAddressOne">Address One:</label>
-										<spring:bind path="addressOne">
-											<input id="venueAddressOne" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Address Line 1" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venueAddressTwo">Address Two:</label>
-										<spring:bind path="addressTwo">
-											<input id="venueAddressTwo" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Address Line 2" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venueCity">City</label>
-										<spring:bind path="city">
-											<input id="venueCity" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="City" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venueState">State</label>
-										<spring:bind path="state">
-											<input id="venueState" type="text" name="${ status.expression }" value="${ status.value }" size="2" maxlength="2" placeholder="State" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venueZip">Zip Code:</label>
-										<spring:bind path="zip">
-											<input id="venueZip" type="text" name="${ status.expression }" value="${ status.value }" size="10" maxlength="10" placeholder="Zip Code" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<input type="submit" value="Create" data-article="venues" data-form="newVenueForm" />
-									</li>
-								</ul>
-							</div>
-							<div class="venueInformation">
-								<ul>
-									<li>
-										<label for="venueEmail">Email:</label>
-										<spring:bind path="email">
-											<input id="venueEmail" type="email" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Email Address" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venuePhone">Phone:</label>
-										<spring:bind path="phone">
-											<input id="venuePhone" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Phone Number" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-									<li>
-										<label for="venueWebSite">Web Site:</label>
-										<spring:bind path="webSite">
-											<input id="venueWebSite" type="url" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Web Site" />
-											<span class="errors">
-												<c:forEach items="${ status.errorMessages }" var="message">
-													${ message }<br />
-												</c:forEach>
-											</span>
-										</spring:bind>
-									</li>
-								</ul>
-							</div>
-						</fieldset>
-					</form:form>
-				</div>
+				<spring:url value="/events/${ event.id }/venues?form=true" var="create_venue_url" />
+				<a id="newVenueFormLink" href="${ create_venue_url }" data-form="newVenueForm">+ Add New Venue</a>
 			</td>
 		</tr>
 		</table>
@@ -382,59 +165,8 @@
 		</c:forEach>
 		</table>
 	
-		<a id="newTrackFormLink" href="#" class="popupLink" data-form="newTrackForm">+ Add New Track</a>
-		<div id="newTrackForm" class="popupForm">
-			<div class="popupFormClose">
-				<a id="newTrackFormCloseLink" href="#" data-form="newTrackForm">X Close</a>
-			</div>
-		
-			<spring:url value="/events/${ event.id }/tracks?form" var="create_track_url" />
-			<form:form commandName="track" action="${ create_track_url }" method="post">
-			<fieldset>
-				<legend>Create a new Track</legend>
-				<table width="100%">
-				<tr>
-					<td width="33%">
-						<label for="trackName">Name:</label>
-						<spring:bind path="name">
-							<input id="trackName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Name" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</td>
-					<td width="33%">
-						<label for="trackRoom">Room:</label><br />
-						<form:select id="trackRoom" path="room">
-							<form:option value="" label="" />
-							<c:forEach items="${ event.venues }" var="venue">
-								<c:forEach items="${ venue.rooms }" var="room">
-									<form:option value="${ room.id }" label="${ venue.name } - ${ room.name }" />
-								</c:forEach>
-							</c:forEach>
-						</form:select>
-						<form:errors path="room" class="errors" />
-					</td>
-					<td width="33%">
-						<label for="trackSponsor">Sponsor:</label><br />
-						<form:select id="trackSponsor" path="sponsor">
-							<form:option value="" label="" />
-							<form:options items="${ event.sponsors }" itemValue="id" itemLabel="companyName" />
-						</form:select>
-						<form:errors path="sponsor" class="errors" />
-					</td>
-				</tr>
-				</table>
-				<ul>
-					<li>
-						<input type="submit" value="Create" data-article="tracks" data-form="newTrackForm" />
-					</li>
-				</ul>
-			</fieldset>
-			</form:form>
-		</div>
+		<spring:url value="/events/${ event.id }/tracks?form" var="create_track_url" />
+		<a id="newTrackFormLink" href="${ create_track_url }" data-form="newTrackForm">+ Add New Track</a>
 	</div>
 </article>
 	
@@ -451,35 +183,8 @@
 		</c:forEach>
 		</ul>
 		
-		<a id="newLabelFormLink" href="#" class="popupLink" data-form="newLabelForm">+ Add New Label</a>
-		<div id="newLabelForm" class="popupForm">
-			<div class="popupFormClose">
-				<a id="newLabelFormCloseLink" href="#" data-form="newLabelForm">X Close</a>
-			</div>
-		
-			<spring:url value="/events/${ event.id }/labels?form" var="create_label_url" />
-			<form:form commandName="label" action="${ create_label_url }" method="post">
-			<fieldset>
-				<legend>Create a new Timeslot Label (i.e. 8 am, 9 am, etc.)</legend>
-				<ul>
-					<li>
-						<label for="labelName">Name:</label>
-						<spring:bind path="name">
-							<input id="labelName" type="text" name="${ status.expression }" value="${ status.value }" size="10" maxlength="10" required="true" placeholder="Timeslot" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<input type="submit" value="Create" data-article="labels" data-form="newLabelForm" />
-					</li>
-				</ul>
-			</fieldset>
-			</form:form>
-		</div>
+		<spring:url value="/events/${ event.id }/labels?form" var="create_label_url" />
+		<a id="newLabelFormLink" href="${ create_label_url }" data-form="newLabelForm">+ Add New Label</a>
 	</div>
 </article>
 
@@ -512,79 +217,8 @@
 		</c:forEach>
 		</ul>
 	
-		<a id="newSpeakerFormLink" href="#" class="popupLink" data-form="newSpeakerForm">+ Add New Speaker</a>
-		<div id="newSpeakerForm" class="popupForm">
-			<div class="popupFormClose">
-				<a id="newSpeakerFormCloseLink" href="#" data-form="newSpeakerForm">X Close</a>
-			</div>
-			
-			<spring:url value="/events/${ event.id }/speakers?form" var="create_speaker_url" />
-			<form:form commandName="speaker" action="${ create_speaker_url }" method="post">
-			<fieldset>
-				<legend>Create a new Speaker</legend>
-				<ul>
-					<li>
-						<label for="speakerName">Name:</label>
-						<spring:bind path="name">
-							<input id="speakerName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Name" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<label for="speakerEmail">Email:</label>
-						<spring:bind path="email">
-							<input id="speakerEmail" type="email" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Email Address" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<label for="speakerPhone">Phone:</label>
-						<spring:bind path="phone">
-							<input id="speakerPhone" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Phone Number" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<label for="speakerWebSite">Website:</label>
-						<spring:bind path="webSite">
-							<input id="speakerWebSite" type="url" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" placeholder="Web Site" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<label for="speakerBio">Bio:</label>
-						<spring:bind path="bio">
-							<textarea id="speakerBio" name="${ status.expression }" rows="6" cols="25" placeholder="Biography">${ status.value }</textarea>
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<input type="submit" value="Create" data-article="speakers" data-form="newSpeakerForm" />
-					</li>
-				</ul>
-				</fieldset>
-			</form:form>
-		</div>
+		<spring:url value="/events/${ event.id }/speakers?form" var="create_speaker_url" />
+		<a id="newSpeakerFormLink" href="${ create_speaker_url }" data-form="newSpeakerForm">+ Add New Speaker</a>
 	</div>
 </article>
 
@@ -611,54 +245,8 @@
 		</c:forEach>
 		</ul>
 	
-		<a id="newSessionFormLink" href="#" class="popupLink" data-form="newSessionForm">+ Add New Session</a>
-		<div id="newSessionForm" class="popupForm">
-			<div class="popupFormClose">
-				<a id="newSessionFormCloseLink" href="#" data-form="newSessionForm">X Close</a>
-			</div>
-		
-			<spring:url value="/events/${ event.id }/sessions?form" var="create_session_url" />
-			<form:form commandName="session" action="${ create_session_url }" method="post">
-			<fieldset>
-				<legend>Create a new Session</legend>
-				<ul>
-					<li>
-						<label for="sessionName">Name:</label>
-						<spring:bind path="name">
-							<input id="sessionName" type="text" name="${ status.expression }" value="${ status.value }" size="20" maxlength="255" required="true" placeholder="Name" />
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<label for="sessionDescription">Description:</label>
-						<spring:bind path="description">
-							<textarea id="sessionDescription" name="${ status.expression }" rows="6" cols="25" required="true" placeholder="Description">${ status.value }</textarea>
-							<span class="errors">
-								<c:forEach items="${ status.errorMessages }" var="message">
-									${ message }<br />
-								</c:forEach>
-							</span>
-						</spring:bind>
-					</li>
-					<li>
-						<label for="sessionSpeaker">Speaker:</label>
-						<form:select id="sessionSpeaker" path="speakers">
-							<form:option value=""></form:option>
-							<form:options items="${ event.speakers }" itemValue="id" itemLabel="name" />
-						</form:select>
-						<form:errors path="speakers" class="errors" />
-					</li>
-					<li>
-						<input type="submit" value="Create" data-article="sessions" data-form="newSessionForm" />
-					</li>
-				</ul>
-			</fieldset>
-			</form:form>
-		</div>
+		<spring:url value="/events/${ event.id }/sessions?form" var="create_session_url" />
+		<a id="newSessionFormLink" href="${ create_session_url }" data-form="newSessionForm">+ Add New Session</a>
 	</div>
 </article>
 
