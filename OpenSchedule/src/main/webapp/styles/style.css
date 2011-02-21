@@ -388,6 +388,25 @@ div.viewVenue article.viewVenueRooms {
 	width: 200px;
 }
 
+div.viewSpeakers table, div.viewSessions table {
+	width: 100%;
+	border: solid black 1px;
+	padding: 5px;
+}
+
+div.viewSpeakers table tr, div.viewSessions table tr {
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+div.viewSpeakers table tr:nth-child(even), div.viewSessions table tr:nth-child(even) {
+	border-top: solid black 1px;
+}
+
+div.viewSpeakers table th, div.viewSessions table th {
+	text-align: left;
+}
+
 .comment-dialog {
 	font-size: 10px;
 }
