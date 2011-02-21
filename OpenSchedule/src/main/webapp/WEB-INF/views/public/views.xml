@@ -18,6 +18,10 @@
         <put-attribute name="body" value="/WEB-INF/views/public/listSessions.jsp" />
     </definition>
 
+    <definition extends="public" name="public/showSession">
+        <put-attribute name="body" value="/WEB-INF/views/public/showSession.jsp" />
+    </definition>
+
     <definition extends="public" name="public/comments">
         <put-attribute name="body" value="/WEB-INF/views/public/listEventComments.jsp" />
     </definition>
