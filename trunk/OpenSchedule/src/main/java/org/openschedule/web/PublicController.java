@@ -16,6 +16,8 @@ import org.openschedule.domain.Block;
 import org.openschedule.domain.BlockComment;
 import org.openschedule.domain.Event;
 import org.openschedule.domain.EventComment;
+import org.openschedule.domain.Session;
+import org.openschedule.domain.Speaker;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -90,7 +92,73 @@ public class PublicController {
 		}
 	}
 
-	@RequestMapping( value = "/{shortName}/comments", method = RequestMethod.GET )
+	@RequestMapping( value = "/{shortName}/speakers", method = RequestMethod.GET )
+	public String listEventSpeakers( @PathVariable( "shortName" ) String shortName, Model model ) {
+		log.info( "listEventSpeakers : enter" );
+		
+		if( log.isDebugEnabled() ) {
+			log.debug( "listEventSpeakers : shortName=" + shortName );
+		}
+		
+		Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+		if( null != event ) {
+			log.debug( "listEventSpeakers : event found, adding to model" );
+			model.addAttribute( "event", event );
+		}
+		
+		log.info( "listEventSpeakers : exit" );
+		return "public/speakers";
+	}
+
+    @RequestMapping( value = "/{shortName}/speakers", method = RequestMethod.GET, headers = "Accept=application/json" )
+    @ResponseBody
+    public String listEventSpeakersJson( @PathVariable( "shortName" ) String shortName ) {
+    	log.info( "listEventSpeakersJson : enter" );
+    	
+		if( log.isDebugEnabled() ) {
+			log.debug( "listEventSpeakersJson : shortName=" + shortName );
+		}
+		
+    	Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+    	
+    	log.info( "listEventSpeakersJson : exit" );
+        return Speaker.toJsonArray( event.getSpeakers() );
+    }
+
+	@RequestMapping( value = "/{shortName}/sessions", method = RequestMethod.GET )
+	public String listEventSessions( @PathVariable( "shortName" ) String shortName, Model model ) {
+		log.info( "listEventSessions : enter" );
+		
+		if( log.isDebugEnabled() ) {
+			log.debug( "listEventSessions : shortName=" + shortName );
+		}
+		
+		Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+		if( null != event ) {
+			log.debug( "listEventSessions : event found, adding to model" );
+			model.addAttribute( "event", event );
+		}
+		
+		log.info( "listEventSessions : exit" );
+		return "public/sessions";
+	}
+
+    @RequestMapping( value = "/{shortName}/sessions", method = RequestMethod.GET, headers = "Accept=application/json" )
+    @ResponseBody
+    public String listEventSessionsJson( @PathVariable( "shortName" ) String shortName ) {
+    	log.info( "listEventSessionsJson : enter" );
+    	
+		if( log.isDebugEnabled() ) {
+			log.debug( "listEventSessionsJson : shortName=" + shortName );
+		}
+		
+    	Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+    	
+    	log.info( "listEventSessionJson : exit" );
+        return Session.toJsonArray( event.getSessions() );
+    }
+
+    @RequestMapping( value = "/{shortName}/comments", method = RequestMethod.GET )
 	public String listEventComments( @PathVariable( "shortName" ) String shortName, Model model ) {
 		log.info( "listEventComments : enter" );
 		

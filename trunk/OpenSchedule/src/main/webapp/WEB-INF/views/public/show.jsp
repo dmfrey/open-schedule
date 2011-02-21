@@ -34,6 +34,19 @@
 			</li>
 		</ul>
 	</article>
+	
+	<article>
+		<ul>
+			<li>
+				<spring:url value="/public/${ event.shortName }/speakers" var="speakers_link" />
+				<a href="${ speakers_link }">Speakers</a>
+			</li>
+			<li>
+				<spring:url value="/public/${ event.shortName }/sessions" var="sessions_link" />
+				<a href="${ sessions_link }">Sessions</a>
+			</li>
+		</ul>
+	</article>
 </div>
 
 <div class="view viewAgenda">
