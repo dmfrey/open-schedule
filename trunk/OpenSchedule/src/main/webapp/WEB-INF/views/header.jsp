@@ -10,6 +10,10 @@
 	<nav>
 		<ul>
 			<li>
+				<spring:url value="/public" var="public_url" />
+				<a href="${ public_url }">Published Events</a>
+			</li>
+			<li>
 				<spring:url value="/events/list/user" var="events_url" />
 				<a href="${ events_url }">My Events</a>
 			</li>
