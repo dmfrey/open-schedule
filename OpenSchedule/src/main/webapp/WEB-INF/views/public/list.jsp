@@ -29,12 +29,10 @@
 				<a href="${ public_link }">${ event.shortName }</a>
 			</td>
 			<td>
-				<fmt:formatDate value="${ event.startDate }" type="date" pattern="yyyy-MM-dd" var="startDate" />
-				${ startDate }
+				<fmt:formatDate value="${ event.startDate }" type="date" pattern="yyyy-MM-dd" />
 			</td>
 			<td>
-				<fmt:formatDate value="${ event.endDate }" type="date" pattern="yyyy-MM-dd" var="startDate" />
-				${ endDate }
+				<fmt:formatDate value="${ event.endDate }" type="date" pattern="yyyy-MM-dd" />
 			</td>
 			<td>${ event.numberOfDays }</td>
 		</tr>
