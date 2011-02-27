@@ -28,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,6 +84,17 @@ public class EventController {
             return "events/create";
         }
         
+    	Event existing = Event.findEventsByShortName( event.getShortName() ).getSingleResult();
+    	if( null != existing ) {
+    		ObjectError error = new ObjectError( "shortName", new String[] { "event.create.shortName.exists" }, null, "Short Name already exists" );
+    		result.addError( error );
+    		
+            model.addAttribute( "event", event );
+
+            log.info( "create : exit, errors exist, duplicate shortName" );
+            return "events/create";
+    	}
+    	
     	event.setPublishDate( new Date() );
     	
     	log.debug( "create : creating days for event" );
