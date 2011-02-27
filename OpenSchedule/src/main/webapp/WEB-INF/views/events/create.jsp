@@ -7,6 +7,11 @@
 
 <article>
 	<form:form id="createEventForm" commandName="event" method="POST">
+		
+		<div class="errors">
+			<form:errors path="*" />
+		</div>
+	
 		<security:authentication var="username" property="principal.username" /> 
 		<spring:bind path="username">
 			<input type="hidden" name="${ status.expression }" value="${ username }" />
