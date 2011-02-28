@@ -18,8 +18,16 @@ privileged aspect BlockCommentDataOnDemand_Roo_DataOnDemand {
     
     public BlockComment BlockCommentDataOnDemand.getNewTransientBlockComment(int index) {
         org.openschedule.domain.BlockComment obj = new org.openschedule.domain.BlockComment();
-        obj.setName(null);
-        obj.setEmail(null);
+        java.lang.String name = "name_" + index;
+        if (name.length() > 255) {
+            name  = name.substring(0, 255);
+        }
+        obj.setName(name);
+        java.lang.String email = "email_" + index;
+        if (email.length() > 255) {
+            email  = email.substring(0, 255);
+        }
+        obj.setEmail(email);
         java.lang.String comment = "comment_" + index;
         if (comment.length() > 1024) {
             comment  = comment.substring(0, 1024);

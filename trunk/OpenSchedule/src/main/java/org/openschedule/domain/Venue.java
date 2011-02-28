@@ -10,15 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
+import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
-import org.springframework.roo.addon.entity.RooEntity;
 
-import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 
 @RooJavaBean
@@ -29,40 +28,40 @@ import flexjson.JSONSerializer;
 public class Venue {
 
 	@Column( name = "name", length = 255, nullable = false )
-	@Length( min = 1, max = 255 )
+	@Size( min = 1, max = 255 )
 	@NotNull
 	private String name;
 
 	@Column( name = "address_1", length = 255, nullable = true )
-	@Length( max = 255 )
+	@Size( max = 255 )
 	private String addressOne;
 
 	@Column( name = "address_2", length = 255, nullable = true )
-	@Length( max = 255 )
+	@Size( max = 255 )
 	private String addressTwo;
 
 	@Column( name = "city", length = 255, nullable = true )
-	@Length( max = 255 )
+	@Size( max = 255 )
 	private String city;
 
 	@Column( name = "state", length = 2, nullable = true )
-	@Length( max = 2 )
+	@Size( max = 2 )
 	private String state;
 
 	@Column( name = "zip", length = 10, nullable = true )
-	@Length( max = 10 )
+	@Size( max = 10 )
 	private String zip;
 
 	@Column( name = "web_site", length = 255, nullable = true )
-	@Length( max = 255 )
+	@Size( max = 255 )
 	private String webSite;
 
 	@Column( name = "email", length = 255, nullable = true )
-	@Length( max = 255 )
+	@Size( max = 255 )
 	private String email;
 
 	@Column( name = "phone", length = 255, nullable = true )
-	@Length( max = 255 )
+	@Size( max = 255 )
 	private String phone;
 
 	@OneToMany( targetEntity = Room.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY )

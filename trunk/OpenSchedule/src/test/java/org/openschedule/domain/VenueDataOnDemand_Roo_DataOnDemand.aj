@@ -23,14 +23,46 @@ privileged aspect VenueDataOnDemand_Roo_DataOnDemand {
             name  = name.substring(0, 255);
         }
         obj.setName(name);
-        obj.setAddressOne(null);
-        obj.setAddressTwo(null);
-        obj.setCity(null);
-        obj.setState(null);
-        obj.setZip(null);
-        obj.setWebSite(null);
-        obj.setEmail(null);
-        obj.setPhone(null);
+        java.lang.String addressOne = "addressOne_" + index;
+        if (addressOne.length() > 255) {
+            addressOne  = addressOne.substring(0, 255);
+        }
+        obj.setAddressOne(addressOne);
+        java.lang.String addressTwo = "addressTwo_" + index;
+        if (addressTwo.length() > 255) {
+            addressTwo  = addressTwo.substring(0, 255);
+        }
+        obj.setAddressTwo(addressTwo);
+        java.lang.String city = "city_" + index;
+        if (city.length() > 255) {
+            city  = city.substring(0, 255);
+        }
+        obj.setCity(city);
+        java.lang.String state = "_" + index;
+        if (state.length() > 2) {
+            state  = state.substring(0, 2);
+        }
+        obj.setState(state);
+        java.lang.String zip = "zip_" + index;
+        if (zip.length() > 10) {
+            zip  = zip.substring(0, 10);
+        }
+        obj.setZip(zip);
+        java.lang.String webSite = "webSite_" + index;
+        if (webSite.length() > 255) {
+            webSite  = webSite.substring(0, 255);
+        }
+        obj.setWebSite(webSite);
+        java.lang.String email = "email_" + index;
+        if (email.length() > 255) {
+            email  = email.substring(0, 255);
+        }
+        obj.setEmail(email);
+        java.lang.String phone = "phone_" + index;
+        if (phone.length() > 255) {
+            phone  = phone.substring(0, 255);
+        }
+        obj.setPhone(phone);
         return obj;
     }
     

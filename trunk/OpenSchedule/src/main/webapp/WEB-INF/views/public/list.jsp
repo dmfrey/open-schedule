@@ -41,3 +41,8 @@
 
 </article>
 </c:if>
+
+<footer>
+	<spring:url value="/index" var="home_url" />
+	<a href="${ home_url }">Return to OpenSchedule</a>
+</footer>

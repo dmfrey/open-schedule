@@ -28,9 +28,21 @@ privileged aspect SponsorDataOnDemand_Roo_DataOnDemand {
             contactName  = contactName.substring(0, 255);
         }
         obj.setContactName(contactName);
-        obj.setContactEmail(null);
-        obj.setContactPhone(null);
-        obj.setWebSite(null);
+        java.lang.String contactEmail = "contactEmail_" + index;
+        if (contactEmail.length() > 255) {
+            contactEmail  = contactEmail.substring(0, 255);
+        }
+        obj.setContactEmail(contactEmail);
+        java.lang.String contactPhone = "contactPhone_" + index;
+        if (contactPhone.length() > 255) {
+            contactPhone  = contactPhone.substring(0, 255);
+        }
+        obj.setContactPhone(contactPhone);
+        java.lang.String webSite = "webSite_" + index;
+        if (webSite.length() > 255) {
+            webSite  = webSite.substring(0, 255);
+        }
+        obj.setWebSite(webSite);
         return obj;
     }
     

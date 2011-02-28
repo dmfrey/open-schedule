@@ -19,7 +19,6 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import flexjson.transformer.DateTransformer;
 
@@ -59,39 +58,5 @@ public class Schedule {
 				new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
 			).deepSerialize( collection );
     }
-
-    //	public String toJson() {
-//		StringBuilder sb = new StringBuilder();
-//		
-//		sb.append( "{" );
-//		sb.append( "\"id\":" ).append( getId() ).append( "," );
-//		sb.append( "\"blocksPerSchedule\":" ).append( blocksPerSchedule ).append( "," );
-//		sb.append( "\"track\":" ).append( getTrack() == null ? null : track.toJson() ).append( "," );
-//		sb.append( "\"blocks\":" ).append( Block.toJsonArray( blocks ) );
-//		sb.append( "}" );
-//		
-//		return sb.toString();
-//	}
-//	
-//    public static String toJsonArray( Collection<Schedule> collection ) {
-//		StringBuilder sb = new StringBuilder();
-//
-//		sb.append( "[" );
-//		if( null != collection ) {
-//			int i = 0;
-//			for( Schedule schedule : collection ) {
-//				sb.append( schedule.toJson() );
-//
-//				if( i < ( collection.size() - 1 ) ) {
-//					sb.append( "," );
-//				}
-//
-//				i++;
-//			}
-//		}
-//		sb.append( "]" );
-//		
-//		return sb.toString();
-//    }
 
 }

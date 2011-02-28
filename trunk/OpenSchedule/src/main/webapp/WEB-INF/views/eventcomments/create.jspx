@@ -5,9 +5,9 @@
     
     
 <form:create id="fc_org_openschedule_domain_EventComment" modelAttribute="eventComment" path="/eventcomments" render="${empty dependencies}" z="KNUZn8a/33PJq4LEALMYQBgoQuo=">
-        <field:input field="name" id="c_org_openschedule_domain_EventComment_name" z="1g20if538BQlfey2pP9x0mSGxcQ="/>
-        <field:input field="email" id="c_org_openschedule_domain_EventComment_email" validationMessageCode="field_invalid_email" z="3+pZwlN33fV6HHIMKS5ZeyskNKg="/>
-        <field:input field="comment" id="c_org_openschedule_domain_EventComment_comment" required="true" z="UA5QmfNWToHNCnWX73+axfDPbVA="/>
+        <field:textarea field="name" id="c_org_openschedule_domain_EventComment_name" z="Q2u75HXnjc50bvjOupZq05T/TPc="/>
+        <field:textarea field="email" id="c_org_openschedule_domain_EventComment_email" validationMessageCode="field_invalid_email" z="7vu4pxCiYzZ9CFC8aPvKu5IApFg="/>
+        <field:textarea field="comment" id="c_org_openschedule_domain_EventComment_comment" required="true" z="c6UZERaSIbqqVbl4ikFihHfYL9Q="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_org_openschedule_domain_EventComment" render="${not empty dependencies}" z="apFUZGhpdkdeceKTSPbtEZADOJ0="/>
 </div>

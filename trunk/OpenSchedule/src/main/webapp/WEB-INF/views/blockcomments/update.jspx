@@ -4,8 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     
 <form:update id="fu_org_openschedule_domain_BlockComment" modelAttribute="blockComment" path="/blockcomments" z="ra+2Bt7fx7bqL7k4gcdGLnXWhng=">
-        <field:input field="name" id="c_org_openschedule_domain_BlockComment_name" z="p2OzVtUdFSS5NUHoRqZWABtY+5Q="/>
-        <field:input field="email" id="c_org_openschedule_domain_BlockComment_email" validationMessageCode="field_invalid_email" z="BhcKC5eKhWDgjCKdhgJ6dKFmW7w="/>
-        <field:input field="comment" id="c_org_openschedule_domain_BlockComment_comment" required="true" z="bd2AbpGT1YI4G4zFFjHulhMkJUc="/>
+        <field:textarea field="name" id="c_org_openschedule_domain_BlockComment_name" z="LwNwyTMY6D3LnAJhU1rkt/1z9vQ="/>
+        <field:textarea field="email" id="c_org_openschedule_domain_BlockComment_email" validationMessageCode="field_invalid_email" z="Ltz2O+pM6HX6rhfqJTAeOmYQmdY="/>
+        <field:textarea field="comment" id="c_org_openschedule_domain_BlockComment_comment" required="true" z="IUlDYXn9C+hDUNzCvgtsPGIZDJM="/>
     </form:update>
 </div>

@@ -31,8 +31,6 @@ import flexjson.transformer.DateTransformer;
 @RooJson
 public class Day {
 
-//	private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
-	
 	@Column( name = "event_date", nullable = true )
 	@Temporal( TemporalType.DATE )
 	@DateTimeFormat( pattern = "yyyy-MM-dd" )
@@ -66,39 +64,5 @@ public class Day {
         				new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
         			).deepSerialize( collection );
     }
-
-    //	public String toJson() {
-//		StringBuilder sb = new StringBuilder();
-//		
-//		sb.append( "{" );
-//		sb.append( "\"id\":" ).append( getId() ).append( "," );
-//		sb.append( "\"date\":\"" ).append( null != getDate() ? sdf.format( date ) : null ).append( "\"," );
-//		sb.append( "\"numberOfSchedules\":" ).append( numberOfSchedules ).append( "," );
-//		sb.append( "\"schedules\":" ).append( Schedule.toJsonArray( schedules ) );
-//		sb.append( "}" );
-//		
-//		return sb.toString();
-//	}
-//	
-//    public static String toJsonArray( Collection<Day> collection ) {
-//		StringBuilder sb = new StringBuilder();
-//
-//		sb.append( "[" );
-//		if( null != collection ) {
-//			int i = 0;
-//			for( Day day : collection ) {
-//				sb.append( day.toJson() );
-//
-//				if( i < ( collection.size() - 1 ) ) {
-//					sb.append( "," );
-//				}
-//
-//				i++;
-//			}
-//		}
-//		sb.append( "]" );
-//		
-//		return sb.toString();
-//    }
 
 }

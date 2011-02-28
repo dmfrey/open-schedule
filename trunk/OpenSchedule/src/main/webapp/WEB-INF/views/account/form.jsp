@@ -9,21 +9,29 @@
 
 <article>
 	<form:form id="accountForm" commandName="userAccount" method="PUT">
-		<spring:bind path="id">
-			<input type="hidden" name="${ status.expression }" value="${ status.value }" />
-		</spring:bind>
+		<form:hidden path="id" />
+		<form:hidden path="version" />
+		<form:hidden path="username" />
+		<form:hidden path="enabled" />
+		<form:hidden path="accountNonExpired" />
+		<form:hidden path="accountNonLocked" />
+		<form:hidden path="credentialsNonExpired" />
+		
 		<fieldset>
 			<legend>Update your account</legend>
 			<ul>
 				<li>
 					<label for="username">Username:</label>
-					<spring:bind path="username">
-					${ status.value }
-					<input type="hidden" id="${ status.expression }" name="${ status.expression }" value="${ status.value }" />
-					</spring:bind>
+					${ userAccount.username }
 				</li>
 				<li>
 					<label for="password">Password:</label>
+					<c:choose>
+					<c:when test="${ userAccount.password == 'unused' }">
+					Not Needed for OpenId!
+					<form:hidden path="password" />
+					</c:when>
+					<c:otherwise>
 					<spring:bind path="password">
 					<input type="password" id="${ status.expression }" name="${ status.expression }" value="${ status.value }" autofocus="true" placeholder="Password" />
 					<label for="password" class="errors">
@@ -32,6 +40,8 @@
 						</c:if>
 					</label>
 					</spring:bind>
+					</c:otherwise>
+					</c:choose>
 				</li>
 				<li>
 					<label for="name">Name:</label>
