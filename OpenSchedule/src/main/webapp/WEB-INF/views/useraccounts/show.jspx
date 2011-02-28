@@ -11,6 +11,6 @@
         <field:display field="credentialsNonExpired" id="s_org_openschedule_domain_UserAccount_credentialsNonExpired" object="${useraccount}" z="WIzSKxy1+CCZVZ1gUJQ1fTlH0JY="/>
         <field:display field="name" id="s_org_openschedule_domain_UserAccount_name" object="${useraccount}" z="4tIbhhYpcTfUmvwKUNZFG6NmGts="/>
         <field:display field="email" id="s_org_openschedule_domain_UserAccount_email" object="${useraccount}" z="LmUOpNyaBHvzFePO47/n3EvQdCs="/>
-        <field:display field="authorities" id="s_org_openschedule_domain_UserAccount_authorities" object="${useraccount}" z="wOQ5T9/TtGpSwinXadovRO0o0rA="/>
+        
     </page:show>
 </div>

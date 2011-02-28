@@ -22,13 +22,10 @@
 package org.openschedule.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -83,10 +80,22 @@ public class UserAccount implements UserDetails {
 	@Size( min = 1, max = 255 )
 	private String email;
 
-	@OneToMany( targetEntity = Authority.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL )
-	@JoinColumn( name = "username", referencedColumnName = "username" )
-	private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-	
+
+	/* (non-Javadoc)
+	 * @see org.springframework.security.core.userdetails.UserDetails#getAuthorities()
+	 */
+	@Override
+	public Collection<GrantedAuthority> getAuthorities() {
+		
+		List<Authority> authorities = Authority.findAuthoritysByUsername( username ).getResultList();
+		Collection<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>( authorities.size() );
+		for( Authority authority : authorities ) {
+			grantedAuthorities.add( authority );
+		}
+		return grantedAuthorities;
+	}
+
+
 	public static UserAccount findUserAccount( String username ) {
 		if( username == null ) return null;
 		return entityManager().createQuery( "select o from UserAccount o where username = ?1", UserAccount.class ).setParameter( 1, username ).getSingleResult();

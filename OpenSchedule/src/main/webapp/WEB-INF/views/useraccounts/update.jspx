@@ -11,6 +11,6 @@
         <field:checkbox field="credentialsNonExpired" id="c_org_openschedule_domain_UserAccount_credentialsNonExpired" z="FwWKnXXPj2SxrPvjawGjo2VPPQ4="/>
         <field:textarea field="name" id="c_org_openschedule_domain_UserAccount_name" required="true" z="Uoy1rjg0JMhho5XZjj/1pRNH3EI="/>
         <field:textarea field="email" id="c_org_openschedule_domain_UserAccount_email" required="true" validationMessageCode="field_invalid_email" z="yyumETN5XmD5bbDBFPn6MiN0v4w="/>
-        <field:input field="authorities" id="c_org_openschedule_domain_UserAccount_authorities" z="/WOTgpY/lG1ZKM2HarigmqMZEDs="/>
+        
     </form:update>
 </div>

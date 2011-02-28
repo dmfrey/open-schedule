@@ -34,7 +34,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 @RooJavaBean
 @RooToString
-@RooEntity( table = "USER_AUTHORITY" )
+@RooEntity( table = "USER_AUTHORITY", finders = { "findAuthoritysByUsername" } )
 @RooSerializable
 @Table( 
 	name = "USER_AUTHORITY",

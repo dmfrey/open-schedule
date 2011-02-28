@@ -50,6 +50,22 @@ public class AccountController {
 	private PasswordEncoder passwordEncoder;
 	
     @Secured( value = { "ROLE_USER", "ROLE_ADMIN" } )
+    @RequestMapping( value = "/{id}", method = RequestMethod.GET )
+    public String show( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "show : enter" );
+
+   		UserAccount userAccount = UserAccount.findUserAccount( id );
+   		if( null != userAccount && !"unused".equals( userAccount.getPassword() ) ) {
+   			userAccount.setPassword( "" );
+   		}
+   		
+   		model.addAttribute( "userAccount", userAccount );
+        
+    	log.info( "show : exit" );
+    	return "account/show";
+    }
+
+    @Secured( value = { "ROLE_USER", "ROLE_ADMIN" } )
     @RequestMapping( value = "/{id}", params = "form", method = RequestMethod.GET )
     public String updateForm( @PathVariable( "id" ) Long id, Model model ) {
     	log.info( "updateForm : enter" );
@@ -86,7 +102,7 @@ public class AccountController {
     	userAccount.merge();
 
     	log.info( "update : exit" );
-        return "redirect:/account/" + encodeUrlPathSegment( userAccount.getUsername(), request );
+        return "redirect:/account/" + encodeUrlPathSegment( userAccount.getId().toString(), request );
     }
 
     private String encodeUrlPathSegment( String pathSegment, HttpServletRequest request ) {

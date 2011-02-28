@@ -4,8 +4,6 @@
 package org.openschedule.domain;
 
 import java.lang.String;
-import java.util.List;
-import org.springframework.security.core.GrantedAuthority;
 
 privileged aspect UserAccount_Roo_JavaBean {
     
@@ -71,14 +69,6 @@ privileged aspect UserAccount_Roo_JavaBean {
     
     public void UserAccount.setEmail(String email) {
         this.email = email;
-    }
-    
-    public List<GrantedAuthority> UserAccount.getAuthorities() {
-        return this.authorities;
-    }
-    
-    public void UserAccount.setAuthorities(List<GrantedAuthority> authorities) {
-        this.authorities = authorities;
     }
     
 }

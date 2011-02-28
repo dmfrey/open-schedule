@@ -7,7 +7,7 @@
 
 <article>
 
-	<spring:url value="/view/${ event.shortName }" var="view_url" />
+	<spring:url value="/public/${ event.shortName }" var="view_url" />
 	<a href="${ view_url }">View Event</a>&nbsp;
 	<a id="eventJson" href="#" data-id="${ event.id }">Test Event JSON</a>
 	<a id="publishedEventsJson" href="#">Test Published Events JSON</a>
@@ -378,14 +378,6 @@
 	</c:forEach>
 </div>
 </div>
-
-<!-- pre>
-  <c:forEach var="name"
-             items="${pageContext.request.attributeNames}">
-    Name:  ${name}
-    Value: ${requestScope[name]}<br>
-  </c:forEach>
-</pre -->
 
 <script type="text/javascript">
 	console.debug( "show article : enter" );
