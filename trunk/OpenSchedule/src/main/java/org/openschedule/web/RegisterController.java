@@ -21,7 +21,6 @@
  */
 package org.openschedule.web;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -29,8 +28,6 @@ import org.apache.log4j.Logger;
 import org.openschedule.domain.Authority;
 import org.openschedule.domain.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,9 +45,6 @@ public class RegisterController {
 
 	private static final Logger log = Logger.getLogger( RegisterController.class );
 	
-    @Autowired
-    private GenericConversionService conversionService;
-
     @Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -75,15 +69,15 @@ public class RegisterController {
 			log.info( "register : exit, form has errors" );
 			return "register/form";
 		} else {
-			Authority authority = new Authority();
-			authority.setUsername( userAccount.getUsername() );
-			authority.setAuthority( "ROLE_USER" );
-			userAccount.getAuthorities().add( authority );
-			
 			userAccount.setPassword( passwordEncoder.encodePassword( userAccount.getPassword(), null ) );
 			
 			userAccount.persist();
 			
+			Authority authority = new Authority();
+			authority.setUsername( userAccount.getUsername() );
+			authority.setAuthority( "ROLE_USER" );
+			authority.persist();
+
 			log.info( "register : exit" );
 			return "register/complete";
 		}
@@ -115,13 +109,13 @@ public class RegisterController {
 			userAccount.setName( name );
 			userAccount.setEmail( email );
 			
+			userAccount.persist();
+
 			Authority authority = new Authority();
 			authority.setUsername( userAccount.getUsername() );
 			authority.setAuthority( "ROLE_USER" );
-			userAccount.getAuthorities().add( authority );
+			authority.persist();
 			
-			userAccount.persist();
-
 			log.info( "registerWithOpenId : exit, send to login" );
 			return "register/complete";
 		} else {
@@ -129,18 +123,5 @@ public class RegisterController {
 			return "redirect:/register";
 		}
 	}
-
-    Converter<UserAccount, String> getUserAccountConverter() {
-        return new Converter<UserAccount, String>() {
-            public String convert( UserAccount userAccount ) {
-                return new StringBuilder().append( userAccount.getUsername() ).append(" ").append( userAccount.getPassword() ).append(" ").append( userAccount.getName() ).toString();
-            }
-        };
-    }
-    
-    @PostConstruct
-    void registerConverters() {
-        conversionService.addConverter( getUserAccountConverter() );
-    }
 
 }

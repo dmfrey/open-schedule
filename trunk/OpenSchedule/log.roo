@@ -155,3 +155,12 @@ perform clean
 perform clean
 perform clean
 // Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-28 08:42:32
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-28 09:27:45
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-28 09:43:08
+finder list --class ~.domain.Authority
+quit
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-28 09:57:07
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-28 09:57:15
+perform clean
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log closed at 2011-02-28 10:07:33
+// Spring Roo 1.1.1.RELEASE [rev 156ccd6] log opened at 2011-02-28 10:08:47
