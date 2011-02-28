@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Table;
 import javax.persistence.Version;
 import org.openschedule.domain.Event;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 privileged aspect Event_Roo_Entity {
     
     declare @type: Event: @Entity;
-    
-    declare @type: Event: @Table(name = "EVENT");
     
     @PersistenceContext
     transient EntityManager Event.entityManager;
