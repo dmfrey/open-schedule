@@ -1,5 +1,5 @@
 function storeInSession( key, value ) {
-	console.debug( "storeInSession : enter" );
+	//console.debug( "storeInSession : enter" );
 	
 	if( window.sessionStorage ) {
 		sessionStorage.setItem( key, value );
@@ -7,11 +7,11 @@ function storeInSession( key, value ) {
 		createCookie( key, value, -1 );
 	}
 
-	console.debug( "storeInSession : exit" );
+	//console.debug( "storeInSession : exit" );
 }
 
 function retrieveFromSession( key ) {
-	console.debug( "retrieveFromSession : enter" );
+	//console.debug( "retrieveFromSession : enter" );
 	
 	var value = "";
 	if( window.sessionStorage ) {
@@ -20,12 +20,12 @@ function retrieveFromSession( key ) {
 		value = readCookie( key );
 	}
 
-	console.debug( "retrieveFromSession : exit" );
+	//console.debug( "retrieveFromSession : exit" );
 	return value;
 }
 
 function removeFromSession( key ) {
-	console.debug( "removeFromSession : enter" );
+	//console.debug( "removeFromSession : enter" );
 	
 	if( window.sessionStorage ) {
 		sessionStorage.removeItem( key );
@@ -33,11 +33,11 @@ function removeFromSession( key ) {
 		createCookie( key, "", -1 );
 	}
 
-	console.debug( "removeFromSession : exit" );
+	//console.debug( "removeFromSession : exit" );
 }
 
 function createCookie( name, value, days ) {
-	console.debug( "createCookie : enter" );
+	//console.debug( "createCookie : enter" );
 	
 	var expires = "; expires=Thu, 01-Jan-1970 00:00:01 GMT" ;
 
@@ -49,11 +49,11 @@ function createCookie( name, value, days ) {
 	
 	document.cookie = name + "=" + value + expires + "; path=/";
 
-	console.debug( "createCookie : exit" );
+	//console.debug( "createCookie : exit" );
 }
 
 function readCookie( name ) {
-	console.debug( "readCookie : enter" );
+	//console.debug( "readCookie : enter" );
 
 	var result = ""
 	var nameEQ = name + "=" ;
@@ -72,6 +72,6 @@ function readCookie( name ) {
 		}
 	}
 	
-	console.debug( "readCookie : exit" );
+	//console.debug( "readCookie : exit" );
 	return( result );
 }

@@ -1,15 +1,15 @@
 $( document ).ready( function() {
-	console.debug( "initialize : enter" );
+	//console.debug( "initialize : enter" );
 	
-	console.debug( "initialize : OpenID" );
+	//console.debug( "initialize : OpenID" );
 	initOpenID();
 	
-	console.debug( "initialize : TabContainer" );
+	//console.debug( "initialize : TabContainer" );
 	initTabContainer();
 	
 	$( '.viewAgenda article div tr td' ).tooltip( { showURL: false, positionLeft: true } );
 	
-	console.debug( "initialize : exit" );
+	//console.debug( "initialize : exit" );
 });
 
 $( function() {
@@ -81,93 +81,93 @@ $( function() {
 
 $( function() {
 	$( '.labelSelect' ).blur( function() {
-		console.debug( ".labelSelect : enter" );
+		//console.debug( ".labelSelect : enter" );
 		
 		var eventId = $( this ).attr( "data-eventId" );
-		console.debug( "eventId=" + eventId );
+		//console.debug( "eventId=" + eventId );
 
 		var dayId = $( this ).attr( "data-dayId" );
-		console.debug( "dayId=" + dayId );
+		//console.debug( "dayId=" + dayId );
 
 		var scheduleId = $( this ).attr( "data-scheduleId" );
-		console.debug( "scheduleId=" + scheduleId );
+		//console.debug( "scheduleId=" + scheduleId );
 		
 		var blockId = $( this ).attr( "data-blockId" );
-		console.debug( "blockId=" + blockId );
+		//console.debug( "blockId=" + blockId );
 		
 		var value = $( this ).val();
-		console.debug( "value=" + value );
+		//console.debug( "value=" + value );
 		
 		$.post(
 			'/schedule/events/' + eventId + '/days/' + dayId + '/schedules/' + scheduleId + '/blocks/' + blockId,
 			{ 'label' : true, 'labelId': value },
 			function( data ) {
-				console.dir( data );
+				//console.dir( data );
 			},
 			'json'
 		);
 
-		console.debug( ".labelSelect : exit" );
+		//console.debug( ".labelSelect : exit" );
 	});
 
 	$( '.durationSelect' ).blur( function() {
-		console.debug( ".durationSelect : enter" );
+		//console.debug( ".durationSelect : enter" );
 
 		var eventId = $( this ).attr( "data-eventId" );
-		console.debug( "eventId=" + eventId );
+		//console.debug( "eventId=" + eventId );
 
 		var dayId = $( this ).attr( "data-dayId" );
-		console.debug( "dayId=" + dayId );
+		//console.debug( "dayId=" + dayId );
 
 		var scheduleId = $( this ).attr( "data-scheduleId" );
-		console.debug( "scheduleId=" + scheduleId );
+		//console.debug( "scheduleId=" + scheduleId );
 		
 		var blockId = $( this ).attr( "data-blockId" );
-		console.debug( "blockId=" + blockId );
+		//console.debug( "blockId=" + blockId );
 		
 		var value = $( this ).val();
-		console.debug( "value=" + value );
+		//console.debug( "value=" + value );
 		
 		$.post(
 			'/schedule/events/' + eventId + '/days/' + dayId + '/schedules/' + scheduleId + '/blocks/' + blockId,
 			{ 'duration': value },
 			function( data ) {
-				console.dir( data );
+				//console.dir( data );
 			},
 			'json'
 		);
 
-		console.debug( ".durationSelect : exit" );
+		//console.debug( ".durationSelect : exit" );
 	});
 
 	$( '.sessionSelect' ).blur( function() {
-		console.debug( ".sessionSelect : enter" );
+		//console.debug( ".sessionSelect : enter" );
 
 		var eventId = $( this ).attr( "data-eventId" );
-		console.debug( "eventId=" + eventId );
+		//console.debug( "eventId=" + eventId );
 
 		var dayId = $( this ).attr( "data-dayId" );
-		console.debug( "dayId=" + dayId );
+		//console.debug( "dayId=" + dayId );
 
 		var scheduleId = $( this ).attr( "data-scheduleId" );
-		console.debug( "scheduleId=" + scheduleId );
+		//console.debug( "scheduleId=" + scheduleId );
 		
 		var blockId = $( this ).attr( "data-blockId" );
-		console.debug( "blockId=" + blockId );
+		//console.debug( "blockId=" + blockId );
 		
 		var value = $( this ).val();
-		console.debug( "value=" + value );
+		//console.debug( "value=" + value );
 		
 		$.post(
 			'/schedule/events/' + eventId + '/days/' + dayId + '/schedules/' + scheduleId + '/blocks/' + blockId,
 			{ 'session' : true, 'sessionId': value },
 			function( data ) {
-				console.dir( data );
+				//console.dir( data );
 			},
 			'json'
 		);
 
-		console.debug( ".sessionSelect : exit" );
+		//console.debug( ".sessionSelect : exit" );
 	});
 });
 
@@ -175,12 +175,12 @@ $( function() {
 	$( '#eventJson' ).click( function( e ) {
 		
 		var eventId = $( this ).attr( 'data-id' );
-		console.debug( "eventId=" + eventId );
+		//console.debug( "eventId=" + eventId );
 		
 		$.get(
 			'/schedule/events/' + eventId,
 			function( data ) {
-				console.debug( data );
+				//console.debug( data );
 			},
 			'json'
 		);
@@ -193,7 +193,7 @@ $( function() {
 		$.get(
 			'/schedule/view?published=true',
 			function( data ) {
-				console.debug( data );
+				//console.debug( data );
 			},
 			'json'
 		);
@@ -208,7 +208,7 @@ $( function() {
 		$.get(
 			'/schedule/public/' + shortName + '/comments',
 			function( data ) {
-				console.debug( data );
+				//console.debug( data );
 			},
 			'json'
 		);
@@ -227,57 +227,57 @@ $( function() {
 
 $( function() {
 	$( '.popupLink' ).click( function( e ) {
-		console.debug( 'popupLink.click : enter' );
+		//console.debug( 'popupLink.click : enter' );
 		
 		e.preventDefault();
 		
 		$( this ).siblings( '.popupForm' ).toggle();
 		
-		console.debug( 'popupLink.click : exit' );
+		//console.debug( 'popupLink.click : exit' );
 	});
 
 	$( '.popupFormClose' ).children( 'a' ).click( function( e ) {
-		console.debug( 'popupFormClose.click : enter' );
+		//console.debug( 'popupFormClose.click : enter' );
 
 		e.preventDefault();
 		
 		var form = $( this ).attr( 'data-form' );
 		$( "#" + form ).hide();
 		
-		console.debug( 'popupFormClose.click : exit' );
+		//console.debug( 'popupFormClose.click : exit' );
 	});
 	
 	$( 'input[type=submit]' ).click( function() {
-		console.debug( "input[type=submit] : enter" );
+		//console.debug( "input[type=submit] : enter" );
 		
 		var article = $( this ).attr( 'data-article' );
-		console.debug( "article=" + article );
+		//console.debug( "article=" + article );
 		if( null != article ) {
-			console.debug( "input[type=submit] : storing article in session" );
+			//console.debug( "input[type=submit] : storing article in session" );
 			storeInSession( "schedule_update_article", article );
 		}
 		
 		var form = $( this ).attr( 'data-form' );
-		console.debug( "form=" + form );
+		//console.debug( "form=" + form );
 		if( null != form ) {		
-			console.debug( "input[type=submit] : storing form in session" );
+			//console.debug( "input[type=submit] : storing form in session" );
 			storeInSession( "schedule_update_form", form );
 		}
 		
-		console.debug( "input[type=submit] : exit" );
+		//console.debug( "input[type=submit] : exit" );
 	});
 
 	$( '.updateFormLinks a' ).click( function() {
-		console.debug( ".updateFormLinks a : enter" );
+		//console.debug( ".updateFormLinks a : enter" );
 		
 		var article = $( this ).attr( 'data-article' );
-		console.debug( "article=" + article );
+		//console.debug( "article=" + article );
 		if( null != article ) {
-			console.debug( ".updateFormLinks a : storing article in session" );
+			//console.debug( ".updateFormLinks a : storing article in session" );
 			storeInSession( "schedule_update_article", article );
 		}
 		
-		console.debug( ".updateFormLinks a : exit" );
+		//console.debug( ".updateFormLinks a : exit" );
 	});
 
 });
@@ -289,15 +289,15 @@ $( function() {
 });
 
 function initOpenID() {
-	console.debug( "initOpenId : enter" );
+	//console.debug( "initOpenId : enter" );
 	
 	openid.init( 'openid_identifier' );
 
-	console.debug( "initOpenId : exit" );
+	//console.debug( "initOpenId : exit" );
 }
 
 function initTabContainer() {
-	console.debug( "initTabContainer : enter" );
+	//console.debug( "initTabContainer : enter" );
 
 	$( '#tabs article' ).hide(); // Hide all divs
 	$( '#tabs article:first' ).show(); // Show the first div
@@ -312,7 +312,7 @@ function initTabContainer() {
 		return false;
 	});
 
-	console.debug( "initTabContainer : exit" );
+	//console.debug( "initTabContainer : exit" );
 }
 
 function hasAutofocus() {
