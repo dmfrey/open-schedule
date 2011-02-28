@@ -1,6 +1,5 @@
 package org.openschedule.domain;
 
-//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -14,9 +13,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -32,13 +33,17 @@ import flexjson.transformer.DateTransformer;
 
 @RooJavaBean
 @RooToString
-@RooEntity( table="EVENT", finders = { "findEventsByUsername", "findEventsByShortName" } )
+@RooEntity( table = "EVENT", finders = { "findEventsByUsername", "findEventsByShortName" } )
 @RooSerializable
 @RooJson
+@Table( 
+	name = "EVENT",
+	uniqueConstraints = {
+		@UniqueConstraint( columnNames = { "short_name" } )
+	}
+)
 public class Event {
 
-	//private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
-	
 	@Column( name = "name", length = 255, nullable = false )
 	@NotNull
 	private String name;
@@ -134,26 +139,6 @@ public class Event {
 
     }
 
-//    public String toJson() {
-//		StringBuilder sb = new StringBuilder();
-//		
-//		sb.append( "{" );
-//		sb.append( "\"id\":" ).append( getId() ).append( "," );
-//		sb.append( "\"name\":\"" ).append( name.replaceAll( "'", "\'") ).append( "\"," );
-//		sb.append( "\"shortName\":\"" ).append( shortName ).append( "\"," );
-//		if( null != publishDate ) {
-//			sb.append( "\"publishDate\":\"" ).append( sdf.format( publishDate ) ).append( "\"," );
-//		}
-//		sb.append( "\"startDate\":\"" ).append( null != getStartDate() ? sdf.format( startDate ) : null ).append( "\"," );
-//		sb.append( "\"endDate\":\"" ).append( null != getEndDate() ? sdf.format( endDate ) : null ).append( "\"," );
-//		sb.append( "\"numberOfDays\":\"" ).append( numberOfDays ).append( "\"," );
-//		sb.append( "\"days\":" ).append( Day.toJsonArray( days ) ).append( "," );
-//		sb.append( "\"venues\":" ).append( Venue.toJsonArray( venues ) );
-//		sb.append( "}" );
-//		
-//		return sb.toString();
-//	}
-	
     public String toJsonSummary() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -165,27 +150,6 @@ public class Event {
 		
 		return sb.toString();
 	}
-
-//    public static String toJsonArray( Collection<Event> collection ) {
-//		StringBuilder sb = new StringBuilder();
-//
-//		sb.append( "[" );
-//		if( null != collection ) {
-//			int i = 0;
-//			for( Event event : collection ) {
-//				sb.append( event.toJson() );
-//
-//				if( i < ( collection.size() - 1 ) ) {
-//					sb.append( "," );
-//				}
-//
-//				i++;
-//			}
-//		}
-//		sb.append( "]" );
-//		
-//		return sb.toString();
-//    }
 
     public static String toJsonSummaryArray( Collection<Event> collection ) {
 		StringBuilder sb = new StringBuilder();

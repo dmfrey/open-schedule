@@ -23,10 +23,26 @@ privileged aspect SpeakerDataOnDemand_Roo_DataOnDemand {
             name  = name.substring(0, 255);
         }
         obj.setName(name);
-        obj.setEmail(null);
-        obj.setWebSite(null);
-        obj.setPhone(null);
-        obj.setBio(null);
+        java.lang.String email = "email_" + index;
+        if (email.length() > 255) {
+            email  = email.substring(0, 255);
+        }
+        obj.setEmail(email);
+        java.lang.String webSite = "webSite_" + index;
+        if (webSite.length() > 255) {
+            webSite  = webSite.substring(0, 255);
+        }
+        obj.setWebSite(webSite);
+        java.lang.String phone = "phone_" + index;
+        if (phone.length() > 255) {
+            phone  = phone.substring(0, 255);
+        }
+        obj.setPhone(phone);
+        java.lang.String bio = "bio_" + index;
+        if (bio.length() > 2048) {
+            bio  = bio.substring(0, 2048);
+        }
+        obj.setBio(bio);
         return obj;
     }
     

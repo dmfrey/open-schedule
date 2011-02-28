@@ -1,6 +1,5 @@
 package org.openschedule.domain;
 
-//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -31,8 +30,6 @@ import flexjson.transformer.DateTransformer;
 @RooSerializable
 @RooJson
 public class Block {
-
-	//private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" );
 
 	@Column( name = "date", nullable = true )
 	@Temporal( TemporalType.DATE )
@@ -68,40 +65,5 @@ public class Block {
         				new DateTransformer( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), Date.class
         			).deepSerialize( collection );
     }
-
-    //	public String toJson() {
-//		StringBuilder sb = new StringBuilder();
-//		
-//		sb.append( "{" );
-//		sb.append( "\"id\":" ).append( getId() ).append( "," );
-//		sb.append( "\"date\":" ).append( getDate() == null ? null : ( "\"" + sdf.format( date ) + "\"" ) ).append( "," ); 
-//		sb.append( "\"duration\":" ).append( duration ).append( "," );
-//		sb.append( "\"label\":" ).append( getLabel() == null ? null : label.toJson() ).append( "," );
-//		sb.append( "\"session\":" ).append( getSession() == null ? null : session.toJson() );
-//		sb.append( "}" );
-//		
-//		return sb.toString();
-//	}
-//	
-//    public static String toJsonArray( Collection<Block> collection ) {
-//		StringBuilder sb = new StringBuilder();
-//
-//		sb.append( "[" );
-//		if( null != collection ) {
-//			int i = 0;
-//			for( Block block : collection ) {
-//				sb.append( block.toJson() );
-//
-//				if( i < ( collection.size() - 1 ) ) {
-//					sb.append( "," );
-//				}
-//
-//				i++;
-//			}
-//		}
-//		sb.append( "]" );
-//		
-//		return sb.toString();
-//    }
 
 }

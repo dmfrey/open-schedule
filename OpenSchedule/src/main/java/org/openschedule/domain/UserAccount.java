@@ -8,19 +8,26 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.serializable.RooSerializable;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @RooJavaBean
 @RooEntity( table = "USER_ACCOUNT" )
 @RooSerializable
+@Table( 
+	name = "USER_ACCOUNT",
+	uniqueConstraints = {
+		@UniqueConstraint( columnNames = { "username", "email" } )
+	}
+)
 public class UserAccount implements UserDetails {
 
 	@Column( name = "username", length = 255, nullable = false, unique = true )
@@ -33,12 +40,16 @@ public class UserAccount implements UserDetails {
 	@Size( min = 1, max = 255 )
 	private String password;
 
+	@Column( name = "enabled", nullable = false )
 	private boolean enabled = true;
 	
+	@Column( name = "account_non_expired", nullable = false )
 	private boolean accountNonExpired = true;
 	
+	@Column( name = "account_non_locked", nullable = false )
 	private boolean accountNonLocked = true;
 	
+	@Column( name = "credentials_non_expired", nullable = false )
 	private boolean credentialsNonExpired = true;
 	
 	@Column( name = "name", length = 255, nullable = false )
