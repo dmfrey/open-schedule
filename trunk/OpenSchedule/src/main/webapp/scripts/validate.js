@@ -11,20 +11,20 @@ $( function() {
 	});
 	
 	var eventName_validate = function( val ) {
-		console.debug( "eventName_validate : enter" );
+		//console.debug( "eventName_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "eventName_validate : exit, blank" );
+			//console.debug( "eventName_validate : exit, blank" );
 			return " is required";
 		} else if( val.length > 255 ) {
-			console.debug( "eventName_validate : exit, length" );
+			//console.debug( "eventName_validate : exit, length" );
 			return " can not be greater than 255 characters.";
 		} else if( val.match(/^[A-Za-z0-9-\s\.,]*$/) ) {
-			console.debug( "eventName_validate : exit" );
+			//console.debug( "eventName_validate : exit" );
 			return "";
         }
 		
-		console.debug( "eventName_validate : exit, not valid" );
+		//console.debug( "eventName_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -39,23 +39,23 @@ $( function() {
 	});
 
 	var eventShortName_validate = function( val ) {
-		console.debug( "eventShortName_validate : enter" );
+		//console.debug( "eventShortName_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "eventShortName_validate : blank" );
+			//console.debug( "eventShortName_validate : blank" );
 			return " is required";
 		} else if( val.length > 10 ) {
-			console.debug( "eventShortName_validate : length" );
+			//console.debug( "eventShortName_validate : length" );
 			return " can not be greater than 10 characters.";
 		} else if( !val.match(/^[A-Za-z0-9-]+$/) ) {
-			console.debug( "eventShortName_validate : exit, format" );
+			//console.debug( "eventShortName_validate : exit, format" );
 			return " can only contain letters and numbers";
 		} else if( val.match(/^[A-Za-z0-9-]+$/) ) {
-			console.debug( "eventShortName_validate : exit" );
+			//console.debug( "eventShortName_validate : exit" );
 			return "";
 		}
 		
-		console.debug( "eventShortName_validate : exit, not valid" );
+		//console.debug( "eventShortName_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -70,23 +70,23 @@ $( function() {
 	});
 
 	var labelName_validate = function( val ) {
-		console.debug( "labelName_validate : enter" );
+		//console.debug( "labelName_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "labelName_validate : blank" );
+			//console.debug( "labelName_validate : blank" );
 			return " is required";
 		} else if( val.length > 10 ) {
-			console.debug( "labelName_validate : length" );
+			//console.debug( "labelName_validate : length" );
 			return " can not be greater than 10 characters.";
 		} else if( !val.match(/^([0-9]){2}:([0-9]){2}$/) ) {
-			console.debug( "labelName_validate : exit, format" );
+			//console.debug( "labelName_validate : exit, format" );
 			return " can only contain numbers and a colon";
 		} else if( val.match(/^([0-9]){2}:([0-9]){2}$/) ) {
-			console.debug( "labelName_validate : exit" );
+			//console.debug( "labelName_validate : exit" );
 			return "";
 		}
 		
-		console.debug( "labelName_validate : exit, not valid" );
+		//console.debug( "labelName_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -101,20 +101,20 @@ $( function() {
 	});
 
 	var eventStartDate_validate = function( val ) {
-		console.debug( "eventStartDate_validate : enter" );
+		//console.debug( "eventStartDate_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "eventStartDate_validate : exit, blank" );
+			//console.debug( "eventStartDate_validate : exit, blank" );
 			return " is required";
 		} else if( val.length > 10 ) {
-			console.debug( "eventStartDate_validate : exit, length" );
+			//console.debug( "eventStartDate_validate : exit, length" );
 			return " can not be greater than 10 characters.";
 		} else if( val.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/) ) {
-			console.debug( "eventStartDate_validate : exit" );
+			//console.debug( "eventStartDate_validate : exit" );
 			return "";
         }
 		
-		console.debug( "eventStartDate_validate : exit, not valid" );
+		//console.debug( "eventStartDate_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -129,20 +129,20 @@ $( function() {
 	});
 
 	var eventPublishDate_validate = function( val ) {
-		console.debug( "eventPublishDate_validate : enter" );
+		//console.debug( "eventPublishDate_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "eventPublishDate_validate : exit" );
+			//console.debug( "eventPublishDate_validate : exit" );
 			return "";
 		} else if( val.length > 10 ) {
-			console.debug( "eventPublishDate_validate : exit, length" );
+			//console.debug( "eventPublishDate_validate : exit, length" );
 			return " can not be greater than 10 characters.";
 		} else if( val.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/) ) {
-			console.debug( "eventPublishDate_validate : exit" );
+			//console.debug( "eventPublishDate_validate : exit" );
 			return "";
         }
 		
-		console.debug( "eventPublishDate_validate : exit, not valid" );
+		//console.debug( "eventPublishDate_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -157,17 +157,17 @@ $( function() {
 	});
 
 	var eventNumberOfDays_validate = function( val ) {
-		console.debug( "eventNumberOfDays_validate : enter" );
+		//console.debug( "eventNumberOfDays_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "eventNumberOfDays_validate : exit, blank" );
+			//console.debug( "eventNumberOfDays_validate : exit, blank" );
 			return " is required";
 		} else if( val.match(/^[0-9]+$/) ) {
-			console.debug( "eventNumberOfDays_validate : exit" );
+			//console.debug( "eventNumberOfDays_validate : exit" );
 			return "";
         }
 		
-		console.debug( "eventStartDate_validate : exit, not valid" );
+		//console.debug( "eventStartDate_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -228,21 +228,21 @@ $( function() {
 	});
 
 	var venueAddress_validate = function( val ) {
-		console.debug( "venueAddress_validate : enter" );
+		//console.debug( "venueAddress_validate : enter" );
 		
-		console.debug( val );
+		//console.debug( val );
 		if( val == "" ) {
-			console.debug( "venueAddress_validate : exit" );
+			//console.debug( "venueAddress_validate : exit" );
 			return "";
 		} else if( val.length > 255 ) {
-			console.debug( "venueAddress_validate : exit, length" );
+			//console.debug( "venueAddress_validate : exit, length" );
 			return " can not be greater than 255 characters.";
 		} else if( val.match(/^[A-Za-z0-9-\s\.]*$/) ) {
-			console.debug( "venueAddress_validate : exit" );
+			//console.debug( "venueAddress_validate : exit" );
 			return "";
         }
 		
-		console.debug( "venueAddress_validate : exit, not valid" );
+		//console.debug( "venueAddress_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -289,20 +289,20 @@ $( function() {
 	});
 	
 	var commentName_validate = function( val ) {
-		console.debug( "commentName_validate : enter" );
+		//console.debug( "commentName_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "commentName_validate : exit, blank" );
+			//console.debug( "commentName_validate : exit, blank" );
 			return "";
 		} else if( val.length > 255 ) {
-			console.debug( "commentName_validate : exit, length" );
+			//console.debug( "commentName_validate : exit, length" );
 			return " can not be greater than 255 characters.";
 		} else if( val.match(/^[A-Za-z0-9-\s\.,]*$/) ) {
-			console.debug( "commentName_validate : exit" );
+			//console.debug( "commentName_validate : exit" );
 			return "";
         }
 		
-		console.debug( "commentName_validate : exit, not valid" );
+		//console.debug( "commentName_validate : exit, not valid" );
 		return " is not valid";
 	};
 
@@ -317,20 +317,20 @@ $( function() {
 	});
 	
 	var commentComment_validate = function( val ) {
-		console.debug( "commentComment_validate : enter" );
+		//console.debug( "commentComment_validate : enter" );
 		
 		if( val == "" ) {
-			console.debug( "commentComment_validate : exit, blank" );
+			//console.debug( "commentComment_validate : exit, blank" );
 			return " is required.";
 		} else if( val.length > 255 ) {
-			console.debug( "commentComment_validate : exit, length" );
+			//console.debug( "commentComment_validate : exit, length" );
 			return " can not be greater than 255 characters.";
 		} else if( val.match(/^[A-Za-z0-9-\s\.,]*$/) ) {
-			console.debug( "commentComment_validate : exit" );
+			//console.debug( "commentComment_validate : exit" );
 			return "";
         }
 		
-		console.debug( "commentComment_validate : exit, not valid" );
+		//console.debug( "commentComment_validate : exit, not valid" );
 		return " is not valid";
 	};
 
