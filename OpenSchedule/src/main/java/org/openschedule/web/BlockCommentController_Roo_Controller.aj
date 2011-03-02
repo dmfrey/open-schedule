@@ -8,6 +8,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
+import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.openschedule.domain.BlockComment;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,63 +29,71 @@ import org.springframework.web.util.WebUtils;
 privileged aspect BlockCommentController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
-    public String BlockCommentController.create(@Valid BlockComment blockComment, BindingResult result, Model model, HttpServletRequest request) {
-        if (result.hasErrors()) {
-            model.addAttribute("blockComment", blockComment);
+    public String BlockCommentController.create(@Valid BlockComment blockComment, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            uiModel.addAttribute("blockComment", blockComment);
             return "blockcomments/create";
         }
+        uiModel.asMap().clear();
         blockComment.persist();
-        return "redirect:/blockcomments/" + encodeUrlPathSegment(blockComment.getId().toString(), request);
+        return "redirect:/blockcomments/" + encodeUrlPathSegment(blockComment.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String BlockCommentController.createForm(Model model) {
-        model.addAttribute("blockComment", new BlockComment());
+    public String BlockCommentController.createForm(Model uiModel) {
+        uiModel.addAttribute("blockComment", new BlockComment());
         return "blockcomments/create";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String BlockCommentController.show(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("blockcomment", BlockComment.findBlockComment(id));
-        model.addAttribute("itemId", id);
+    public String BlockCommentController.show(@PathVariable("id") Long id, Model uiModel) {
+        uiModel.addAttribute("blockcomment", BlockComment.findBlockComment(id));
+        uiModel.addAttribute("itemId", id);
         return "blockcomments/show";
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String BlockCommentController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String BlockCommentController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
-            model.addAttribute("blockcomments", BlockComment.findBlockCommentEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
+            uiModel.addAttribute("blockcomments", BlockComment.findBlockCommentEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
             float nrOfPages = (float) BlockComment.countBlockComments() / sizeNo;
-            model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            model.addAttribute("blockcomments", BlockComment.findAllBlockComments());
+            uiModel.addAttribute("blockcomments", BlockComment.findAllBlockComments());
         }
         return "blockcomments/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public String BlockCommentController.update(@Valid BlockComment blockComment, BindingResult result, Model model, HttpServletRequest request) {
-        if (result.hasErrors()) {
-            model.addAttribute("blockComment", blockComment);
+    public String BlockCommentController.update(@Valid BlockComment blockComment, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            uiModel.addAttribute("blockComment", blockComment);
             return "blockcomments/update";
         }
+        uiModel.asMap().clear();
         blockComment.merge();
-        return "redirect:/blockcomments/" + encodeUrlPathSegment(blockComment.getId().toString(), request);
+        return "redirect:/blockcomments/" + encodeUrlPathSegment(blockComment.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String BlockCommentController.updateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("blockComment", BlockComment.findBlockComment(id));
+    public String BlockCommentController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+        uiModel.addAttribute("blockComment", BlockComment.findBlockComment(id));
         return "blockcomments/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String BlockCommentController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String BlockCommentController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         BlockComment.findBlockComment(id).remove();
-        model.addAttribute("page", (page == null) ? "1" : page.toString());
-        model.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/blockcomments?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
+        uiModel.asMap().clear();
+        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
+        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+        return "redirect:/blockcomments";
+    }
+    
+    @ModelAttribute("blockcomments")
+    public Collection<BlockComment> BlockCommentController.populateBlockComments() {
+        return BlockComment.findAllBlockComments();
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -103,13 +113,13 @@ privileged aspect BlockCommentController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> BlockCommentController.createFromJson(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> BlockCommentController.createFromJson(@RequestBody String json) {
         BlockComment.fromJsonToBlockComment(json).persist();
         return new ResponseEntity<String>(HttpStatus.CREATED);
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> BlockCommentController.createFromJsonArray(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> BlockCommentController.createFromJsonArray(@RequestBody String json) {
         for (BlockComment blockComment: BlockComment.fromJsonArrayToBlockComments(json)) {
             blockComment.persist();
         }
@@ -117,7 +127,7 @@ privileged aspect BlockCommentController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> BlockCommentController.updateFromJson(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> BlockCommentController.updateFromJson(@RequestBody String json) {
         if (BlockComment.fromJsonToBlockComment(json).merge() == null) {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
@@ -125,7 +135,7 @@ privileged aspect BlockCommentController_Roo_Controller {
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> BlockCommentController.updateFromJsonArray(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> BlockCommentController.updateFromJsonArray(@RequestBody String json) {
         for (BlockComment blockComment: BlockComment.fromJsonArrayToBlockComments(json)) {
             if (blockComment.merge() == null) {
                 return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
@@ -135,7 +145,7 @@ privileged aspect BlockCommentController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<String> BlockCommentController.deleteFromJson(@PathVariable("id") Long id) {
+    public org.springframework.http.ResponseEntity<String> BlockCommentController.deleteFromJson(@PathVariable("id") Long id) {
         BlockComment blockcomment = BlockComment.findBlockComment(id);
         if (blockcomment == null) {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
@@ -144,8 +154,8 @@ privileged aspect BlockCommentController_Roo_Controller {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
     
-    String BlockCommentController.encodeUrlPathSegment(String pathSegment, HttpServletRequest request) {
-        String enc = request.getCharacterEncoding();
+    String BlockCommentController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+        String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
         }

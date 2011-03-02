@@ -76,6 +76,12 @@ privileged aspect Schedule_Roo_Entity {
     }
     
     @Transactional
+    public void Schedule.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Schedule Schedule.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Schedule merged = this.entityManager.merge(this);

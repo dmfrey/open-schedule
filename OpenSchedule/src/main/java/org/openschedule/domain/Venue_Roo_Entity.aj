@@ -76,6 +76,12 @@ privileged aspect Venue_Roo_Entity {
     }
     
     @Transactional
+    public void Venue.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Venue Venue.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Venue merged = this.entityManager.merge(this);

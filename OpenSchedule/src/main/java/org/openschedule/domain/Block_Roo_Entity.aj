@@ -76,6 +76,12 @@ privileged aspect Block_Roo_Entity {
     }
     
     @Transactional
+    public void Block.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Block Block.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Block merged = this.entityManager.merge(this);

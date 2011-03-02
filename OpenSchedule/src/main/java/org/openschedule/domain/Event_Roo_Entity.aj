@@ -73,6 +73,12 @@ privileged aspect Event_Roo_Entity {
     }
     
     @Transactional
+    public void Event.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Event Event.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Event merged = this.entityManager.merge(this);

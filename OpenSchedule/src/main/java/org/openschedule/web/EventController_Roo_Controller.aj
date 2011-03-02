@@ -31,61 +31,62 @@ import org.springframework.web.bind.annotation.ResponseBody;
 privileged aspect EventController_Roo_Controller {
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String EventController.createForm(Model model) {
-        model.addAttribute("event", new Event());
-        addDateTimeFormatPatterns(model);
+    public String EventController.createForm(Model uiModel) {
+        uiModel.addAttribute("event", new Event());
+        addDateTimeFormatPatterns(uiModel);
         return "events/create";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String EventController.show(@PathVariable("id") Long id, Model model) {
-        addDateTimeFormatPatterns(model);
-        model.addAttribute("event", Event.findEvent(id));
-        model.addAttribute("itemId", id);
+    public String EventController.show(@PathVariable("id") Long id, Model uiModel) {
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("event", Event.findEvent(id));
+        uiModel.addAttribute("itemId", id);
         return "events/show";
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String EventController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String EventController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
-            model.addAttribute("events", Event.findEventEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
+            uiModel.addAttribute("events", Event.findEventEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
             float nrOfPages = (float) Event.countEvents() / sizeNo;
-            model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            model.addAttribute("events", Event.findAllEvents());
+            uiModel.addAttribute("events", Event.findAllEvents());
         }
-        addDateTimeFormatPatterns(model);
+        addDateTimeFormatPatterns(uiModel);
         return "events/list";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String EventController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String EventController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Event.findEvent(id).remove();
-        model.addAttribute("page", (page == null) ? "1" : page.toString());
-        model.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/events?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
-    }
-    
-    @RequestMapping(params = { "find=ByUsername", "form" }, method = RequestMethod.GET)
-    public String EventController.findEventsByUsernameForm(Model model) {
-        return "events/findEventsByUsername";
-    }
-    
-    @RequestMapping(params = "find=ByUsername", method = RequestMethod.GET)
-    public String EventController.findEventsByUsername(@RequestParam("username") String username, Model model) {
-        model.addAttribute("events", Event.findEventsByUsername(username).getResultList());
-        return "events/list";
+        uiModel.asMap().clear();
+        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
+        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+        return "redirect:/events";
     }
     
     @RequestMapping(params = { "find=ByShortName", "form" }, method = RequestMethod.GET)
-    public String EventController.findEventsByShortNameForm(Model model) {
+    public String EventController.findEventsByShortNameForm(Model uiModel) {
         return "events/findEventsByShortName";
     }
     
     @RequestMapping(params = "find=ByShortName", method = RequestMethod.GET)
-    public String EventController.findEventsByShortName(@RequestParam("shortName") String shortName, Model model) {
-        model.addAttribute("events", Event.findEventsByShortName(shortName).getResultList());
+    public String EventController.findEventsByShortName(@RequestParam("shortName") String shortName, Model uiModel) {
+        uiModel.addAttribute("events", Event.findEventsByShortName(shortName).getResultList());
+        return "events/list";
+    }
+    
+    @RequestMapping(params = { "find=ByUsername", "form" }, method = RequestMethod.GET)
+    public String EventController.findEventsByUsernameForm(Model uiModel) {
+        return "events/findEventsByUsername";
+    }
+    
+    @RequestMapping(params = "find=ByUsername", method = RequestMethod.GET)
+    public String EventController.findEventsByUsername(@RequestParam("username") String username, Model uiModel) {
+        uiModel.addAttribute("events", Event.findEventsByUsername(username).getResultList());
         return "events/list";
     }
     
@@ -94,45 +95,50 @@ privileged aspect EventController_Roo_Controller {
         return Day.findAllDays();
     }
     
+    @ModelAttribute("events")
+    public java.util.Collection<Event> EventController.populateEvents() {
+        return Event.findAllEvents();
+    }
+    
     @ModelAttribute("eventcomments")
-    public Collection<EventComment> EventController.populateEventComments() {
+    public java.util.Collection<EventComment> EventController.populateEventComments() {
         return EventComment.findAllEventComments();
     }
     
     @ModelAttribute("labels")
-    public Collection<Label> EventController.populateLabels() {
+    public java.util.Collection<Label> EventController.populateLabels() {
         return Label.findAllLabels();
     }
     
     @ModelAttribute("sessions")
-    public Collection<Session> EventController.populateSessions() {
+    public java.util.Collection<Session> EventController.populateSessions() {
         return Session.findAllSessions();
     }
     
     @ModelAttribute("speakers")
-    public Collection<Speaker> EventController.populateSpeakers() {
+    public java.util.Collection<Speaker> EventController.populateSpeakers() {
         return Speaker.findAllSpeakers();
     }
     
     @ModelAttribute("sponsors")
-    public Collection<Sponsor> EventController.populateSponsors() {
+    public java.util.Collection<Sponsor> EventController.populateSponsors() {
         return Sponsor.findAllSponsors();
     }
     
     @ModelAttribute("tracks")
-    public Collection<Track> EventController.populateTracks() {
+    public java.util.Collection<Track> EventController.populateTracks() {
         return Track.findAllTracks();
     }
     
     @ModelAttribute("venues")
-    public Collection<Venue> EventController.populateVenues() {
+    public java.util.Collection<Venue> EventController.populateVenues() {
         return Venue.findAllVenues();
     }
     
-    void EventController.addDateTimeFormatPatterns(Model model) {
-        model.addAttribute("event_startdate_date_format", "yyyy-MM-dd");
-        model.addAttribute("event_enddate_date_format", "yyyy-MM-dd");
-        model.addAttribute("event_publishdate_date_format", "yyyy-MM-dd");
+    void EventController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("event_startdate_date_format", "yyyy-MM-dd");
+        uiModel.addAttribute("event_enddate_date_format", "yyyy-MM-dd");
+        uiModel.addAttribute("event_publishdate_date_format", "yyyy-MM-dd");
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -152,13 +158,13 @@ privileged aspect EventController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> EventController.createFromJson(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventController.createFromJson(@RequestBody String json) {
         Event.fromJsonToEvent(json).persist();
         return new ResponseEntity<String>(HttpStatus.CREATED);
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> EventController.createFromJsonArray(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventController.createFromJsonArray(@RequestBody String json) {
         for (Event event: Event.fromJsonArrayToEvents(json)) {
             event.persist();
         }
@@ -166,7 +172,7 @@ privileged aspect EventController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> EventController.updateFromJson(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventController.updateFromJson(@RequestBody String json) {
         if (Event.fromJsonToEvent(json).merge() == null) {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
@@ -174,7 +180,7 @@ privileged aspect EventController_Roo_Controller {
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> EventController.updateFromJsonArray(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventController.updateFromJsonArray(@RequestBody String json) {
         for (Event event: Event.fromJsonArrayToEvents(json)) {
             if (event.merge() == null) {
                 return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
@@ -184,7 +190,7 @@ privileged aspect EventController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<String> EventController.deleteFromJson(@PathVariable("id") Long id) {
+    public org.springframework.http.ResponseEntity<String> EventController.deleteFromJson(@PathVariable("id") Long id) {
         Event event = Event.findEvent(id);
         if (event == null) {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
@@ -193,14 +199,14 @@ privileged aspect EventController_Roo_Controller {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
     
-    @RequestMapping(params = "find=ByUsername", method = RequestMethod.GET, headers = "Accept=application/json")
-    public String EventController.jsonFindEventsByUsername(@RequestParam("username") String username, Model model) {
-        return Event.toJsonArray(Event.findEventsByUsername(username).getResultList());
+    @RequestMapping(params = "find=ByShortName", method = RequestMethod.GET, headers = "Accept=application/json")
+    public String EventController.jsonFindEventsByShortName(@RequestParam("shortName") String shortName) {
+        return Event.toJsonArray(Event.findEventsByShortName(shortName).getResultList());
     }
     
-    @RequestMapping(params = "find=ByShortName", method = RequestMethod.GET, headers = "Accept=application/json")
-    public String EventController.jsonFindEventsByShortName(@RequestParam("shortName") String shortName, Model model) {
-        return Event.toJsonArray(Event.findEventsByShortName(shortName).getResultList());
+    @RequestMapping(params = "find=ByUsername", method = RequestMethod.GET, headers = "Accept=application/json")
+    public String EventController.jsonFindEventsByUsername(@RequestParam("username") String username) {
+        return Event.toJsonArray(Event.findEventsByUsername(username).getResultList());
     }
     
 }

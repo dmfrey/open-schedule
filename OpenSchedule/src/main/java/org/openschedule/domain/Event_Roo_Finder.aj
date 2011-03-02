@@ -10,19 +10,19 @@ import org.openschedule.domain.Event;
 
 privileged aspect Event_Roo_Finder {
     
-    public static TypedQuery<Event> Event.findEventsByUsername(String username) {
-        if (username == null || username.length() == 0) throw new IllegalArgumentException("The username argument is required");
-        EntityManager em = Event.entityManager();
-        TypedQuery<Event> q = em.createQuery("SELECT Event FROM Event AS event WHERE event.username = :username", Event.class);
-        q.setParameter("username", username);
-        return q;
-    }
-    
     public static TypedQuery<Event> Event.findEventsByShortName(String shortName) {
         if (shortName == null || shortName.length() == 0) throw new IllegalArgumentException("The shortName argument is required");
         EntityManager em = Event.entityManager();
         TypedQuery<Event> q = em.createQuery("SELECT Event FROM Event AS event WHERE event.shortName = :shortName", Event.class);
         q.setParameter("shortName", shortName);
+        return q;
+    }
+    
+    public static TypedQuery<Event> Event.findEventsByUsername(String username) {
+        if (username == null || username.length() == 0) throw new IllegalArgumentException("The username argument is required");
+        EntityManager em = Event.entityManager();
+        TypedQuery<Event> q = em.createQuery("SELECT Event FROM Event AS event WHERE event.username = :username", Event.class);
+        q.setParameter("username", username);
         return q;
     }
     

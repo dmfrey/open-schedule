@@ -8,6 +8,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
+import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.openschedule.domain.EventComment;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,63 +29,71 @@ import org.springframework.web.util.WebUtils;
 privileged aspect EventCommentController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
-    public String EventCommentController.create(@Valid EventComment eventComment, BindingResult result, Model model, HttpServletRequest request) {
-        if (result.hasErrors()) {
-            model.addAttribute("eventComment", eventComment);
+    public String EventCommentController.create(@Valid EventComment eventComment, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            uiModel.addAttribute("eventComment", eventComment);
             return "eventcomments/create";
         }
+        uiModel.asMap().clear();
         eventComment.persist();
-        return "redirect:/eventcomments/" + encodeUrlPathSegment(eventComment.getId().toString(), request);
+        return "redirect:/eventcomments/" + encodeUrlPathSegment(eventComment.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String EventCommentController.createForm(Model model) {
-        model.addAttribute("eventComment", new EventComment());
+    public String EventCommentController.createForm(Model uiModel) {
+        uiModel.addAttribute("eventComment", new EventComment());
         return "eventcomments/create";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String EventCommentController.show(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("eventcomment", EventComment.findEventComment(id));
-        model.addAttribute("itemId", id);
+    public String EventCommentController.show(@PathVariable("id") Long id, Model uiModel) {
+        uiModel.addAttribute("eventcomment", EventComment.findEventComment(id));
+        uiModel.addAttribute("itemId", id);
         return "eventcomments/show";
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String EventCommentController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String EventCommentController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
-            model.addAttribute("eventcomments", EventComment.findEventCommentEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
+            uiModel.addAttribute("eventcomments", EventComment.findEventCommentEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
             float nrOfPages = (float) EventComment.countEventComments() / sizeNo;
-            model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            model.addAttribute("eventcomments", EventComment.findAllEventComments());
+            uiModel.addAttribute("eventcomments", EventComment.findAllEventComments());
         }
         return "eventcomments/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public String EventCommentController.update(@Valid EventComment eventComment, BindingResult result, Model model, HttpServletRequest request) {
-        if (result.hasErrors()) {
-            model.addAttribute("eventComment", eventComment);
+    public String EventCommentController.update(@Valid EventComment eventComment, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            uiModel.addAttribute("eventComment", eventComment);
             return "eventcomments/update";
         }
+        uiModel.asMap().clear();
         eventComment.merge();
-        return "redirect:/eventcomments/" + encodeUrlPathSegment(eventComment.getId().toString(), request);
+        return "redirect:/eventcomments/" + encodeUrlPathSegment(eventComment.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String EventCommentController.updateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("eventComment", EventComment.findEventComment(id));
+    public String EventCommentController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+        uiModel.addAttribute("eventComment", EventComment.findEventComment(id));
         return "eventcomments/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String EventCommentController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String EventCommentController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         EventComment.findEventComment(id).remove();
-        model.addAttribute("page", (page == null) ? "1" : page.toString());
-        model.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/eventcomments?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
+        uiModel.asMap().clear();
+        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
+        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+        return "redirect:/eventcomments";
+    }
+    
+    @ModelAttribute("eventcomments")
+    public Collection<EventComment> EventCommentController.populateEventComments() {
+        return EventComment.findAllEventComments();
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -103,13 +113,13 @@ privileged aspect EventCommentController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> EventCommentController.createFromJson(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventCommentController.createFromJson(@RequestBody String json) {
         EventComment.fromJsonToEventComment(json).persist();
         return new ResponseEntity<String>(HttpStatus.CREATED);
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> EventCommentController.createFromJsonArray(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventCommentController.createFromJsonArray(@RequestBody String json) {
         for (EventComment eventComment: EventComment.fromJsonArrayToEventComments(json)) {
             eventComment.persist();
         }
@@ -117,7 +127,7 @@ privileged aspect EventCommentController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> EventCommentController.updateFromJson(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventCommentController.updateFromJson(@RequestBody String json) {
         if (EventComment.fromJsonToEventComment(json).merge() == null) {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
@@ -125,7 +135,7 @@ privileged aspect EventCommentController_Roo_Controller {
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> EventCommentController.updateFromJsonArray(@RequestBody String json) {
+    public org.springframework.http.ResponseEntity<String> EventCommentController.updateFromJsonArray(@RequestBody String json) {
         for (EventComment eventComment: EventComment.fromJsonArrayToEventComments(json)) {
             if (eventComment.merge() == null) {
                 return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
@@ -135,7 +145,7 @@ privileged aspect EventCommentController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<String> EventCommentController.deleteFromJson(@PathVariable("id") Long id) {
+    public org.springframework.http.ResponseEntity<String> EventCommentController.deleteFromJson(@PathVariable("id") Long id) {
         EventComment eventcomment = EventComment.findEventComment(id);
         if (eventcomment == null) {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
@@ -144,8 +154,8 @@ privileged aspect EventCommentController_Roo_Controller {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
     
-    String EventCommentController.encodeUrlPathSegment(String pathSegment, HttpServletRequest request) {
-        String enc = request.getCharacterEncoding();
+    String EventCommentController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+        String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
         }

@@ -76,6 +76,12 @@ privileged aspect Track_Roo_Entity {
     }
     
     @Transactional
+    public void Track.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Track Track.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Track merged = this.entityManager.merge(this);

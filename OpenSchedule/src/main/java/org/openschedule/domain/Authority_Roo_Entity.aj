@@ -73,6 +73,12 @@ privileged aspect Authority_Roo_Entity {
     }
     
     @Transactional
+    public void Authority.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Authority Authority.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Authority merged = this.entityManager.merge(this);

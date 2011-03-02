@@ -76,6 +76,12 @@ privileged aspect Label_Roo_Entity {
     }
     
     @Transactional
+    public void Label.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Label Label.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Label merged = this.entityManager.merge(this);
