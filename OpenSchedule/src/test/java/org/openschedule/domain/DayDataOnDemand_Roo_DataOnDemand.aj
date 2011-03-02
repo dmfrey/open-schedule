@@ -19,7 +19,7 @@ privileged aspect DayDataOnDemand_Roo_DataOnDemand {
     public Day DayDataOnDemand.getNewTransientDay(int index) {
         org.openschedule.domain.Day obj = new org.openschedule.domain.Day();
         obj.setDate(new java.util.GregorianCalendar(java.util.Calendar.getInstance().get(java.util.Calendar.YEAR), java.util.Calendar.getInstance().get(java.util.Calendar.MONTH), java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH), java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY), java.util.Calendar.getInstance().get(java.util.Calendar.MINUTE), java.util.Calendar.getInstance().get(java.util.Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime());
-        obj.setNumberOfSchedules(null);
+        obj.setNumberOfSchedules(new Integer(index));
         return obj;
     }
     

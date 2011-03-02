@@ -6,6 +6,9 @@ package org.openschedule.domain;
 import java.util.List;
 import java.util.Random;
 import org.openschedule.domain.Block;
+import org.openschedule.domain.LabelDataOnDemand;
+import org.openschedule.domain.SessionDataOnDemand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect BlockDataOnDemand_Roo_DataOnDemand {
@@ -16,12 +19,18 @@ privileged aspect BlockDataOnDemand_Roo_DataOnDemand {
     
     private List<Block> BlockDataOnDemand.data;
     
+    @Autowired
+    private LabelDataOnDemand BlockDataOnDemand.labelDataOnDemand;
+    
+    @Autowired
+    private SessionDataOnDemand BlockDataOnDemand.sessionDataOnDemand;
+    
     public Block BlockDataOnDemand.getNewTransientBlock(int index) {
         org.openschedule.domain.Block obj = new org.openschedule.domain.Block();
         obj.setDate(new java.util.GregorianCalendar(java.util.Calendar.getInstance().get(java.util.Calendar.YEAR), java.util.Calendar.getInstance().get(java.util.Calendar.MONTH), java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH), java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY), java.util.Calendar.getInstance().get(java.util.Calendar.MINUTE), java.util.Calendar.getInstance().get(java.util.Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime());
-        obj.setDuration(null);
-        obj.setLabel(null);
-        obj.setSession(null);
+        obj.setDuration(new Integer(60));
+        obj.setLabel(labelDataOnDemand.getRandomLabel());
+        obj.setSession(sessionDataOnDemand.getRandomSession());
         return obj;
     }
     

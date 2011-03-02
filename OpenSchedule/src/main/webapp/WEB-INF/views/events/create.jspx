@@ -11,14 +11,14 @@
         <field:datetime dateTimePattern="${event_enddate_date_format}" field="endDate" id="c_org_openschedule_domain_Event_endDate" z="HhwK2E1FNg6Ddh8p2OtmGN9FPIA="/>
         <field:input field="numberOfDays" id="c_org_openschedule_domain_Event_numberOfDays" required="true" validationMessageCode="field_invalid_integer" z="n71N/bVPP/i3FNMWx5fS2cnFJNw="/>
         <field:input field="username" id="c_org_openschedule_domain_Event_username" required="true" z="upiV9j0IE6mGBh4zFZNtKHbJrWs="/>
-        <field:simple field="tracks" id="c_org_openschedule_domain_Event_tracks" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="UApUyMVy1l9jnKWzMLp80hxrM7E="/>
-        <field:simple field="days" id="c_org_openschedule_domain_Event_days" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="2AasTleESsiHb/mOGK50hzNU04Q="/>
-        <field:simple field="venues" id="c_org_openschedule_domain_Event_venues" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="MkRMJ1V9GnXaAsxdRRTyr6fLOIc="/>
-        <field:simple field="sponsors" id="c_org_openschedule_domain_Event_sponsors" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="M7WCp9Ja5sZP33sZTXGYQjSv99M="/>
-        <field:simple field="labels" id="c_org_openschedule_domain_Event_labels" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="EmcONwPDjUe2kZIX5GeviLh1tqs="/>
-        <field:simple field="sessions" id="c_org_openschedule_domain_Event_sessions" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="2nrrCScqf+tv2Jqo4VN+daSZ4/k="/>
-        <field:simple field="speakers" id="c_org_openschedule_domain_Event_speakers" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="WIOFZAZ9KNDLIB2MkUmHoS4wJ5Y="/>
-        <field:simple field="comments" id="c_org_openschedule_domain_Event_comments" messageCode="entity_reference_not_managed" messageCodeAttribute="List" z="NqEGZxHcePixqKK8UoqY6ryFo9s="/>
+        <field:input field="tracks" id="c_org_openschedule_domain_Event_tracks" z="VzMWubRyMpGBrlFHIg9GbhbSmvk="/>
+        <field:input field="days" id="c_org_openschedule_domain_Event_days" z="tBILhub0q6Ho6R24Nkx1kvj6ch0="/>
+        <field:input field="venues" id="c_org_openschedule_domain_Event_venues" z="BDpMvWY3dEOAZ/yunda01WGy9+E="/>
+        <field:input field="sponsors" id="c_org_openschedule_domain_Event_sponsors" z="lCjnAPIsx6Z1CCkPl2MhGCMhYdo="/>
+        <field:input field="labels" id="c_org_openschedule_domain_Event_labels" z="K1YnBYVuhtMtTEqgQl/I0VrgFGU="/>
+        <field:input field="sessions" id="c_org_openschedule_domain_Event_sessions" z="Wxn+OWF0bZckwrsr4iT/oWhd9Eo="/>
+        <field:input field="speakers" id="c_org_openschedule_domain_Event_speakers" z="93zHaxRqFZvV7rTJgDQ3mXzkhgk="/>
+        <field:input field="comments" id="c_org_openschedule_domain_Event_comments" z="rzT3wkZl3+UM21QCVdQMCd0e5tE="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_org_openschedule_domain_Event" render="${not empty dependencies}" z="taeOJWs8mobF6TsOEanEmGpeCb8="/>
 </div>

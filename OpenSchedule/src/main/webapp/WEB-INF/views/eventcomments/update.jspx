@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     
-<form:update id="fu_org_openschedule_domain_EventComment" modelAttribute="eventComment" path="/eventcomments" z="chvquZhxIG7I0kK5bWqN0kl6VBE=">
+<form:update id="fu_org_openschedule_domain_EventComment" modelAttribute="eventComment" path="/eventcomments" versionField="Version" z="FzPkwvHQkWYZ5RArGw3uRPcdk0o=">
         <field:textarea field="name" id="c_org_openschedule_domain_EventComment_name" z="Q2u75HXnjc50bvjOupZq05T/TPc="/>
         <field:textarea field="email" id="c_org_openschedule_domain_EventComment_email" validationMessageCode="field_invalid_email" z="7vu4pxCiYzZ9CFC8aPvKu5IApFg="/>
         <field:textarea field="comment" id="c_org_openschedule_domain_EventComment_comment" required="true" z="c6UZERaSIbqqVbl4ikFihHfYL9Q="/>

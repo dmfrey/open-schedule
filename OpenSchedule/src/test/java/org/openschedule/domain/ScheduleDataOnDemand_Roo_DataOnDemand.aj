@@ -5,7 +5,10 @@ package org.openschedule.domain;
 
 import java.util.List;
 import java.util.Random;
+import org.openschedule.domain.DayDataOnDemand;
 import org.openschedule.domain.Schedule;
+import org.openschedule.domain.TrackDataOnDemand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect ScheduleDataOnDemand_Roo_DataOnDemand {
@@ -16,11 +19,17 @@ privileged aspect ScheduleDataOnDemand_Roo_DataOnDemand {
     
     private List<Schedule> ScheduleDataOnDemand.data;
     
+    @Autowired
+    private TrackDataOnDemand ScheduleDataOnDemand.trackDataOnDemand;
+    
+    @Autowired
+    private DayDataOnDemand ScheduleDataOnDemand.dayDataOnDemand;
+    
     public Schedule ScheduleDataOnDemand.getNewTransientSchedule(int index) {
         org.openschedule.domain.Schedule obj = new org.openschedule.domain.Schedule();
         obj.setBlocksPerSchedule(new Integer(index));
-        obj.setTrack(null);
-        obj.setDay(null);
+        obj.setTrack(trackDataOnDemand.getRandomTrack());
+        obj.setDay(dayDataOnDemand.getRandomDay());
         return obj;
     }
     
