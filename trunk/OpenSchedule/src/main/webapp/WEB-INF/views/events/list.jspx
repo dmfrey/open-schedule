@@ -5,11 +5,16 @@
 <page:list id="pl_org_openschedule_domain_Event" items="${events}" z="+Y2bnVeUvqIJOYR8sSH3PxBE8wc=">
         <table:table data="${events}" id="l_org_openschedule_domain_Event" path="/events" z="DEt7hHdw9X6K7zNBME1Rdil1hq4=">
             <table:column id="c_org_openschedule_domain_Event_name" property="name" z="RDbjBOTdaU5wt8f4999qlN9I4S4="/>
-            <table:column id="c_org_openschedule_domain_Event_shortName" property="shortName" z="oFvqhXNOsS0LWUxfPrmzoCIQwIc="/>
-            <table:column id="c_org_openschedule_domain_Event_publishDate" property="publishDate" z="YJVSZ46N+gfbBX4HmwYHsNtPGbY="/>
-            <table:column id="c_org_openschedule_domain_Event_startDate" property="startDate" z="0ycAjMca15S6W/GgSfNuTlA5agA="/>
-            <table:column id="c_org_openschedule_domain_Event_endDate" property="endDate" z="e0UX5nEeWD+9TyGtduMteD5nGcc="/>
-            <table:column id="c_org_openschedule_domain_Event_numberOfDays" property="numberOfDays" z="An2PZlSRHNm1GUgnsohHUZfSDrs="/>
+            
+            
+            
+            
+            
+        <table:column id="c_org_openschedule_domain_Event_comments" property="comments" z="5hP3BjEJBRMmKbCPuMOX39ZY/AI="/>
+            <table:column id="c_org_openschedule_domain_Event_labels" property="labels" z="X4gveFavPSM6VmGh5kaPMjXdx1g="/>
+            <table:column id="c_org_openschedule_domain_Event_venues" property="venues" z="dtGgknEeyNcST48kzUxSXq07Phc="/>
+            <table:column id="c_org_openschedule_domain_Event_sponsors" property="sponsors" z="INmf50JsKc+jTZ3TjIKj1TN5t1s="/>
+            <table:column id="c_org_openschedule_domain_Event_speakers" property="speakers" z="+gw+61rs5bIMUOCpeESgrcgR0lk="/>
         </table:table>
     </page:list>
 </div>

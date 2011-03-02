@@ -5,7 +5,10 @@ package org.openschedule.domain;
 
 import java.util.List;
 import java.util.Random;
+import org.openschedule.domain.RoomDataOnDemand;
+import org.openschedule.domain.SponsorDataOnDemand;
 import org.openschedule.domain.Track;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect TrackDataOnDemand_Roo_DataOnDemand {
@@ -16,6 +19,12 @@ privileged aspect TrackDataOnDemand_Roo_DataOnDemand {
     
     private List<Track> TrackDataOnDemand.data;
     
+    @Autowired
+    private RoomDataOnDemand TrackDataOnDemand.roomDataOnDemand;
+    
+    @Autowired
+    private SponsorDataOnDemand TrackDataOnDemand.sponsorDataOnDemand;
+    
     public Track TrackDataOnDemand.getNewTransientTrack(int index) {
         org.openschedule.domain.Track obj = new org.openschedule.domain.Track();
         java.lang.String name = "name_" + index;
@@ -23,8 +32,8 @@ privileged aspect TrackDataOnDemand_Roo_DataOnDemand {
             name  = name.substring(0, 255);
         }
         obj.setName(name);
-        obj.setRoom(null);
-        obj.setSponsor(null);
+        obj.setRoom(roomDataOnDemand.getRandomRoom());
+        obj.setSponsor(sponsorDataOnDemand.getRandomSponsor());
         return obj;
     }
     

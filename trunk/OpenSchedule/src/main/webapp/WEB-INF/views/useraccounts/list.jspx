@@ -7,9 +7,11 @@
             <table:column id="c_org_openschedule_domain_UserAccount_username" property="username" z="JqMf4wFqiyMMugWIbqGN6easJ2U="/>
             <table:column id="c_org_openschedule_domain_UserAccount_password" property="password" z="+wHjh/NJRrHdbmP3JFruyHaGEbM="/>
             <table:column id="c_org_openschedule_domain_UserAccount_enabled" property="enabled" z="SZ0gJWSMlRjabWwHho5oI/sjrXk="/>
-            <table:column id="c_org_openschedule_domain_UserAccount_accountNonExpired" property="accountNonExpired" z="PzprehsjzvJSTIXh7qd/htifyF4="/>
+            
             <table:column id="c_org_openschedule_domain_UserAccount_accountNonLocked" property="accountNonLocked" z="fuvBYRqtH4x8IwJ2drXso28BSMo="/>
-            <table:column id="c_org_openschedule_domain_UserAccount_credentialsNonExpired" property="credentialsNonExpired" z="P36UoGTP+W45/8kypx5zB71xBoM="/>
+            
+        <table:column id="c_org_openschedule_domain_UserAccount_name" property="name" z="OgRKclr2w2iqXEii+FAdVzy6pVM="/>
+            <table:column id="c_org_openschedule_domain_UserAccount_email" property="email" z="mHi5vhAdKVCsou7HMC1RuQ4JTIU="/>
         </table:table>
     </page:list>
 </div>
