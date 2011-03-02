@@ -76,6 +76,12 @@ privileged aspect Session_Roo_Entity {
     }
     
     @Transactional
+    public void Session.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Session Session.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Session merged = this.entityManager.merge(this);

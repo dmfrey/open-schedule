@@ -76,6 +76,12 @@ privileged aspect Sponsor_Roo_Entity {
     }
     
     @Transactional
+    public void Sponsor.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Sponsor Sponsor.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Sponsor merged = this.entityManager.merge(this);

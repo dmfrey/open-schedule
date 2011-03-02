@@ -82,59 +82,59 @@ privileged aspect Event_Roo_JavaBean {
         this.tracks = tracks;
     }
     
-    public List<Day> Event.getDays() {
+    public java.util.List<Day> Event.getDays() {
         return this.days;
     }
     
-    public void Event.setDays(List<Day> days) {
+    public void Event.setDays(java.util.List<Day> days) {
         this.days = days;
     }
     
-    public List<Venue> Event.getVenues() {
+    public java.util.List<Venue> Event.getVenues() {
         return this.venues;
     }
     
-    public void Event.setVenues(List<Venue> venues) {
+    public void Event.setVenues(java.util.List<Venue> venues) {
         this.venues = venues;
     }
     
-    public List<Sponsor> Event.getSponsors() {
+    public java.util.List<Sponsor> Event.getSponsors() {
         return this.sponsors;
     }
     
-    public void Event.setSponsors(List<Sponsor> sponsors) {
+    public void Event.setSponsors(java.util.List<Sponsor> sponsors) {
         this.sponsors = sponsors;
     }
     
-    public List<Label> Event.getLabels() {
+    public java.util.List<Label> Event.getLabels() {
         return this.labels;
     }
     
-    public void Event.setLabels(List<Label> labels) {
+    public void Event.setLabels(java.util.List<Label> labels) {
         this.labels = labels;
     }
     
-    public List<Session> Event.getSessions() {
+    public java.util.List<Session> Event.getSessions() {
         return this.sessions;
     }
     
-    public void Event.setSessions(List<Session> sessions) {
+    public void Event.setSessions(java.util.List<Session> sessions) {
         this.sessions = sessions;
     }
     
-    public List<Speaker> Event.getSpeakers() {
+    public java.util.List<Speaker> Event.getSpeakers() {
         return this.speakers;
     }
     
-    public void Event.setSpeakers(List<Speaker> speakers) {
+    public void Event.setSpeakers(java.util.List<Speaker> speakers) {
         this.speakers = speakers;
     }
     
-    public List<EventComment> Event.getComments() {
+    public java.util.List<EventComment> Event.getComments() {
         return this.comments;
     }
     
-    public void Event.setComments(List<EventComment> comments) {
+    public void Event.setComments(java.util.List<EventComment> comments) {
         this.comments = comments;
     }
     

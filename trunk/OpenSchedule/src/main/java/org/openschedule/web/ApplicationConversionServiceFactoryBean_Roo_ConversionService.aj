@@ -5,121 +5,51 @@ package org.openschedule.web;
 
 import java.lang.String;
 import org.openschedule.domain.BlockComment;
-import org.openschedule.domain.Day;
 import org.openschedule.domain.Event;
 import org.openschedule.domain.EventComment;
-import org.openschedule.domain.Label;
-import org.openschedule.domain.Session;
-import org.openschedule.domain.Speaker;
-import org.openschedule.domain.Sponsor;
-import org.openschedule.domain.Track;
 import org.openschedule.domain.UserAccount;
-import org.openschedule.domain.Venue;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
-    Converter<Event, String> ApplicationConversionServiceFactoryBean.getEventConverter() {
-        return new Converter<Event, String>() {
-            public String convert(Event source) {
-                return new StringBuilder().append(source.getName()).append(" ").append(source.getShortName()).append(" ").append(source.getPublishDate()).toString();
-            }
-        };
-    }
-    
-    Converter<EventComment, String> ApplicationConversionServiceFactoryBean.getEventCommentConverter() {
-        return new Converter<EventComment, String>() {
-            public String convert(EventComment source) {
-                return new StringBuilder().append(source.getName()).append(" ").append(source.getEmail()).append(" ").append(source.getComment()).toString();
-            }
-        };
-    }
-    
     Converter<BlockComment, String> ApplicationConversionServiceFactoryBean.getBlockCommentConverter() {
         return new Converter<BlockComment, String>() {
-            public String convert(BlockComment source) {
-                return new StringBuilder().append(source.getName()).append(" ").append(source.getEmail()).append(" ").append(source.getComment()).toString();
+            public String convert(BlockComment blockcomment) {
+                return new StringBuilder().append(blockcomment.getName()).append(" ").append(blockcomment.getEmail()).append(" ").append(blockcomment.getComment()).toString();
             }
         };
     }
     
-    Converter<UserAccount, String> ApplicationConversionServiceFactoryBean.getUserAccountConverter() {
-        return new Converter<UserAccount, String>() {
-            public String convert(UserAccount source) {
-                return new StringBuilder().append(source.getUsername()).append(" ").append(source.getPassword()).append(" ").append(source.getName()).toString();
+    org.springframework.core.convert.converter.Converter<Event, String> ApplicationConversionServiceFactoryBean.getEventConverter() {
+        return new org.springframework.core.convert.converter.Converter<Event, String>() {
+            public String convert(Event event) {
+                return new StringBuilder().append(event.getName()).append(" ").append(event.getShortName()).append(" ").append(event.getPublishDate()).append(" ").append(event.getStartDate()).toString();
             }
         };
     }
     
-    Converter<Track, String> ApplicationConversionServiceFactoryBean.getTrackConverter() {
-        return new Converter<Track, String>() {
-            public String convert(Track source) {
-                return new StringBuilder().append(source.getName()).toString();
+    org.springframework.core.convert.converter.Converter<EventComment, String> ApplicationConversionServiceFactoryBean.getEventCommentConverter() {
+        return new org.springframework.core.convert.converter.Converter<EventComment, String>() {
+            public String convert(EventComment eventcomment) {
+                return new StringBuilder().append(eventcomment.getName()).append(" ").append(eventcomment.getEmail()).append(" ").append(eventcomment.getComment()).toString();
             }
         };
     }
     
-    Converter<Day, String> ApplicationConversionServiceFactoryBean.getDayConverter() {
-        return new Converter<Day, String>() {
-            public String convert(Day source) {
-                return new StringBuilder().append(source.getDate()).append(" ").append(source.getNumberOfSchedules()).toString();
-            }
-        };
-    }
-    
-    Converter<Venue, String> ApplicationConversionServiceFactoryBean.getVenueConverter() {
-        return new Converter<Venue, String>() {
-            public String convert(Venue source) {
-                return new StringBuilder().append(source.getName()).append(" ").append(source.getAddressOne()).append(" ").append(source.getAddressTwo()).toString();
-            }
-        };
-    }
-    
-    Converter<Sponsor, String> ApplicationConversionServiceFactoryBean.getSponsorConverter() {
-        return new Converter<Sponsor, String>() {
-            public String convert(Sponsor source) {
-                return new StringBuilder().append(source.getCompanyName()).append(" ").append(source.getContactName()).append(" ").append(source.getContactEmail()).toString();
-            }
-        };
-    }
-    
-    Converter<Label, String> ApplicationConversionServiceFactoryBean.getLabelConverter() {
-        return new Converter<Label, String>() {
-            public String convert(Label source) {
-                return new StringBuilder().append(source.getName()).toString();
-            }
-        };
-    }
-    
-    Converter<Session, String> ApplicationConversionServiceFactoryBean.getSessionConverter() {
-        return new Converter<Session, String>() {
-            public String convert(Session source) {
-                return new StringBuilder().append(source.getName()).append(" ").append(source.getDescription()).toString();
-            }
-        };
-    }
-    
-    Converter<Speaker, String> ApplicationConversionServiceFactoryBean.getSpeakerConverter() {
-        return new Converter<Speaker, String>() {
-            public String convert(Speaker source) {
-                return new StringBuilder().append(source.getName()).append(" ").append(source.getEmail()).append(" ").append(source.getWebSite()).toString();
+    org.springframework.core.convert.converter.Converter<UserAccount, String> ApplicationConversionServiceFactoryBean.getUserAccountConverter() {
+        return new org.springframework.core.convert.converter.Converter<UserAccount, String>() {
+            public String convert(UserAccount useraccount) {
+                return new StringBuilder().append(useraccount.getUsername()).append(" ").append(useraccount.getPassword()).append(" ").append(useraccount.getName()).append(" ").append(useraccount.getEmail()).toString();
             }
         };
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getBlockCommentConverter());
         registry.addConverter(getEventConverter());
         registry.addConverter(getEventCommentConverter());
-        registry.addConverter(getBlockCommentConverter());
         registry.addConverter(getUserAccountConverter());
-        registry.addConverter(getTrackConverter());
-        registry.addConverter(getDayConverter());
-        registry.addConverter(getVenueConverter());
-        registry.addConverter(getSponsorConverter());
-        registry.addConverter(getLabelConverter());
-        registry.addConverter(getSessionConverter());
-        registry.addConverter(getSpeakerConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

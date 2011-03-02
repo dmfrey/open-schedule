@@ -76,6 +76,12 @@ privileged aspect Room_Roo_Entity {
     }
     
     @Transactional
+    public void Room.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+    
+    @Transactional
     public Room Room.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Room merged = this.entityManager.merge(this);
