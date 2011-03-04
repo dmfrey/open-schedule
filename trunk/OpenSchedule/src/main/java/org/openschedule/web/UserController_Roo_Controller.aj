@@ -86,6 +86,28 @@ privileged aspect UserController_Roo_Controller {
         return "redirect:/useraccounts";
     }
     
+    @RequestMapping(params = { "find=ByEmailEquals", "form" }, method = RequestMethod.GET)
+    public String UserController.findUserAccountsByEmailEqualsForm(Model uiModel) {
+        return "useraccounts/findUserAccountsByEmailEquals";
+    }
+    
+    @RequestMapping(params = "find=ByEmailEquals", method = RequestMethod.GET)
+    public String UserController.findUserAccountsByEmailEquals(@RequestParam("email") String email, Model uiModel) {
+        uiModel.addAttribute("useraccounts", UserAccount.findUserAccountsByEmailEquals(email).getResultList());
+        return "useraccounts/list";
+    }
+    
+    @RequestMapping(params = { "find=ByUsernameEquals", "form" }, method = RequestMethod.GET)
+    public String UserController.findUserAccountsByUsernameEqualsForm(Model uiModel) {
+        return "useraccounts/findUserAccountsByUsernameEquals";
+    }
+    
+    @RequestMapping(params = "find=ByUsernameEquals", method = RequestMethod.GET)
+    public String UserController.findUserAccountsByUsernameEquals(@RequestParam("username") String username, Model uiModel) {
+        uiModel.addAttribute("useraccounts", UserAccount.findUserAccountsByUsernameEquals(username).getResultList());
+        return "useraccounts/list";
+    }
+    
     @ModelAttribute("useraccounts")
     public Collection<UserAccount> UserController.populateUserAccounts() {
         return UserAccount.findAllUserAccounts();

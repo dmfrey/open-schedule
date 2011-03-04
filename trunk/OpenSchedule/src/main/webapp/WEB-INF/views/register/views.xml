@@ -10,4 +10,8 @@
         <put-attribute name="body" value="/WEB-INF/views/register/registerComplete.jsp"/>
     </definition>
 
+    <definition extends="default" name="register/alreadyRegistered">
+        <put-attribute name="body" value="/WEB-INF/views/register/alreadyRegistered.jsp"/>
+    </definition>
+
 </tiles-definitions>

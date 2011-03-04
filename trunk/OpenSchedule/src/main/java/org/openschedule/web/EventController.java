@@ -25,6 +25,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -98,6 +99,10 @@ public class EventController {
     public String create( @Valid Event event, BindingResult result, Model model, HttpServletRequest request ) {
     	log.info( "create : enter" );
 
+    	if( log.isInfoEnabled() ) {
+    		log.info( "create : event=" + event.toString() );
+    	}
+    	
     	if( result.hasErrors() ) {
             model.addAttribute( "event", event );
 
@@ -105,8 +110,8 @@ public class EventController {
             return "events/create";
         }
         
-    	Event existing = Event.findEventsByShortName( event.getShortName() ).getSingleResult();
-    	if( null != existing ) {
+    	List<Event> existingEvents = Event.findEventsByShortName( event.getShortName() ).getResultList();
+    	if( null != existingEvents && !existingEvents.isEmpty() ) {
     		ObjectError error = new ObjectError( "shortName", new String[] { "event.create.shortName.exists" }, null, "Short Name already exists" );
     		result.addError( error );
     		

@@ -92,6 +92,12 @@ public class RegisterController {
 			log.info( "registerWithOpenId : username=" + username );
 		}
 		
+		if( !UserAccount.findUserAccountsByUsernameEquals( username ).getResultList().isEmpty() ) {
+			log.info( "registerWithOpenId : exit, user already registered" );
+
+			return "redirect:/login";
+		}
+		
 		String name = (String) request.getSession().getAttribute( "USER_OPENID_NAME" );
 		if( log.isInfoEnabled() ) {
 			log.info( "registerWithOpenId : name=" + name );
@@ -100,6 +106,12 @@ public class RegisterController {
 		String email = (String) request.getSession().getAttribute( "USER_OPENID_EMAIL" );
 		if( log.isInfoEnabled() ) {
 			log.info( "registerWithOpenId : email=" + email );
+		}
+
+		if( !UserAccount.findUserAccountsByUsernameEquals( username ).getResultList().isEmpty() ) {
+			log.info( "registerWithOpenId : exit, user already registered" );
+
+			return "register/alreadyRegistered";
 		}
 
 		if( username != null ) {

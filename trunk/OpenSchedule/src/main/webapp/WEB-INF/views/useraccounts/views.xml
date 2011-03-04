@@ -13,4 +13,10 @@
 <definition extends="default" name="useraccounts/update">
         <put-attribute name="body" value="/WEB-INF/views/useraccounts/update.jspx"/>
     </definition>
+<definition extends="default" name="useraccounts/findUserAccountsByUsernameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/useraccounts/findUserAccountsByUsernameEquals.jspx"/>
+    </definition>
+<definition extends="default" name="useraccounts/findUserAccountsByEmailEquals">
+        <put-attribute name="body" value="/WEB-INF/views/useraccounts/findUserAccountsByEmailEquals.jspx"/>
+    </definition>
 </tiles-definitions>
