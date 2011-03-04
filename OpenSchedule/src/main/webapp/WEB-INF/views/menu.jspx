@@ -6,6 +6,8 @@
         <menu:category id="c_useraccount" z="Yb8cyPB5AwOfYXCcrEpGXNT9C+k=">
             <menu:item id="i_useraccount_new" messageCode="global_menu_new" url="/useraccounts?form" z="dm6iErpLQmgISoPCTS3yLiH8XFA="/>
         <menu:item id="i_useraccount_list" messageCode="global_menu_list" url="/useraccounts?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="/9BHEKVbyknY2TjSOpkCIQabyrE="/>
+        <menu:item id="fi_useraccount_usernameequals" messageCode="global_menu_find" url="/useraccounts?find=ByUsernameEquals&amp;form" z="JJnIFelS3xASGoOZ0jI9mZ5zYKw="/>
+        <menu:item id="fi_useraccount_emailequals" messageCode="global_menu_find" url="/useraccounts?find=ByEmailEquals&amp;form" z="cv3iMC2+TqGvP5LreCZeT9La2kI="/>
         </menu:category>
     <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
             <menu:item id="i_controller__accountindex_id" messageCode="global_generic" url="/account/index" z="1QUYm/LGdC9Uai10R0JxPwLbdXI="/>

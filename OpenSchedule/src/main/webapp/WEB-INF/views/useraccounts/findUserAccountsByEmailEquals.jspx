@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByEmailEquals" id="ff_org_openschedule_domain_UserAccount" path="/useraccounts" z="dzOh7xBoOQRxOQgrGVg2SU58kAI=">
+        <field:input disableFormBinding="true" field="email" id="f_org_openschedule_domain_UserAccount_email" max="255" min="1" required="true" validationMessageCode="field_invalid_email" z="3aiSQJI1bLOTcSqoQ5WfhF41goU="/>
+    </form:find>
+</div>

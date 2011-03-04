@@ -38,7 +38,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @RooJavaBean
-@RooEntity( table = "USER_ACCOUNT" )
+@RooEntity( table = "USER_ACCOUNT", finders = { "findUserAccountsByUsernameEquals", "findUserAccountsByEmailEquals" } )
 @RooSerializable
 @Table( 
 	name = "USER_ACCOUNT",
