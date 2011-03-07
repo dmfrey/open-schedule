@@ -8,30 +8,24 @@
 
 <spring:url value="/events/${ event.id }/notifications?form" var="create_url" />
 
+<aside class="updateFormLinks">
+	<p>
+		<a href="${ back_url }">Back</a>
+	</p>
+
+	<p>
+		<a href="${ create_url }"> + Create Notification</a>
+	</p>
+</aside>
+
 <c:if test="${ empty event.notifications }">
 <article>
-	<aside class="updateFormLinks">
-		<a href="${ back_url }">Back</a>
-	</aside>
-
 	<p>You have no notifications to display.</p>
-
-	<aside class="updateFormLinks">
-		<a href="${ back_url }">Back</a>
-	</aside>
 </article>
 </c:if>
 
 <c:if test="${ ! empty event.notifications }">
 <article>
-	<aside class="updateFormLinks">
-		<a href="${ back_url }">Back</a>
-	</aside>
-
-	<p>
-		<a href="${ create_url }"> + Create Notification</a>
-	</p>
-
 	<table>
 		<tr>
 			<th width="30%">Title</th>
@@ -70,13 +64,15 @@
 		</tr>
 		</c:forEach>
 	</table>
+</article>
+</c:if>
 
+<aside class="updateFormLinks">
 	<p>
 		<a href="${ create_url }"> + Create Notification</a>
 	</p>
 
-	<aside class="updateFormLinks">
+	<p>
 		<a href="${ back_url }">Back</a>
-	</aside>
-</article>
-</c:if>
+	</p>
+</aside>

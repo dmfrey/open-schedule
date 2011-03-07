@@ -10,6 +10,14 @@
         <put-attribute name="body" value="/WEB-INF/views/public/show.jsp" />
     </definition>
 
+    <definition extends="public" name="public/notifications">
+        <put-attribute name="body" value="/WEB-INF/views/public/listNotifications.jsp" />
+    </definition>
+
+    <definition extends="public" name="public/notification">
+        <put-attribute name="body" value="/WEB-INF/views/public/showNotification.jsp" />
+    </definition>
+
     <definition extends="public" name="public/speakers">
         <put-attribute name="body" value="/WEB-INF/views/public/listSpeakers.jsp" />
     </definition>
