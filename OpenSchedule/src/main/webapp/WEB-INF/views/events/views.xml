@@ -18,6 +18,22 @@
         <put-attribute name="body" value="/WEB-INF/views/events/update.jsp"/>
     </definition>
 
+	<definition extends="default" name="events/listNotifications">
+        <put-attribute name="body" value="/WEB-INF/views/events/listNotifications.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/createNotification">
+        <put-attribute name="body" value="/WEB-INF/views/events/createNotification.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/updateNotification">
+        <put-attribute name="body" value="/WEB-INF/views/events/updateNotification.jsp"/>
+    </definition>
+
+	<definition extends="default" name="events/showNotification">
+        <put-attribute name="body" value="/WEB-INF/views/events/showNotification.jsp"/>
+    </definition>
+
 	<definition extends="default" name="events/createSponsor">
         <put-attribute name="body" value="/WEB-INF/views/events/createSponsor.jsp"/>
     </definition>

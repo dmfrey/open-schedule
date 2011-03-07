@@ -15,6 +15,32 @@
 
 	<fieldset>
 		<legend>Event Details</legend>
+		<aside>
+			<ul>
+				<li>
+					<c:choose>
+						<c:when test="${ null == event.publishDate }">
+							<spring:url value="/events/${ event.id }/publish" var="publish_url" />
+							<form action="${ publish_url }" method="post">
+								<input type="hidden" name="form" value="true" />
+								<input type="submit" value="Publish" />
+							</form>
+						</c:when>
+						<c:otherwise>
+							<spring:url value="/events/${ event.id }/unpublish" var="unpublish_url" />
+							<form action="${ unpublish_url }" method="post">
+								<input type="hidden" name="form" value="true" />
+								<input type="submit" value="Un-publish" />
+							</form>
+						</c:otherwise>
+					</c:choose>					
+				</li>
+				<li>
+					<spring:url value="/events/${ event.id }/notifications" var="notification_url" />
+					<a href="${ notification_url }">Manage Notifications</a>
+				</li>
+			</ul>
+		</aside>
 		<ul>
 			<li>
 				<fmt:formatDate value="${ event.startDate }" type="date" pattern="yyyy-MM-dd" var="startDate" />

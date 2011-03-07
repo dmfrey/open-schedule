@@ -25,3 +25,8 @@ fieldset legend {
 fieldset input {
 	display: block;
 }
+
+fieldset input[type=radio] {
+	display: inline-block;
+	width: 25px;
+}

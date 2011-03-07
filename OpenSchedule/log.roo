@@ -185,3 +185,7 @@ finder list --class ~.domain.UserAccount
 // Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-03-03 09:10:37
 // Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-03-04 08:29:38
 // Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-03-04 08:52:14
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-03-06 12:04:02
+entity --class ~.domain.Notification
+test integration --entity ~.domain.Notification --permitReservedWords 
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-03-06 22:14:12

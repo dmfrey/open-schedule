@@ -33,6 +33,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -98,6 +99,10 @@ public class Event {
 	@NotNull
 	private String username;
 
+	@OneToMany( targetEntity = Notification.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+	@JoinColumn( name = "event_id" )
+	private List<Notification> notifications = new ArrayList<Notification>();
+	
 	@OneToMany( targetEntity = Track.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY )
 	@JoinColumn( name = "event_id" )
 	private List<Track> tracks = new ArrayList<Track>();

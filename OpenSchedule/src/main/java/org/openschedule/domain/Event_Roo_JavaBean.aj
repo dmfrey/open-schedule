@@ -10,6 +10,7 @@ import java.util.List;
 import org.openschedule.domain.Day;
 import org.openschedule.domain.EventComment;
 import org.openschedule.domain.Label;
+import org.openschedule.domain.Notification;
 import org.openschedule.domain.Session;
 import org.openschedule.domain.Speaker;
 import org.openschedule.domain.Sponsor;
@@ -74,11 +75,19 @@ privileged aspect Event_Roo_JavaBean {
         this.username = username;
     }
     
-    public List<Track> Event.getTracks() {
+    public List<Notification> Event.getNotifications() {
+        return this.notifications;
+    }
+    
+    public void Event.setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+    
+    public java.util.List<Track> Event.getTracks() {
         return this.tracks;
     }
     
-    public void Event.setTracks(List<Track> tracks) {
+    public void Event.setTracks(java.util.List<Track> tracks) {
         this.tracks = tracks;
     }
     

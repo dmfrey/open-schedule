@@ -35,6 +35,7 @@ import org.openschedule.domain.Block;
 import org.openschedule.domain.Day;
 import org.openschedule.domain.Event;
 import org.openschedule.domain.Label;
+import org.openschedule.domain.Notification;
 import org.openschedule.domain.Room;
 import org.openschedule.domain.Schedule;
 import org.openschedule.domain.Session;
@@ -194,6 +195,134 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "?form=true";
     }
 
+    @RequestMapping( value = "/{id}/publish", params = { "form" }, method = RequestMethod.POST )
+    public String publishEvent( @PathVariable( "id" ) Long id, HttpServletRequest request ) {
+    	log.info( "publishEvent : enter" );
+
+    	Event event = Event.findEvent( id );
+    	event.setPublishDate( new Date() );
+        event.merge();
+        
+    	log.info( "publishEvent : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "?form=true";
+    }
+    
+    @RequestMapping( value = "/{id}/unpublish", params = { "form" }, method = RequestMethod.POST )
+    public String unpublishEvent( @PathVariable( "id" ) Long id, HttpServletRequest request ) {
+    	log.info( "unpublishEvent : enter" );
+
+    	Event event = Event.findEvent( id );
+    	event.setPublishDate( null );
+        event.merge();
+        
+    	log.info( "unpublishEvent : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "?form=true";
+    }
+    
+    @RequestMapping( value = "/{id}/notifications", method = RequestMethod.GET )
+    public String listNotifications( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "listNotifications : enter" );
+
+    	Event event = Event.findEvent( id );
+    	log.info( event.toString() );
+        model.addAttribute( "event", event );
+
+        log.info( "listNotifications : exit" );
+    	return "events/listNotifications";
+    }
+    
+    @RequestMapping( value = "/{id}/notifications", params = { "form" }, method = RequestMethod.GET )
+    public String createNotificationForm( @PathVariable( "id" ) Long id, Model model ) {
+    	log.info( "createNotificationForm : enter" );
+
+    	Event event = Event.findEvent( id );
+        model.addAttribute( "event", event );
+       	model.addAttribute( "notification", new Notification() );
+
+       	log.info( "createNotificationForm : exit" );
+    	return "events/createNotification";
+    }
+    
+    @RequestMapping( value = "/{id}/notifications", method = RequestMethod.POST )
+    public String createNotification( @PathVariable( "id" ) Long id, @Valid Notification notification, BindingResult result, Model model, HttpServletRequest request ) {
+        log.info( "createNotification : enter" );
+
+    	Event event = Event.findEvent( id );
+    	
+    	if( result.hasErrors() ) {
+            model.addAttribute( "event", event );
+            model.addAttribute( "notification", notification );
+            
+            log.info( "createNotification : exit, errors exist" );
+            return "events/createNotification";
+        }
+
+   		log.debug( "createNotification : adding notification to event" );
+   		event.getNotifications().add( notification );
+   		event.merge();
+    	
+        log.info( "createNotification : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "/notifications";
+    }
+
+    @RequestMapping( value = "/{id}/notifications/{notificationId}", params = { "form" }, method = RequestMethod.GET )
+    public String updateNotificationForm( @PathVariable( "id" ) Long id, @PathVariable( "notificationId" ) Long notificationId, Model model ) {
+    	log.info( "updateNotificationForm : enter" );
+
+    	Event event = Event.findEvent( id );
+        model.addAttribute( "event", event );
+       	model.addAttribute( "notification", Notification.findNotification( notificationId ) );
+
+       	log.info( "updateNotificationForm : exit" );
+    	return "events/updateNotification";
+    }
+    
+    @RequestMapping( value = "/{id}/notifications/{notificationId}", params = { "form" }, method = RequestMethod.POST )
+    public String updateNotification( @PathVariable( "id" ) Long id, @PathVariable( "notificationId" ) Long notificationId, @Valid Notification notification, BindingResult result, Model model, HttpServletRequest request ) {
+        log.info( "updateNotification : enter" );
+
+    	Event event = Event.findEvent( id );
+    	
+    	if( result.hasErrors() ) {
+            model.addAttribute( "event", event );
+            model.addAttribute( "notification", notification );
+            
+            log.info( "updateNotification : exit, errors exist" );
+            return "events/updateNotification";
+        }
+
+   		log.debug( "updateNotification : updating notification" );
+   		notification.merge();
+    	
+        log.info( "updateNotification : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "/notifications";
+    }
+
+    @RequestMapping( value = "/{id}/notifications/{notificationId}", method = RequestMethod.GET )
+    public String showNotification( @PathVariable( "id" ) Long id, @PathVariable( "notificationId" ) Long notificationId, Model model ) {
+    	log.info( "showNotificationForm : enter" );
+
+    	Event event = Event.findEvent( id );
+        model.addAttribute( "event", event );
+       	model.addAttribute( "notification", Notification.findNotification( notificationId ) );
+
+       	log.info( "showNotificationForm : exit" );
+    	return "events/showNotification";
+    }
+    
+    @RequestMapping( value = "/{id}/notifications/{notificationId}", method = RequestMethod.DELETE )
+    public String deleteNotification( @PathVariable( "id" ) Long id, @PathVariable( "notificationId" ) Long notificationId, HttpServletRequest request ) {
+    	log.info( "deleteNotificationForm : enter" );
+
+    	Event event = Event.findEvent( id );
+    	
+    	Notification notification = Notification.findNotification( notificationId );
+    	notification.remove();
+
+       	log.info( "deleteNotificationForm : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( event.getId().toString(), request ) + "/notifications";
+    }
+    
     @RequestMapping( value = "/{id}/sponsors", params = { "form" }, method = RequestMethod.GET )
     public String createSponsorForm( @PathVariable( "id" ) Long id, Model model ) {
     	log.info( "createSponsorForm : enter" );
