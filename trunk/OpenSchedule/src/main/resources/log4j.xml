@@ -27,7 +27,7 @@
 	</logger>
 
 	<!-- Application Loggers -->
-	<logger name="org.openschedule.web.EventController">
+	<logger name="org.openschedule.web">
 		<level value="debug" />
 	</logger>
 	

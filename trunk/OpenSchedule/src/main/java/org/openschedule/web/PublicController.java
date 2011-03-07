@@ -35,6 +35,7 @@ import org.openschedule.domain.BlockComment;
 import org.openschedule.domain.Day;
 import org.openschedule.domain.Event;
 import org.openschedule.domain.EventComment;
+import org.openschedule.domain.Notification;
 import org.openschedule.domain.Session;
 import org.openschedule.domain.Speaker;
 import org.springframework.http.HttpStatus;
@@ -84,11 +85,20 @@ public class PublicController {
 	}
 
 	@RequestMapping( value = "/{shortName}", method = RequestMethod.GET )
+	@SuppressWarnings("unchecked")
 	public String showEvent( @PathVariable( "shortName" ) String shortName, Model model ) {
 		log.info( "showEvent : enter" );
 		
 		Event event = Event.findPublishedEventsByShortName( shortName ).getSingleResult();
 		model.addAttribute( "event", event );
+		
+		List<Notification> notifications = Notification.findActiveNotifications( event.getId() ).getResultList();
+		if( log.isDebugEnabled() ) {
+			for( Notification n : notifications ) {
+				log.debug( "listEventNotifications : notification=" + n.toString() );
+			}
+		}
+		model.addAttribute( "notifications", notifications );
 		
 		log.info( "showEvent : exit" );
 		return "public/show";
@@ -109,6 +119,68 @@ public class PublicController {
 
 			return "{\"event\":\"null\"}";
 		}
+	}
+
+	@RequestMapping( value = "/{shortName}/notifications", method = RequestMethod.GET )
+	@SuppressWarnings("unchecked")
+	public String listEventNotifications( @PathVariable( "shortName" ) String shortName, Model model ) {
+		log.info( "listEventNotifications : enter" );
+		
+		if( log.isDebugEnabled() ) {
+			log.debug( "listEventNotifications : shortName=" + shortName );
+		}
+		
+		Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+		model.addAttribute( "event", event );
+		
+		List<Notification> notifications = Notification.findActiveNotifications( event.getId() ).getResultList();
+		if( log.isDebugEnabled() ) {
+			for( Notification n : notifications ) {
+				log.debug( "listEventNotifications : notification=" + n.toString() );
+			}
+		}
+		model.addAttribute( "notifications", notifications );
+		
+		log.info( "listEventNotifications : exit" );
+		return "public/notifications";
+	}
+
+    @RequestMapping( value = "/{shortName}/notifications", method = RequestMethod.GET, headers = "Accept=application/json" )
+	@SuppressWarnings("unchecked")
+    @ResponseBody
+    public String listEventNotificationJson( @PathVariable( "shortName" ) String shortName ) {
+    	log.info( "listEventNotificationJson : enter" );
+    	
+		if( log.isDebugEnabled() ) {
+			log.debug( "listEventNotificationJson : shortName=" + shortName );
+		}
+		
+		Event event = Event.findEventsByShortName( shortName ).getSingleResult();
+		
+		List<Notification> notifications = Notification.findActiveNotifications( event.getId() ).getResultList();
+		if( log.isDebugEnabled() ) {
+			for( Notification n : notifications ) {
+				log.debug( "listEventNotifications : notification=" + n.toString() );
+			}
+		}
+    	
+    	log.info( "listEventNotificationJson : exit" );
+        return Notification.toJsonArray( notifications );
+    }
+
+	@RequestMapping( value = "/{shortName}/notifications/{notificationId}", method = RequestMethod.GET )
+	public String showEventNotification( @PathVariable( "shortName" ) String shortName, @PathVariable( "notificationId" ) Long notificationId, Model model ) {
+		log.info( "showEventNotification : enter" );
+		
+		if( log.isDebugEnabled() ) {
+			log.debug( "showEventNotification : shortName=" + shortName + ", notificationId=" + notificationId.toString() );
+		}
+		
+		model.addAttribute( "event", Event.findEventsByShortName( shortName ).getSingleResult() );
+		model.addAttribute( "notification", Notification.findNotification( notificationId ) );
+		
+		log.info( "showEventNotification : exit" );
+		return "public/notification";
 	}
 
 	@RequestMapping( value = "/{shortName}/speakers", method = RequestMethod.GET )

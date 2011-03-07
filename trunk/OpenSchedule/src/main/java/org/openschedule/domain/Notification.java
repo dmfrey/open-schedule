@@ -3,8 +3,11 @@ package org.openschedule.domain;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -56,4 +59,13 @@ public class Notification {
 		active = Boolean.TRUE;
 	}
 	
+    public static Query findActiveNotifications( Long eventId ) {
+        if( eventId == null ) throw new IllegalArgumentException( "The eventId argument is required" );
+        
+        EntityManager em = Event.entityManager();
+        Query q = em.createNativeQuery( "SELECT n.* FROM notification n WHERE n.active is true and n.event_id = :eventId", Notification.class );
+        q.setParameter( "eventId", eventId );
+        return q;
+    }
+
 }

@@ -20,8 +20,14 @@
 	</header>
 	
 	<aside>
-		<spring:url value="/public/${ event.shortName }/comments" var="event_comments_url" />
-		(Comment: ${fn:length( event.comments )} <a href="${ event_comments_url }">view</a>)
+		<p>
+			<spring:url value="/public/${ event.shortName }/comments" var="event_comments_url" />
+			(Comment: ${fn:length( event.comments )} <a href="${ event_comments_url }">view</a>)
+		</p>
+		<p>
+			<spring:url value="/public/${ event.shortName }/notifications" var="notifications_url" />
+			(Notification: ${fn:length( notifications )} <a href="${ notifications_url }">view</a>)
+		</p>
 	</aside>
 
 	<article>
