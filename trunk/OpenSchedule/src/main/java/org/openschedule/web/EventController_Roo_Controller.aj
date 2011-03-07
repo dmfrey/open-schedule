@@ -12,6 +12,7 @@ import org.openschedule.domain.Day;
 import org.openschedule.domain.Event;
 import org.openschedule.domain.EventComment;
 import org.openschedule.domain.Label;
+import org.openschedule.domain.Notification;
 import org.openschedule.domain.Session;
 import org.openschedule.domain.Speaker;
 import org.openschedule.domain.Sponsor;
@@ -108,6 +109,11 @@ privileged aspect EventController_Roo_Controller {
     @ModelAttribute("labels")
     public java.util.Collection<Label> EventController.populateLabels() {
         return Label.findAllLabels();
+    }
+    
+    @ModelAttribute("notifications")
+    public java.util.Collection<Notification> EventController.populateNotifications() {
+        return Notification.findAllNotifications();
     }
     
     @ModelAttribute("sessions")

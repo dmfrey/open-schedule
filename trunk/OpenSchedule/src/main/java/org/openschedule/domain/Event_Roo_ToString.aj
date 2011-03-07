@@ -16,6 +16,7 @@ privileged aspect Event_Roo_ToString {
         sb.append("EndDate: ").append(getEndDate()).append(", ");
         sb.append("NumberOfDays: ").append(getNumberOfDays()).append(", ");
         sb.append("Username: ").append(getUsername()).append(", ");
+        sb.append("Notifications: ").append(getNotifications() == null ? "null" : getNotifications().size()).append(", ");
         sb.append("Tracks: ").append(getTracks() == null ? "null" : getTracks().size()).append(", ");
         sb.append("Days: ").append(getDays() == null ? "null" : getDays().size()).append(", ");
         sb.append("Venues: ").append(getVenues() == null ? "null" : getVenues().size()).append(", ");

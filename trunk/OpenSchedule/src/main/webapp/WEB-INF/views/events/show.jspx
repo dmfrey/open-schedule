@@ -18,5 +18,7 @@
         <field:display field="sessions" id="s_org_openschedule_domain_Event_sessions" object="${event}" z="wfw9IM7jSsLfdqqS/dhlrZQ7ppE="/>
         <field:display field="speakers" id="s_org_openschedule_domain_Event_speakers" object="${event}" z="a6CBFASK5letLCXUb0K7JSEfCSM="/>
         <field:display field="comments" id="s_org_openschedule_domain_Event_comments" object="${event}" z="KhHO3FqLPk5wcFdsi2M2N5xUP00="/>
+    
+    <field:display field="notifications" id="s_org_openschedule_domain_Event_notifications" object="${event}" z="YW60ajSsMAdUqYkwZbwoj9+eSuQ="/>
     </page:show>
 </div>

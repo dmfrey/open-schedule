@@ -19,6 +19,8 @@
         <field:input field="sessions" id="c_org_openschedule_domain_Event_sessions" z="Wxn+OWF0bZckwrsr4iT/oWhd9Eo="/>
         <field:input field="speakers" id="c_org_openschedule_domain_Event_speakers" z="93zHaxRqFZvV7rTJgDQ3mXzkhgk="/>
         <field:input field="comments" id="c_org_openschedule_domain_Event_comments" z="rzT3wkZl3+UM21QCVdQMCd0e5tE="/>
+    
+    <field:input field="notifications" id="c_org_openschedule_domain_Event_notifications" z="Dfuhd8uNdabwW2xXhC1h4VQwQoA="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_org_openschedule_domain_Event" render="${not empty dependencies}" z="taeOJWs8mobF6TsOEanEmGpeCb8="/>
 </div>

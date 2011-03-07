@@ -43,6 +43,16 @@ section#content {
     margin-top: 2%;
 }
 
+article fieldset aside {
+	width: 150px;
+	float: right;
+	height: 50px;
+}
+
+article table {
+	width: 100%;
+}
+
 article.published table {
 	width: 100%;
 }

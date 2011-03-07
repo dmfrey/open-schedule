@@ -27,6 +27,9 @@
 	</logger>
 
 	<!-- Application Loggers -->
+	<logger name="org.openschedule.web.EventController">
+		<level value="debug" />
+	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
