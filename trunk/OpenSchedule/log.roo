@@ -191,3 +191,4 @@ test integration --entity ~.domain.Notification --permitReservedWords
 // Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-03-06 22:14:12
 // Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-03-07 08:29:00
 finder list --class ~.domain.Notification
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-03-07 16:22:35
