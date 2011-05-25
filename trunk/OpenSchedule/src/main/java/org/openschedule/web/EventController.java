@@ -396,6 +396,31 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
     
+    @RequestMapping( value = "/{eventId}/sponsors/{sponsorId}", method = RequestMethod.DELETE )
+    public String deleteSponsor( @PathVariable( "eventId" ) Long eventId, @PathVariable( "sponsorId" ) Long sponsorId, Model model, HttpServletRequest request ) {
+        log.info( "deleteSponsor : enter" );
+
+        Event event = Event.findEvent( eventId );
+        Sponsor sponsor = Sponsor.findSponsor( sponsorId );
+        
+        log.debug( "deleteSponsor : iterating tracks to remove sponsors" );
+        for( Track track : event.getTracks() ) {
+            log.debug( "deleteSponsor : track iteration" );
+
+        	if( track.getSponsor().equals( sponsor ) ) {
+                log.debug( "deleteSponsor : sponsor found on track, removing" );
+
+        		track.setSponsor( null );
+        		track.merge();
+        	}
+        }
+        
+        sponsor.remove();
+        
+        log.info( "deleteSponsor : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
+    }
+    
     @RequestMapping( value = "/{id}/venues", params = { "form" }, method = RequestMethod.GET )
     public String createVenueForm( @PathVariable( "id" ) Long id, Model model ) {
     	log.info( "createVenueForm : enter" );
@@ -466,6 +491,39 @@ public class EventController {
     	venue.merge();
     	
         log.info( "updateVenue : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
+    }
+
+    @RequestMapping( value = "/{eventId}/venues/{venueId}", method = RequestMethod.DELETE )
+    public String deleteVenue( @PathVariable( "eventId" ) Long eventId, @PathVariable( "venueId" ) Long venueId, Model model, HttpServletRequest request ) {
+        log.info( "deleteVenue : enter" );
+
+        Venue.findVenue( venueId ).remove();
+        Event event = Event.findEvent( eventId );
+        Venue venue = Venue.findVenue( venueId );
+        
+        log.debug( "deleteVenue : iterating tracks to remove rooms" );
+        for( Track track : event.getTracks() ) {
+            log.debug( "deleteVenue : track iteration" );
+
+            log.debug( "deleteVenue : iterating rooms to remove room from track" );
+            if( null != venue.getRooms() ) {
+            	for( Room room : venue.getRooms() ) {
+            		log.debug( "deleteVenue : room iteration" );
+
+            		if( track.getRoom().equals( room ) ) {
+            			log.debug( "deleteSponsor : room found on track, removing" );
+
+            			track.setRoom( null );
+            			track.merge();
+            		}
+            	}
+            }
+        }
+        
+        venue.remove();
+        
+        log.info( "deleteVenue : exit" );
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
@@ -543,6 +601,31 @@ public class EventController {
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
+    @RequestMapping( value = "/{eventId}/venues/{venueId}/rooms/{roomId}", method = RequestMethod.DELETE )
+    public String deleteVenueRoom( @PathVariable( "eventId" ) Long eventId, @PathVariable( "venueId" ) Long venueId, @PathVariable( "roomId" ) Long roomId, Model model, HttpServletRequest request ) {
+        log.info( "deleteVenueRoom : enter" );
+
+        Event event = Event.findEvent( eventId );
+        Room room = Room.findRoom( roomId );
+        
+        log.debug( "deleteVenueRoom : iterate tracks to remove room" );
+        for( Track track : event.getTracks() ) {
+            log.debug( "deleteVenueRoom : track iteration" );
+        	
+            if( track.getRoom().equals( room ) ) {
+                log.debug( "deleteVenueRoom : room found on track, removing" );
+
+                track.setRoom( null );
+                track.merge();
+            }
+        }
+        
+        room.remove();
+        
+        log.info( "deleteVenueRoom : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
+    }
+
     @RequestMapping( value = "/{id}/tracks", params = { "form" }, method = RequestMethod.GET )
     public String createTrackForm( @PathVariable( "id" ) Long id, Model model ) {
     	log.info( "createTrackForm : enter" );
@@ -611,6 +694,16 @@ public class EventController {
     	track.merge();
     	
         log.info( "updateTrack : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
+    }
+    
+    @RequestMapping( value = "/{eventId}/tracks/{trackId}", method = RequestMethod.DELETE )
+    public String deleteTrack( @PathVariable( "eventId" ) Long eventId, @PathVariable( "trackId" ) Long trackId, Model model, HttpServletRequest request ) {
+        log.info( "deleteTrack : enter" );
+
+        Track.findTrack( trackId ).remove();
+        
+        log.info( "deleteTrack : exit" );
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 
@@ -1042,6 +1135,32 @@ public class EventController {
     	speaker.merge();
     	
         log.info( "updateSpeaker : exit" );
+        return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
+    }
+
+    @RequestMapping( value = "/{eventId}/speakers/{speakerId}", method = RequestMethod.DELETE )
+    public String deleteSpeaker( @PathVariable( "eventId" ) Long eventId, @PathVariable( "speakerId" ) Long speakerId, Model model, HttpServletRequest request ) {
+        log.info( "deleteSpeaker : enter" );
+
+        Event event = Event.findEvent( eventId );
+        Speaker speaker = Speaker.findSpeaker( speakerId );
+        
+        log.debug( "deleteSpeaker : iterate sessions to remove speaker" );
+        for( Session session : event.getSessions() ) {
+            log.debug( "deleteSpeaker : session iteration" );
+        	
+            
+            if( session.getSpeakers().contains( speaker ) ) {
+                log.debug( "deleteSpeaker : speaker found on session, removing" );
+
+                session.getSpeakers().remove( speaker );
+                session.merge();
+            }
+        }
+        
+        speaker.remove();
+        
+        log.info( "deleteSpeaker : exit" );
         return "redirect:/events/" + encodeUrlPathSegment( eventId.toString(), request ) + "?form";
     }
 

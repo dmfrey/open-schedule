@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -89,6 +91,13 @@
 					
 					<spring:url value="/events/${ event.id }/sponsors/${ sponsor.id }?form" var="edit_sponsor_url" />
 					<a href="${ edit_sponsor_url }">Edit</a>
+					
+					<spring:url value="/events/${ event.id }/sponsors/${ sponsor.id }" var="delete_sponsor_url" />
+					<form action="${ delete_sponsor_url }" method="POST">
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="submit" value="Delete" />
+					</form>
+					
 				</div>
 			</li>
 			</c:forEach>
@@ -120,6 +129,12 @@
 					<li>
 						<spring:url value="/events/${ event.id }/venues/${ venue.id }?form" var="edit_venue_url" />
 						<a href="${ edit_venue_url }">Edit</a>
+
+						<spring:url value="/events/${ event.id }/venues/${ venue.id }" var="delete_venue_url" />
+						<form action="${ delete_venue_url }" method="POST">
+							<input type="hidden" name="_method" value="DELETE" />
+							<input type="submit" value="Delete" />
+						</form>
 					</li>
 				</ul>
 			</td>
@@ -149,6 +164,12 @@
 					<li>
 						<spring:url value="/events/${ event.id }/venues/${ venue.id }/rooms/${ room.id }?form" var="edit_sponsor_url" />
 						${ room.name }&nbsp;&nbsp;<a href="${ edit_sponsor_url }">Edit</a>
+
+						<spring:url value="/events/${ event.id }/venues/${ venue.id }/rooms/${ room.id }" var="delete_venue_room_url" />
+						<form action="${ delete_venue_room_url }" method="POST">
+							<input type="hidden" name="_method" value="DELETE" />
+							<input type="submit" value="Delete" />
+						</form>
 					</li>
 				</c:forEach>
 				</ul>
@@ -186,6 +207,12 @@
 			<td>
 				<spring:url value="/events/${ event.id }/tracks/${ track.id }?form" var="edit_track_url" />
 				<a href="${ edit_track_url }">Edit</a>
+
+				<spring:url value="/events/${ event.id }/tracks/${ track.id }" var="delete_track_url" />
+				<form action="${ delete_track_url }" method="POST">
+					<input type="hidden" name="_method" value="DELETE" />
+					<input type="submit" value="Delete" />
+				</form>
 			</td>
 		</tr>
 		</c:forEach>
@@ -238,6 +265,12 @@
 
 				<spring:url value="/events/${ event.id }/speakers/${ speaker.id }?form" var="edit_speaker_url" />
 				<a href="${ edit_speaker_url }">Edit</a>
+
+				<spring:url value="/events/${ event.id }/speakers/${ speaker.id }" var="delete_speaker_url" />
+				<form action="${ delete_speaker_url }" method="POST">
+					<input type="hidden" name="_method" value="DELETE" />
+					<input type="submit" value="Delete" />
+				</form>
 			</div>
 		</li>
 		</c:forEach>

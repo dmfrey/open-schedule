@@ -32,6 +32,7 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -69,7 +70,20 @@ public class RegisterController {
 			log.info( "register : exit, form has errors" );
 			return "register/form";
 		} else {
+			
+			try {
+				UserAccount.findUserAccountsByEmailEquals( userAccount.getEmail() ).getSingleResult();
+
+				result.addError( new ObjectError( "userAccount.email", "userAccount.register.email.exists" ) );
+				
+				log.info( "register : exit, duplicate email" );
+				return "register/form";
+			} catch( Exception e ) {
+			}
+			
 			userAccount.setPassword( passwordEncoder.encodePassword( userAccount.getPassword(), null ) );
+			
+			log.info( "register : userAccount=" + userAccount.toString() );
 			
 			userAccount.persist();
 			
